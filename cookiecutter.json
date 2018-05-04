@@ -1,0 +1,37 @@
+{
+  "project_name": "My Awesome Project",
+  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
+  "description": "Behold My Awesome Project!",
+  "author_name": "Mazdak Badakhshan",
+  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
+  "domain_name": "example.com",
+  "version": "0.1.0",
+  "open_source_license": [
+    "MIT",
+    "BSD",
+    "GPLv3",
+    "Apache Software License 2.0",
+    "Not open source"
+  ],
+  "timezone": "UTC",
+  "windows": "n",
+  "use_pycharm": "n",
+  "use_docker": "y",
+  "postgresql_version": [
+    "10.3",
+    "10.2",
+    "10.1",
+    "9.6",
+    "9.5",
+    "9.4",
+    "9.3"
+  ],
+  "use_celery": "y",
+  "use_mailhog": "n",
+  "use_sentry": "y",
+  "use_whitenoise": "y",
+  "use_heroku": "n",
+  "use_travisci": "n",
+  "use_grappelli": "y",
+  "keep_local_envs_in_vcs": "y"
+}

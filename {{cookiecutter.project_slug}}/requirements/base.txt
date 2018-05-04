@@ -1,0 +1,32 @@
+pytz==2018.4  # https://github.com/stub42/pytz
+awesome-slugify==1.6.5  # https://github.com/dimka665/awesome-slugify
+Pillow==5.0.0  # https://github.com/python-pillow/Pillow
+argon2-cffi==18.1.0  # https://github.com/hynek/argon2_cffi
+{%- if cookiecutter.use_whitenoise == 'y' %}
+whitenoise==3.3.1  # https://github.com/evansd/whitenoise
+{%- endif %}
+redis>=2.10.5  # https://github.com/antirez/redis
+{%- if cookiecutter.use_celery == "y" %}
+celery==4.1.0  # https://github.com/celery/celery
+{%- endif %}
+cryptography==2.2  # https://github.com/pyca/cryptography
+phonenumberslite==8.9.2  # https://github.com/daviddrysdale/python-phonenumbers
+inflect==0.2.5  # https://github.com/pwdyson/inflect.py
+
+# Django
+# ------------------------------------------------------------------------------
+django==2.0.4  # pyup: < 2.1  # https://www.djangoproject.com/
+django-environ==0.4.4  # https://github.com/joke2k/django-environ
+django-model-utils==3.1.1  # https://github.com/jazzband/django-model-utils
+django-choices==1.6.0  # https://github.com/bigjason/django-choices
+django-redis==4.9.0  # https://github.com/niwinz/django-redis
+django-filter==1.1.0  # https://github.com/carltongibson/django-filter
+django-cors-headers==2.2.0  # https://github.com/ottoyiu/django-cors-headers
+django-versatileimagefield==1.9  # https://github.com/respondcreate/django-versatileimagefield/
+{%- if cookiecutter.use_grappelli == "y" %}
+django-grappelli==2.11.1  # https://github.com/sehmaschine/django-grappelli
+{%- endif %}
+
+# Django REST Framework
+djangorestframework==3.8.2  # https://github.com/encode/django-rest-framework
+coreapi==2.3.3  # https://github.com/core-api/python-client
