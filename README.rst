@@ -16,16 +16,10 @@ production-ready Django web services quickly.
 * See Troubleshooting_ for common errors and obstacles
 * If you have problems with Django Naqsh, please open issues_ don't send
   emails to the maintainers.
-* Need quick professional paid support? Contact `support@cookiecutter.io`_.
-  This includes configuring your servers, fixing bugs, reviewing your code and
-  everything in between.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
-
 .. _Troubleshooting: https://django-naqsh.readthedocs.io/en/latest/troubleshooting.html
-
 .. _issues: https://github.com/mazdakb/django-naqsh/issues/new
-.. _support@cookiecutter.io: support@cookiecutter.io
 
 Features
 ---------
@@ -37,7 +31,8 @@ Features
 * Optimized development and production settings
 * Comes with custom accounts app ready to go
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Media storage using Amazon S3
+* Media storage using Amazon S3 / Minio
+* Custom user model with secure token authentication and email validation for rest api
 * Docker support using docker-compose_ for development and production (using Caddy_ with LetsEncrypt_ support)
 * Procfile_ for deploying to Heroku
 * Run tests with unittest or py.test
@@ -74,13 +69,6 @@ Constraints
 * Only maintained 3rd party libraries are used.
 * Uses PostgreSQL everywhere (9.2+)
 * Environment variables for configuration (This won't work with Apache/mod_wsgi except on AWS ELB).
-
-Support this Project!
-----------------------
-
-This project is run by volunteers. Please support them in their efforts to maintain and improve Django Naqsh:
-
-* You can donate Ethereum to this account: 0x4753B709fb7ee19B32Dc7e84aa9ca86288bf543F
 
 Usage
 ------
@@ -172,7 +160,6 @@ Community
 
 * Have questions? **Before you ask questions anywhere else**, please post your question on `Stack Overflow`_ under the *django-naqsh* tag. We check there periodically for questions.
 * If you think you found a bug or want to request a feature, please open an issue_.
-* For anything else, you can chat with us on `Gitter`_.
 
 .. _`Stack Overflow`: http://stackoverflow.com/questions/tagged/django-naqsh
 .. _`issue`: https://github.com/mazdakb/django-naqsh/issues
