@@ -12,6 +12,9 @@ Django Naqsh
 Powered by Cookiecutter_, Django Naqsh is a bootstrapping tool for creating
 production-ready Django web services quickly.
 
+This project is a fork of `cookiecutter-django`_ that is intended to be used as a REST API backend.
+Unnecessary modules for a REST API and codes are removed and custom User model is more developed.
+
 * Documentation: https://django-naqsh.readthedocs.io/en/latest/
 * See Troubleshooting_ for common errors and obstacles
 * If you have problems with Django Naqsh, please open issues_ don't send
@@ -20,6 +23,8 @@ production-ready Django web services quickly.
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _Troubleshooting: https://django-naqsh.readthedocs.io/en/latest/troubleshooting.html
 .. _issues: https://github.com/mazdakb/django-naqsh/issues/new
+
+.. _cookiecutter-django: https://github.com/pydanny/cookiecutter-django
 
 Features
 ---------
