@@ -15,15 +15,8 @@ from django.db import models
 from djchoices import DjangoChoices, ChoiceItem
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
-from versatileimagefield.fields import VersatileImageField
-from phonenumbers import parse, is_valid_number, format_number, PhoneNumberFormat, NumberParseException
 
 from {{cookiecutter.project_slug}}.common.models import UniversalModel, TimestampedModel
-from {{cookiecutter.project_slug}}.common.storages import path_for_object, replace_file_name
-
-
-def accounts_profile_path(instance, filename):
-    return os.path.join(path_for_object(instance), replace_file_name(filename, 'picture'))
 
 
 class AuthTokenConfig(object):
@@ -34,14 +27,14 @@ class AuthTokenConfig(object):
 
     def __init__(self):
         for prop, value in getattr(settings, 'AUTH_TOKEN', {}).items():
-            setattr(self, 'token_{}'.format(prop.lower()), value)
+            setattr(self, f'token_{prop.lower()}', value)
 
 
 class AuthTokenManager(models.Manager):
     config = AuthTokenConfig()
 
     def get_key(self, token):
-        return token[:int(self.config.TOKEN_CHARACTER_LENGTH / 2)]
+        return token[:int(self.config.TOKEN_CHARACTER_LENGTH // 2)]
 
     def hash_token(self, token, salt):
         digest = hashes.Hash(hashes.SHA512(), backend=default_backend())
@@ -50,8 +43,8 @@ class AuthTokenManager(models.Manager):
         return binascii.hexlify(digest.finalize()).decode()
 
     def create(self, user):
-        token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH / 2))
-        salt = secrets.token_hex(int(self.config.TOKEN_SALT_LENGTH / 2))
+        token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH // 2))
+        salt = secrets.token_hex(int(self.config.TOKEN_SALT_LENGTH // 2))
         digest = self.hash_token(token, salt)
 
         expires = None
@@ -71,7 +64,7 @@ class AuthTokenManager(models.Manager):
 
 class AuthToken(UniversalModel, TimestampedModel):
     digest = models.CharField(_('digest'), max_length=255)
-    key = models.CharField(_('key'), max_length=255, db_index=True)
+    key = models.CharField(_('key'), max_length=255, unique=True)
     salt = models.CharField(_('salt'), max_length=255, unique=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tokens', on_delete=models.CASCADE)
     expires = models.DateTimeField(null=True, blank=True, db_index=True)
@@ -88,45 +81,25 @@ class AuthToken(UniversalModel, TimestampedModel):
         return self.expires < timezone.now()
 
 
-def phone_validator(value):
-    # prepend + at the beginning
-    value = '+{}'.format(value)
-    # parse the number
-    try:
-        number = parse(value, None)
-    except NumberParseException:
-        raise ValidationError(
-            _('%(value)s is not a valid phone number'),
-            params={'value': value[1:]},
-        )
-    if not is_valid_number(number):
-        raise ValidationError(
-            _('%(value)s is not a valid Iranian phone number'),
-            params={'value': value[1:]},
-        )
-
-
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, phone, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
         """
-        Create and save a user with the given phone, and password.
+        Create and save a user with the given email, and password.
         """
-        if not phone:
-            raise ValueError('The given phone must be set')
-        email = self.normalize_email(extra_fields.pop('email', ''))
-        user = self.model(phone=phone, email=email, **extra_fields)
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password) if password is not None else user.set_unusable_password()
         user.save(using=self._db)
         return user
 
-    def create_user(self, phone, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(phone, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
-    def create_superuser(self, phone, password, **extra_fields):
+    def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -135,7 +108,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
-        return self._create_user(phone, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -147,16 +120,8 @@ class User(AbstractUser):
             'unique': _("A user with smake email address already exists."),
         },
     )
-    phone = models.CharField(
-        _('phone'),
-        max_length=15,
-        validators=[phone_validator],
-        blank=True,
-        db_index=True,
-        help_text=_('Valid phone number in E.164 international form'),
-    )
 
-    username = None  # overwritten to remove the `username` field from model
+    username = None  # overwritten to remove the useless `username` field from database
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -164,38 +129,4 @@ class User(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return format_number(
-            parse('+{}'.format(self.phone)),
-            PhoneNumberFormat.INTERNATIONAL
-        )[1:]  # phone number formatting without leading zero
-
-
-class ProfileGenders(DjangoChoices):
-    MALE = ChoiceItem('MALE', _('MALE'))
-    FEMALE = ChoiceItem('FEMALE', _('FEMALE'))
-
-
-class Profile(UniversalModel, TimestampedModel):
-    user = models.OneToOneField(
-        User,
-        verbose_name=_('user'),
-        related_name='profile',
-        on_delete=models.CASCADE
-    )
-    gender = models.CharField(
-        _('gender'),
-        max_length=6,
-        default=ProfileGenders.MALE,
-        choices=ProfileGenders.choices,
-        validators=[ProfileGenders.validator],
-        help_text=_('designates the gender of user'),
-    )
-    birthdate = models.DateField(_('birthdate'), null=True, blank=True)
-    picture = VersatileImageField(_('picture'), blank=True, upload_to=accounts_profile_path)
-
-    class Meta:
-        verbose_name = _('profile')
-        verbose_name_plural = _('profiles')
-
-    def __str__(self):
-        return str(self.id)
+        return self.email

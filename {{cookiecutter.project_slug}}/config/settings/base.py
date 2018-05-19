@@ -262,7 +262,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'accounts.auth.bearer.BearerTokenAuthentication',
+        'accounts.rest.v1.auth.BearerTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_FILTER_BACKENDS': [

@@ -10,7 +10,6 @@ redis>=2.10.5  # https://github.com/antirez/redis
 celery==4.1.0  # https://github.com/celery/celery
 {%- endif %}
 cryptography==2.2.2  # https://github.com/pyca/cryptography
-phonenumberslite==8.9.2  # https://github.com/daviddrysdale/python-phonenumbers
 inflect==0.2.5  # https://github.com/pwdyson/inflect.py
 
 # Django
