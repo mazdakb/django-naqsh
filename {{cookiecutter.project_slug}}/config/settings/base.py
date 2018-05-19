@@ -145,6 +145,9 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    {%- if cookiecutter.enable_cors == 'y' %}
+    'corsheaders.middleware.CorsMiddleware',
+    {%- endif %}
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -272,10 +275,12 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+{% if cookiecutter.enable_cors == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------
 # Access Headers
 CORS_ORIGIN_ALLOW_ALL = True
+{%- endif %}
 
 # Versatile ImageField
 # ------------------------------------------------------------------------------
