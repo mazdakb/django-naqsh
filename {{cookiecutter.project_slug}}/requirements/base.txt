@@ -21,7 +21,9 @@ django-model-utils==3.1.2  # https://github.com/jazzband/django-model-utils
 django-choices==1.6.0  # https://github.com/bigjason/django-choices
 django-redis==4.9.0  # https://github.com/niwinz/django-redis
 django-filter==1.1.0  # https://github.com/carltongibson/django-filter
+{%- if cookiecutter.enable_cors == 'y' %}
 django-cors-headers==2.2.0  # https://github.com/ottoyiu/django-cors-headers
+{%- endif %}
 {%- if cookiecutter.use_grappelli == "y" %}
 django-grappelli==2.11.1  # https://github.com/sehmaschine/django-grappelli
 {%- endif %}
