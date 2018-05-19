@@ -20,7 +20,10 @@ class UniversalModel(models.Model):
 
     @property
     def serial(self) -> str:
-        return f'{self.__class__.__name__.upper()[0]}{str(self.id).upper().split('-')[0]}'
+        return "{}{}".format(
+            self.__class__.__name__.upper()[0],
+            str(self.id).upper().split('-')[0]
+        )
 
     def __str__(self):
         return self.serial

@@ -1,4 +1,3 @@
-import os
 import uuid
 import secrets
 import binascii
@@ -7,12 +6,10 @@ from datetime import timedelta
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser
-from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.conf import settings
 from django.db import models
 
-from djchoices import DjangoChoices, ChoiceItem
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 
