@@ -81,10 +81,11 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'django_filters',
+    {%- if cookiecutter.enable_cors == 'y' %}
     'corsheaders',
+    {%- endif %}
+    'django_filters',
     'rest_framework',
-    'versatileimagefield',
 ]
 LOCAL_APPS = [
     '{{ cookiecutter.project_slug }}.common.apps.CommonConfig',
@@ -280,16 +281,6 @@ REST_FRAMEWORK = {
 # Access Headers
 CORS_ORIGIN_ALLOW_ALL = True
 {%- endif %}
-
-# Versatile ImageField
-# ------------------------------------------------------------------------------
-# Rendition key Sets
-VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-    'thumbnailed': [
-        ('original', 'url'),
-        ('thumbnail', 'thumbnail__256x256'),
-    ]
-}
 
 {% if cookiecutter.use_grappelli == "y" -%}
 # Django Grappelli
