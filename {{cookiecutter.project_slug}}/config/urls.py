@@ -19,7 +19,7 @@ urlpatterns = [
     # Django Grappelli
     path('grappelli/', include('grappelli.urls')),
     {%- endif %}
-    # Django Admin, use {% url 'admin:index' %}
+    # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
     path(settings.ADMIN_URL, admin.site.urls),
 
     # API Root View Session Auth
