@@ -1,7 +1,3 @@
-www.{% raw %}{$DOMAIN_NAME}{% endraw %} {
-    redir https://{{cookiecutter.domain_name}}
-}
-
 {% raw %}{$DOMAIN_NAME}{% endraw %} {
     proxy / django:5000 {
         header_upstream Host {host}
