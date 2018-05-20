@@ -26,7 +26,7 @@ urlpatterns = [
     path('root-view-auth', include('rest_framework.urls', namespace='rest_framework')),
 
     # API V1
-    url(r'^v1/', include(([
+    path('v1/', include(([
 
         # TODO: custom urls includes go here
 
