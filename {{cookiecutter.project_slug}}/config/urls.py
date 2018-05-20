@@ -1,11 +1,10 @@
 import logging
-from collections import OrderedDict
 
+from django.urls import path
 from django.urls import include
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.urls import path, NoReverseMatch
 from django.views.generic import RedirectView
 from django.views import defaults as default_views
 
