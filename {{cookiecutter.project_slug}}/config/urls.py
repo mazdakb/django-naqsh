@@ -9,7 +9,7 @@ from django.urls import path, NoReverseMatch
 from django.views.generic import RedirectView
 from django.views import defaults as default_views
 
-from rest_framework.reverse import reverse_lazy, reverse
+from rest_framework.reverse import reverse_lazy
 from rest_framework.routers import APIRootView
 
 logger = logging.getLogger(__name__)
