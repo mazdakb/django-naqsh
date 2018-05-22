@@ -64,6 +64,10 @@ def remove_dottravisyml_file():
     os.remove(".travis.yml")
 
 
+def remove_dotgitlabyml_file():
+    os.remove(".gitlab-ci.yml")
+
+
 def append_to_project_gitignore(path):
     gitignore_file_path = ".gitignore"
     with open(gitignore_file_path, "a") as gitignore_file:
@@ -235,6 +239,9 @@ def main():
 
     if "{{ cookiecutter.use_travisci }}".lower() == "n":
         remove_dottravisyml_file()
+
+    if "{{ cookiecutter.use_gitlabci }}".lower() == "n":
+        remove_dotgitlabyml_file()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 

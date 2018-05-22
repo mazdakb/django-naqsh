@@ -76,6 +76,9 @@ use_heroku:
 use_travisci:
     Indicates whether the project should be configured to use `Travis CI`_.
 
+use_gitlabci:
+    Indicates whether the project should be configured to use `Gitlab CI`_.
+
 use_grappelli:
     Indicates whether the project should be configured to use `Django Grappelli`_.
 
@@ -119,3 +122,5 @@ debug:
 .. _Django CORS Headers: https://github.com/ottoyiu/django-cors-headers
 
 .. _Travis CI: https://travis-ci.org/
+
+.. _Gitlab CI: https://about.gitlab.com/features/gitlab-ci-cd/

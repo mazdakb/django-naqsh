@@ -1,0 +1,14 @@
+# This file is a simple Gitlab-CI config file to run pytest
+
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - apk add --no-cache py3-pip && pip3 install docker-compose
+
+test:
+  script:
+  - export DATABASE_URL=postgres://postgres:@postgres:5432/{{ cookiecutter.project_slug }}
+  - docker-compose -f local.yml run django pytest
