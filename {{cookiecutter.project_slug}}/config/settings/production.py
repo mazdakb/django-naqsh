@@ -1,6 +1,6 @@
 {% if cookiecutter.use_sentry == 'y' -%}
 import logging
-{%- end %}
+{%- endif %}
 
 from .base import *  # noqa
 from .base import env
