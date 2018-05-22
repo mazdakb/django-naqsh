@@ -1,5 +1,5 @@
 pytz==2018.4  # https://github.com/stub42/pytz
-awesome-slugify==1.6.5  # https://github.com/dimka665/awesome-slugify
+python-slugify==1.2.5  # https://github.com/un33k/python-slugify
 Pillow==5.0.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==18.1.0  # https://github.com/hynek/argon2_cffi
 {%- if cookiecutter.use_whitenoise == 'y' %}
@@ -20,7 +20,7 @@ django-model-utils==3.1.2  # https://github.com/jazzband/django-model-utils
 django-choices==1.6.0  # https://github.com/bigjason/django-choices
 django-redis==4.9.0  # https://github.com/niwinz/django-redis
 django-filter==1.1.0  # https://github.com/carltongibson/django-filter
-{%- if cookiecutter.enable_cors == 'y' %}
+{%- if cookiecutter.user_cors_headers == 'y' %}
 django-cors-headers==2.2.0  # https://github.com/ottoyiu/django-cors-headers
 {%- endif %}
 {%- if cookiecutter.use_grappelli == "y" %}

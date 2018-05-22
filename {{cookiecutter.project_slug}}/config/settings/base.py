@@ -81,7 +81,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    {%- if cookiecutter.enable_cors == 'y' %}
+    {%- if cookiecutter.user_cors_headers == 'y' %}
     'corsheaders',
     {%- endif %}
     'django_filters',
@@ -145,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    {%- if cookiecutter.enable_cors == 'y' %}
+    {%- if cookiecutter.user_cors_headers == 'y' %}
     'corsheaders.middleware.CorsMiddleware',
     {%- endif %}
     'django.middleware.common.CommonMiddleware',
@@ -275,7 +275,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
-{% if cookiecutter.enable_cors == 'y' -%}
+{% if cookiecutter.user_cors_headers == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------
 # Access Headers

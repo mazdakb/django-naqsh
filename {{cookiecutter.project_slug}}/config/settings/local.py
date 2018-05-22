@@ -1,8 +1,3 @@
-{% if cookiecutter.use_docker == 'y' -%}
-import socket
-import os
-{%- endif %}
-
 from .base import *  # noqa
 from .base import env
 
@@ -69,7 +64,7 @@ DEBUG_TOOLBAR_CONFIG = {
 INTERNAL_IPS = ['127.0.0.1', '10.0.2.2']
 
 {% if cookiecutter.use_docker == 'y' -%}
-if os.environ.get('USE_DOCKER') == 'yes':
+if env('USE_DOCKER') == 'yes':
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS += [ip[:-1] + '1' for ip in ips]
 {%- endif %}

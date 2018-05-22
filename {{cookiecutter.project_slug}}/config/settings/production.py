@@ -1,4 +1,6 @@
+{% if cookiecutter.use_sentry == 'y' -%}
 import logging
+{%- end %}
 
 from .base import *  # noqa
 from .base import env
@@ -97,7 +99,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/'
 {%- else %}
 # region http://stackoverflow.com/questions/10390244/
-from storages.backends.s3boto3 import S3Boto3Storage
+from storages.backends.s3boto3 import S3Boto3Storage  # noqa E402
 StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')  # noqa
 MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media', file_overwrite=False)  # noqa
 # endregion
@@ -234,7 +236,7 @@ RAVEN_CONFIG = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
-# the site admins bon every HTTP 500 error when DEBUG=False.
+# the site admins on every HTTP 500 error when DEBUG=False.
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {

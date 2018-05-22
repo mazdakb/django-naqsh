@@ -32,7 +32,8 @@
   "use_whitenoise": "y",
   "use_heroku": "n",
   "use_travisci": "n",
-  "enable_cors": "y",
   "use_grappelli": "y",
-  "keep_local_envs_in_vcs": "y"
+  "user_cors_headers": "y",
+  "keep_local_envs_in_vcs": "y",
+  "debug": "n"
 }
