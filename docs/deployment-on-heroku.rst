@@ -28,7 +28,7 @@ Run these commands to deploy the project to Heroku:
     heroku config:set DJANGO_AWS_STORAGE_BUCKET_NAME=YOUR_AWS_S3_BUCKET_NAME_HERE
 
     # This is to be set only if you're using Sentry:
-    heroku config:set DJANGO_SENTRY_DSN=YOUR_SENTRY_DSN
+    heroku config:set SENTRY_DSN=YOUR_SENTRY_DSN
 
     heroku config:set PYTHONHASHSEED=random
 
