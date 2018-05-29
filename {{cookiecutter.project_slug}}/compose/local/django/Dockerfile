@@ -11,7 +11,7 @@ RUN apk update \
   # CFFI dependencies
   && apk add libffi-dev py-cffi \
   # cryptography dependencies
-  && apk add openssl-dev \
+  && apk add libressl-dev \
   # Translations dependencies
   && apk add gettext \
   # https://docs.djangoproject.com/en/dev/ref/django-admin/#dbshell

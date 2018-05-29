@@ -11,7 +11,7 @@ RUN apk update \
   # CFFI dependencies
   && apk add libffi-dev py-cffi \
   # cryptography dependencies
-  && apk add openssl-dev
+  && apk add libressl-dev
 
 RUN addgroup -S django \
     && adduser -S -G django django
