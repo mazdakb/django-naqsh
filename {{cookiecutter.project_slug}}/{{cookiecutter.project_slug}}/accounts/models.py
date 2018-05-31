@@ -10,8 +10,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.db import models
 
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.backends import default_backend
+from Crypto.Hash import SHA512
 
 from {{cookiecutter.project_slug}}.common.models import UniversalModel, TimestampedModel
 
@@ -34,10 +33,10 @@ class AuthTokenManager(models.Manager):
         return token[:int(self.config.TOKEN_CHARACTER_LENGTH // 2)]
 
     def hash_token(self, token, salt):
-        digest = hashes.Hash(hashes.SHA512(), backend=default_backend())
-        digest.update(binascii.unhexlify(token))
-        digest.update(binascii.unhexlify(salt))
-        return binascii.hexlify(digest.finalize()).decode()
+        hash_object = SHA512.new()
+        hash_object.update(binascii.unhexlify(token))
+        hash_object.update(binascii.unhexlify(salt))
+        return hash_object.hexdigest()
 
     def create(self, user):
         token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH // 2))
