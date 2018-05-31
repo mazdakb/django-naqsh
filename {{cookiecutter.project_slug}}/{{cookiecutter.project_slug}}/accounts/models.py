@@ -17,7 +17,6 @@ from {{cookiecutter.project_slug}}.common.models import UniversalModel, Timestam
 
 class AuthTokenConfig(object):
     TOKEN_CHARACTER_LENGTH = 64
-    TOKEN_DIGEST_LENGTH = 128
     TOKEN_SALT_LENGTH = 16
     TOKEN_TTL = 0
 
@@ -30,7 +29,7 @@ class AuthTokenManager(models.Manager):
     config = AuthTokenConfig()
 
     def get_key(self, token):
-        return token[:int(self.config.TOKEN_CHARACTER_LENGTH // 2)]
+        return token[:int(self.config.TOKEN_CHARACTER_LENGTH)]
 
     def hash_token(self, token, salt):
         hash_object = SHA512.new()
@@ -39,8 +38,8 @@ class AuthTokenManager(models.Manager):
         return hash_object.hexdigest()
 
     def create(self, user):
-        token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH // 2))
-        salt = secrets.token_hex(int(self.config.TOKEN_SALT_LENGTH // 2))
+        token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH))
+        salt = secrets.token_hex(int(self.config.TOKEN_SALT_LENGTH / 2))
         digest = self.hash_token(token, salt)
 
         expires = None
