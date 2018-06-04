@@ -8,6 +8,10 @@ Django Naqsh
     :target: http://django-naqsh.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
+.. image:: https://pyup.io/repos/github/mazdakb/django-naqsh/shield.svg
+     :target: https://pyup.io/repos/github/mazdakb/django-naqsh/
+     :alt: Updates
+
 
 Powered by Cookiecutter_, Django Naqsh is a bootstrapping tool for creating
 production-ready Django web services quickly.
