@@ -42,7 +42,8 @@ class TimestampedModel(models.Model):
 
 
 class ActivatedModelManager(models.Manager):
-    def only_active(self) -> QuerySet:
+    @property
+    def actives(self) -> QuerySet:
         return self.get_queryset().filter(is_active=True)
 
 
