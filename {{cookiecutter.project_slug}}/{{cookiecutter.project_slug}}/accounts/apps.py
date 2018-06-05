@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class AccountsConfig(AppConfig):
+class AccountsAppConfig(AppConfig):
     name = "{{cookiecutter.project_slug}}.accounts"
     verbose_name = "Accounts"
 

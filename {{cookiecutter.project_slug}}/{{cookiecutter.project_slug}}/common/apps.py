@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class CommonConfig(AppConfig):
+class CommonAppConfig(AppConfig):
     name = "{{cookiecutter.project_slug}}.common"
     verbose_name = "Common"
 

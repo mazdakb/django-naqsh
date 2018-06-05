@@ -88,8 +88,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
 ]
 LOCAL_APPS = [
-    '{{ cookiecutter.project_slug }}.common.apps.CommonConfig',
-    '{{ cookiecutter.project_slug }}.accounts.apps.AccountsConfig',
+    '{{ cookiecutter.project_slug }}.common.apps.CommonAppConfig',
+    '{{ cookiecutter.project_slug }}.accounts.apps.AccountsAppConfig',
 
     # TODO: custom apps go here
 ]
@@ -239,7 +239,7 @@ MANAGERS = ADMINS
 {% if cookiecutter.use_celery == 'y' -%}
 # Celery
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['{{cookiecutter.project_slug}}.celery.CeleryConfig']
+INSTALLED_APPS += ['{{cookiecutter.project_slug}}.celery.CeleryAppConfig']
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-broker_url
 CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
