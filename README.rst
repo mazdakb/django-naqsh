@@ -123,13 +123,13 @@ Answer the prompts with your own desired options_. For example::
     use_heroku [n]: y
     Select postgresql_version:
     1 - 10.4
-    1 - 10.3
-    2 - 10.2
-    3 - 10.1
-    4 - 9.6
-    5 - 9.5
-    6 - 9.4
-    7 - 9.3
+    2 - 10.3
+    3 - 10.2
+    4 - 10.1
+    5 - 9.6
+    6 - 9.5
+    7 - 9.4
+    8 - 9.3
     Choose from 1, 2, 3, 4 [1]: 1
     Select open_source_license:
     1 - MIT
