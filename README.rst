@@ -122,6 +122,7 @@ Answer the prompts with your own desired options_. For example::
     use_docker [y]: n
     use_heroku [n]: y
     Select postgresql_version:
+    1 - 10.4
     1 - 10.3
     2 - 10.2
     3 - 10.1
