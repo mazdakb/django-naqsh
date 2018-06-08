@@ -343,6 +343,8 @@ pip-selfcheck.json
 MailHog
 {% endif %}
 
+.pytest_cache/
+
 # Django media (upload) folder
 media/
 
