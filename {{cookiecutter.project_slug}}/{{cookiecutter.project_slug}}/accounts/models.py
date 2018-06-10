@@ -106,13 +106,12 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class User(AbstractUser):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+class User(AbstractUser, UniversalModel):
     email = models.EmailField(
         _('email address'),
         unique=True,
         error_messages={
-            'unique': _("A user with smake email address already exists."),
+            'unique': _("A user with make email address already exists."),
         },
     )
 
