@@ -1,4 +1,3 @@
-import uuid
 import secrets
 import binascii
 from datetime import timedelta
