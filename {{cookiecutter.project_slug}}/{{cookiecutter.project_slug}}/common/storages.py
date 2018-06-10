@@ -46,7 +46,7 @@ def replace_file_name(filename: str, replace_with: str) -> str:
     :param replace_with: str
     :return: str
     """
-    return '{0}.{1}'.format(replace_with, filename.split('.')[-1])
+    return f'{replace_with}.{filename.split(".")[-1]}'
 
 
 def path_for_object(instance, get_object_name=lambda i: str(i.id), field_name: str = '') -> str:
