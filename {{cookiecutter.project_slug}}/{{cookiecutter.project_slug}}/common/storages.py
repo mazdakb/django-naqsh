@@ -34,7 +34,7 @@ def random_file_name(filename: str) -> str:
     :param filename: str
     :return: str
     """
-    return f'{replace_with}.{filename.split(".")[-1]}'
+    return f'{secrets.token_urlsafe(16)}.{filename.split(".")[-1]}'
 
 
 def replace_file_name(filename: str, replace_with: str) -> str:
