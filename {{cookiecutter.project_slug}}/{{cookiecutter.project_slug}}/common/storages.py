@@ -17,17 +17,8 @@ class OverwriteStorage(FileSystemStorage):
 
         Found at http://djangosnippets.org/snippets/976/
 
-        This file storage solves overwrite on upload problem. Another
-        proposed solution was to override the save method on the model
-        like so (from https://code.djangoproject.com/ticket/11663):
-
-        def save(self, *args, **kwargs):
-            try:
-                this = MyModelName.objects.get(id=self.id)
-                if this.MyImageFieldName != self.MyImageFieldName:
-                    this.MyImageFieldName.delete()
-            except: pass
-            super(MyModelName, self).save(*args, **kwargs)
+        Notes:
+            This file storage solves overwrite on upload problem.
         """
         # If the filename already exists, remove it as if it was a true file system
         if self.exists(name):
@@ -43,7 +34,7 @@ def random_file_name(filename: str) -> str:
     :param filename: str
     :return: str
     """
-    return '{0}.{1}'.format(secrets.token_urlsafe(16), filename.split('.')[-1])
+    return f'{replace_with}.{filename.split(".")[-1]}'
 
 
 def replace_file_name(filename: str, replace_with: str) -> str:
