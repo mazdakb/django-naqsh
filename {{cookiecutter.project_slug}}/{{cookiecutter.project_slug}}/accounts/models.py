@@ -21,14 +21,14 @@ class AuthTokenConfig(object):
 
     def __init__(self):
         for prop, value in getattr(settings, 'AUTH_TOKEN', {}).items():
-            setattr(self, f'token_{prop.lower()}', value)
+            setattr(self, f'TOKEN_{prop}', value)
 
 
 class AuthTokenManager(models.Manager):
     config = AuthTokenConfig()
 
     def get_key(self, token):
-        return token[:int(self.config.TOKEN_CHARACTER_LENGTH)]
+        return token[:int(self.config.TOKEN_CHARACTER_LENGTH / 2)]
 
     def hash_token(self, token, salt):
         hash_object = SHA512.new()
