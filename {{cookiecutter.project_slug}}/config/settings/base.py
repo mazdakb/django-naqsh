@@ -263,7 +263,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'accounts.api.rest.v1.auth.BearerTokenAuthentication',
+        '{{cookiecutter.project_slug}}.accounts.api.rest.v1.auth.BearerTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_FILTER_BACKENDS': [
