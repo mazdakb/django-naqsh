@@ -10,6 +10,5 @@ before_script:
 
 test:
   script:
-  - export DJANGO_SETTINGS_MODULE=config.settings.local
   - export DATABASE_URL=postgres://postgres:@postgres:5432/achareh
   - docker-compose -f local.yml run django pytest
