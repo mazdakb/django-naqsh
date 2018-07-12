@@ -26,13 +26,20 @@ DJANGO_AWS_STORAGE_BUCKET_NAME=
 # Gunicorn
 # ------------------------------------------------------------------------------
 WEB_CONCURRENCY=4
-
-{% if cookiecutter.use_sentry == 'y' -%}
+{% if cookiecutter.use_sentry == 'y' %}
 # Sentry
 # ------------------------------------------------------------------------------
 SENTRY_DSN=
-{%- endif %}
+{% endif %}
 
 # Redis
 # ------------------------------------------------------------------------------
 REDIS_URL=redis://redis:6379/0
+{% if cookiecutter.use_celery == 'y' %}
+# Celery
+# ------------------------------------------------------------------------------
+
+# Flower
+CELERY_FLOWER_USER=!!!SET CELERY_FLOWER_USER!!!
+CELERY_FLOWER_PASSWORD=!!!SET CELERY_FLOWER_PASSWORD!!!
+{% endif %}
