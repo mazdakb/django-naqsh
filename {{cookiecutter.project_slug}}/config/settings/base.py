@@ -49,11 +49,11 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 {% if cookiecutter.use_docker == 'y' -%}
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///{{cookiecutter.project_slug}}'),
+    'default': env.db('DJANGO_DATABASE_URL', default='postgres:///{{cookiecutter.project_slug}}'),
 }
 {%- else %}
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://{% if cookiecutter.windows == 'y' %}localhost{% endif %}/{{cookiecutter.project_slug}}'),
+    'default': env.db('DJANGO_DATABASE_URL', default='postgres://{% if cookiecutter.windows == 'y' %}localhost{% endif %}/{{cookiecutter.project_slug}}'),
 }
 {%- endif %}
 DATABASES['default']['ATOMIC_REQUESTS'] = True
