@@ -45,15 +45,15 @@ class AuthTokenManager(models.Manager):
         if self.config.TOKEN_TTL != 0:
             expires = timezone.now() + timedelta(seconds=self.config.TOKEN_TTL)
 
-        super(AuthTokenManager, self).create(
+        authtoken = super(AuthTokenManager, self).create(
             digest=digest,
             key=self.get_key(token),
             salt=salt,
             user=user,
             expires=expires
         )
-        # Note only the token string - not the AuthToken object - is returned
-        return token
+        # return token alongside authtoken instance
+        return authtoken, token
 
 
 class AuthToken(UniversalModel, TimestampedModel):
