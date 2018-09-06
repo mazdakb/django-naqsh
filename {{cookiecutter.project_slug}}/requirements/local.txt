@@ -20,7 +20,7 @@ factory-boy==2.11.1  # https://github.com/FactoryBoy/factory_boy
 flake8==3.5.0  # https://github.com/PyCQA/flake8
 coverage==4.5.1  # https://github.com/nedbat/coveragepy
 
-django-debug-toolbar==1.9.1  # https://github.com/jazzband/django-debug-toolbar
+django-debug-toolbar==1.10  # https://github.com/jazzband/django-debug-toolbar
 django-extensions==2.1.2  # https://github.com/django-extensions/django-extensions
 django-coverage-plugin==1.5.0  # https://github.com/nedbat/django_coverage_plugin
 pytest-django==3.4.2  # https://github.com/pytest-dev/pytest-django
