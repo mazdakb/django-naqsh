@@ -1,3 +1,11 @@
+"""
+NOTE:
+    the below code is to be maintained Python 2.x-compatible
+    as the whole Django Naqsh project initialization
+    can potentially be run in Python 2.x environment.
+
+TODO: ? restrict Django Naqsh project initialization to Python 3.x environments only
+"""
 from __future__ import print_function
 
 import sys
