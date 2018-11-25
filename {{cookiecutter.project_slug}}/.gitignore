@@ -347,3 +347,8 @@ MailHog
 media/
 
 .pytest_cache/
+
+{% if cookiecutter.use_docker == 'y' %}
+# IPython history
+.ipython/
+{%- endif %}

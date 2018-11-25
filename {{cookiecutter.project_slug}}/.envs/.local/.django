@@ -1,6 +1,7 @@
 # General
 # ------------------------------------------------------------------------------
 USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
 DJANGO_DATABASE_URL=postgres://{{ cookiecutter.project_slug }}:{{ cookiecutter.project_slug }}@postgres:5432/{{ cookiecutter.project_slug }}
 
 # Redis
