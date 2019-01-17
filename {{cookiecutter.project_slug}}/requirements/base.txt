@@ -24,7 +24,7 @@ django-filter==2.0.0  # https://github.com/carltongibson/django-filter
 django-cors-headers==2.4.0  # https://github.com/ottoyiu/django-cors-headers
 {%- endif %}
 {%- if cookiecutter.use_grappelli == "y" %}
-django-grappelli==2.12.1  # https://github.com/sehmaschine/django-grappelli
+django-grappelli==2.12.2  # https://github.com/sehmaschine/django-grappelli
 {%- endif %}
 
 # Django REST Framework
