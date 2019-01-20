@@ -9,7 +9,7 @@ redis>=2.10.6, < 3  # pyup: < 3 # https://github.com/antirez/redis
 {%- if cookiecutter.use_celery == "y" %}
 celery==4.2.1  # pyup: < 5.0  # https://github.com/celery/celery
 {%- endif %}
-pycryptodome==3.7.2  # https://github.com/Legrandin/pycryptodome
+pycryptodome==3.7.3  # https://github.com/Legrandin/pycryptodome
 inflect==2.1.0  # https://github.com/pwdyson/inflect.py
 
 # Django
