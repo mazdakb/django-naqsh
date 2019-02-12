@@ -14,7 +14,7 @@ inflect==2.1.0  # https://github.com/pwdyson/inflect.py
 
 # Django
 # ------------------------------------------------------------------------------
-django==2.0.10  # https://www.djangoproject.com/
+django==2.1.7  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-model-utils==3.1.2  # https://github.com/jazzband/django-model-utils
 django-choices==1.6.2  # https://github.com/bigjason/django-choices
