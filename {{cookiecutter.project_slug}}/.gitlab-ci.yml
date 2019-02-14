@@ -12,5 +12,5 @@ test:
   script:
   - export DJANGO_SETTINGS_MODULE=config.settings.test
   - export CELERY_BROKER_URL=redis://
-  - export DATABASE_URL=postgres://postgres:@postgres:5432/achareh
+  - export DATABASE_URL=postgres://postgres:@postgres:5432/{{cookiecutter.project_slug}}
   - docker-compose -f local.yml run django pytest
