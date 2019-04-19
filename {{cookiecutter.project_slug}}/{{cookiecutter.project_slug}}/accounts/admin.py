@@ -17,7 +17,7 @@ class SessionInlineAdmin(admin.StackedInline):
     {% if cookiecutter.use_grappelli == "y" -%}
     classes = ['grp-collapse grp-open']
     inline_classes = ['grp-collapse grp-open']
-    {% - endif %}
+    {%- endif %}
 
 
 class AuthTokenInlineAdmin(admin.StackedInline):
@@ -28,7 +28,7 @@ class AuthTokenInlineAdmin(admin.StackedInline):
     {% if cookiecutter.use_grappelli == "y" -%}
     classes = ['grp-collapse grp-open']
     inline_classes = ['grp-collapse grp-open']
-    {% - endif %}
+    {%- endif %}
 
 
 class CustomUserCreationForm(UserCreationForm):
