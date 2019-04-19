@@ -4,6 +4,8 @@ from django.db import models
 from django.db.models import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
+from octopus.common.utils import normalize_slug, generate_random_slug, generate_random_numeric_slug
+
 
 class UniversalModel(models.Model):
     """Universal primary key mixin
@@ -20,7 +22,7 @@ class UniversalModel(models.Model):
 
     @property
     def serial(self) -> str:
-        return f'{self.__class__.__name__.upper()[0]}{str(self.id).upper().split("-")[0]}'
+        return f'{self.id.__str__().upper().split("-")[0]}'
 
     def __str__(self):
         return self.serial
@@ -63,3 +65,26 @@ class ActivatedModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class SluggedModel(models.Model):
+    """Slugged mixin
+
+    This mixin adds a unique alphanumeric slug field to model
+    """
+    slug = models.CharField(
+        verbose_name=_('slug'),
+        max_length=255,
+        db_index=True,
+        default=generate_random_slug,
+        help_text=_('A unique slug that identifies this object by a string.')
+    )
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        # normalize the slug
+        self.slug = normalize_slug(self.slug)
+        # call super's save method
+        super(SluggedModel, self).save(*args, **kwargs)

@@ -336,6 +336,7 @@ tags
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+.env
 {% endif %}
 
 ### Project template

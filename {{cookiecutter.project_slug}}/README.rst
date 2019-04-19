@@ -24,13 +24,20 @@ Basic Commands
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
 
-* To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
-
 * To create an **superuser account**, use this command::
 
     $ python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+
+Type checks
+^^^^^^^^^^^
+
+Running type checks with mypy:
+
+::
+
+  $ mypy {{cookiecutter.project_slug}}
 
 Test coverage
 ^^^^^^^^^^^^^
@@ -49,6 +56,7 @@ Running tests with py.test
   $ pytest
 
 {% if cookiecutter.use_celery == "y" -%}
+
 Celery
 ^^^^^^
 
@@ -62,9 +70,10 @@ To run a celery worker:
     celery -A {{cookiecutter.project_slug}}.celery worker -l info
 
 Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
-{%- endif %}
 
+{%- endif %}
 {% if cookiecutter.use_mailhog == "y" -%}
+
 Email Server
 ^^^^^^^^^^^^
 {% if cookiecutter.use_docker == 'y' %}
@@ -89,9 +98,10 @@ To view messages that are sent by your application, open your browser and go to 
 The email server will exit when you exit the Grunt task on the CLI with Ctrl+C.
 {% endif %}
 .. _mailhog: https://github.com/mailhog/MailHog
-{%- endif %}
 
+{%- endif %}
 {% if cookiecutter.use_sentry == "y" -%}
+
 Sentry
 ^^^^^^
 
@@ -107,15 +117,17 @@ Deployment
 The following details how to deploy this application.
 
 {% if cookiecutter.use_heroku.lower() == "y" -%}
+
 Heroku
 ^^^^^^
 
 See detailed `django-naqsh Heroku documentation`_.
 
 .. _`django-naqsh Heroku documentation`: http://django-naqsh.readthedocs.io/en/latest/deployment-on-heroku.html
-{%- endif %}
 
+{%- endif %}
 {% if cookiecutter.use_docker.lower() == "y" -%}
+
 Docker
 ^^^^^^
 

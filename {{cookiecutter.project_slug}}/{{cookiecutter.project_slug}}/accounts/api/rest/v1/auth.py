@@ -28,13 +28,14 @@ class BearerTokenAuthentication(TokenAuthentication):
         msg = _('Invalid token.')
 
         stored_tokens = model.objects.filter(
-            Q(key=model.objects.get_key(token)) &
-            (Q(expires__isnull=True) | Q(expires__gt=timezone.now())) &
-            Q(user__is_active=True),
+            Q(key=model.objects.get_key(token)) & (Q(expires__isnull=True) | Q(expires__gt=timezone.now()))
         ).select_related('user')
 
         if not stored_tokens.exists():
             raise exceptions.AuthenticationFailed(msg)
+
+        if not stored_tokens.first().user.is_active:
+            raise exceptions.AuthenticationFailed(_('This user is deactivated!'))
 
         for stored_token in stored_tokens.all():
             try:

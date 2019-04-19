@@ -4,6 +4,7 @@ from datetime import timedelta
 
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.conf import settings
@@ -11,7 +12,7 @@ from django.db import models
 
 from Crypto.Hash import SHA512
 
-from {{cookiecutter.project_slug}}.common.models import UniversalModel, TimestampedModel
+from {{cookiecutter.project_slug}}.common.models import ActivatedModel, UniversalModel, TimestampedModel
 
 
 class AuthTokenConfig(object):
@@ -37,30 +38,29 @@ class AuthTokenManager(models.Manager):
         return hash_object.hexdigest()
 
     def create(self, user):
-        token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH))
+        # prepare cryptographic ingredients
+        full_token = secrets.token_hex(int(self.config.TOKEN_CHARACTER_LENGTH / 2))
         salt = secrets.token_hex(int(self.config.TOKEN_SALT_LENGTH / 2))
-        digest = self.hash_token(token, salt)
-
-        expires = None
-        if self.config.TOKEN_TTL != 0:
-            expires = timezone.now() + timedelta(seconds=self.config.TOKEN_TTL)
-
-        authtoken = super(AuthTokenManager, self).create(
+        digest = self.hash_token(full_token, salt)
+        # set the expiry
+        expires = timezone.now() + timedelta(seconds=self.config.TOKEN_TTL) if self.config.TOKEN_TTL != 0 else None
+        # create the object
+        auth_token = super(AuthTokenManager, self).create(
             digest=digest,
-            key=self.get_key(token),
+            key=self.get_key(full_token),
             salt=salt,
             user=user,
             expires=expires
         )
-        # return token alongside authtoken instance
-        return authtoken, token
+        # return token alongside AuthToken instance
+        return auth_token, full_token
 
 
 class AuthToken(UniversalModel, TimestampedModel):
+    user = models.ForeignKey('User', related_name='tokens', on_delete=models.CASCADE)
     digest = models.CharField(_('digest'), max_length=255)
     key = models.CharField(_('key'), max_length=255, unique=True)
     salt = models.CharField(_('salt'), max_length=255, unique=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tokens', on_delete=models.CASCADE)
     expires = models.DateTimeField(null=True, blank=True, db_index=True)
 
     objects = AuthTokenManager()
@@ -73,6 +73,54 @@ class AuthToken(UniversalModel, TimestampedModel):
     @property
     def is_expired(self):
         return self.expires < timezone.now()
+
+
+class Session(UniversalModel, TimestampedModel, ActivatedModel):
+    user = models.ForeignKey(
+        to='accounts.User',
+        verbose_name=_('user'),
+        related_name='sessions',
+        on_delete=models.CASCADE
+    )
+    auth_token = models.OneToOneField(
+        to=AuthToken,
+        verbose_name=_('auth token'),
+        related_name='session',
+        editable=False,
+        on_delete=models.CASCADE
+    )
+    user_agent = models.TextField(
+        verbose_name=_('user agent'),
+        editable=False,
+        help_text=_('User-Agent of session with which user has logged in.')
+    )
+    ip_address = models.GenericIPAddressField(
+        verbose_name=_('ip address'),
+        blank=True,
+        null=True,
+        help_text=_('IP address of client. Web servers and proxies are ignored as best as possible.')
+    )
+    meta = JSONField(
+        verbose_name=_('meta'),
+        blank=True,
+        null=True,
+        help_text=_('Miscellaneous information related to this session.')
+    )
+    location = models.PointField(
+        verbose_name=_('location'),
+        blank=True,
+        null=True,
+        help_text=_('Last saved coordination of the session.')
+    )
+
+    class Meta:
+        verbose_name = _('session')
+        verbose_name_plural = _('sessions')
+        ordering = ['-created']
+
+    @property
+    def is_expired(self):
+        return self.auth_token.is_expired
 
 
 class UserManager(BaseUserManager):

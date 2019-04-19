@@ -24,8 +24,7 @@
   ],
   "cloud_provider": [
     "AWS",
-    "GCE",
-    "Minio"
+    "GCE"
   ],
   "use_celery": "y",
   "use_mailhog": "n",

@@ -58,7 +58,6 @@ cloud_provider:
 
     1. AWS_
     2. GCS_
-    2. Minio_
 
 use_celery:
     Indicates whether the project should be configured to use Celery_.
@@ -113,7 +112,6 @@ debug:
 
 .. _AWS: https://aws.amazon.com/s3/
 .. _GCS: https://cloud.google.com/storage/
-.. _Minio: https://min.io/
 
 .. _Celery: https://github.com/celery/celery
 
