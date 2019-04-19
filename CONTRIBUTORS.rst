@@ -20,9 +20,6 @@ Name                        Github           Twitter
 Mazdak Badakhshan           `@mazdakb`_      @geraneum
 =========================== ================ ===========
 
-*Audrey is also the creator of Cookiecutter. Audrey and
-Daniel are on the Cookiecutter core team.*
-
 .. _@mazdakb: https://github.com/mazdakb
 
 Special Thanks
