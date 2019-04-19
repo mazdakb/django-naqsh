@@ -92,6 +92,6 @@ def get_initial_words(text: str, word_count: int = 10, append_dots: bool = True)
     # split the text into words
     content_slices = text.split()
     # return the first few words if text is long enough
-    trimmed_text = content_slices[:word_count]
+    trimmed_text = str(content_slices[:word_count])
     # append dots if set
     return f'{" ".join(trimmed_text)}...' if append_dots else trimmed_text

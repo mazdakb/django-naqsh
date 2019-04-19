@@ -46,7 +46,7 @@ class mute_signals(object):
 
     def __init__(self, *signals):
         self.signals = signals
-        self.paused = {}
+        self.paused: dict = dict()
 
     def __enter__(self):
         for signal in self.signals:
