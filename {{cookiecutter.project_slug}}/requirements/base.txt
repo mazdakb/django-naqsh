@@ -10,7 +10,7 @@ redis>=3.2.0  # https://github.com/antirez/redis
 celery==4.3.0  # pyup: < 5.0  # https://github.com/celery/celery
 {%- endif %}
 pycryptodome==3.8.1  # https://github.com/Legrandin/pycryptodome
-inflect==2.1.0  # https://github.com/pwdyson/inflect.py
+inflection==0.3.1  # https://github.com/jpvanhal/inflection
 
 # Django
 # ------------------------------------------------------------------------------

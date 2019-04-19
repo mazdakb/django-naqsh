@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
-from octopus.common.utils import normalize_slug, generate_random_slug, generate_random_numeric_slug
+from {{cookiecutter.project_slug}}.common.utils import normalize_slug, generate_random_slug
 
 
 class UniversalModel(models.Model):

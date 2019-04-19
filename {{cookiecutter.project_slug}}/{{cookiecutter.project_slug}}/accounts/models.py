@@ -106,12 +106,6 @@ class Session(UniversalModel, TimestampedModel, ActivatedModel):
         null=True,
         help_text=_('Miscellaneous information related to this session.')
     )
-    location = models.PointField(
-        verbose_name=_('location'),
-        blank=True,
-        null=True,
-        help_text=_('Last saved coordination of the session.')
-    )
 
     class Meta:
         verbose_name = _('session')

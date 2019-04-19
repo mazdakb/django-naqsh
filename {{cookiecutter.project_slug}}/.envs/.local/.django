@@ -4,10 +4,11 @@ USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
 DJANGO_DATABASE_URL=postgres://{{ cookiecutter.project_slug }}:{{ cookiecutter.project_slug }}@postgres:5432/{{ cookiecutter.project_slug }}
 
+{%- if cookiecutter.use_celery == 'y' %}
 # Redis
 # ------------------------------------------------------------------------------
 REDIS_URL=redis://redis:6379/0
-{% if cookiecutter.use_celery == 'y' %}
+
 # Celery
 # ------------------------------------------------------------------------------
 
