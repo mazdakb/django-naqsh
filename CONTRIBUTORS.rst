@@ -17,7 +17,7 @@ and are able to accept and merge pull requests.
 =========================== ================ ===========
 Name                        Github           Twitter
 =========================== ================ ===========
-Mazdak Badakhshan           `@mazdakb`_      @mazdakb
+Mazdak Badakhshan           `@mazdakb`_      @geraneum
 =========================== ================ ===========
 
 *Audrey is also the creator of Cookiecutter. Audrey and
