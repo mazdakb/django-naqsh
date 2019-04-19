@@ -1,6 +1,6 @@
 from django.db import models
 
-from octopus.common.utils import normalize_persian_string
+from {{cookiecutter.project_slug}}.common.utils import normalize_persian_string
 
 
 class NormalizedCharField(models.CharField):
