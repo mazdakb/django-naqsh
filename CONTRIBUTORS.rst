@@ -1,6 +1,13 @@
 Contributors
 ============
 
+Cookiecutter Django
+-------------------
+
+Original Cookiecutter Django project `contributors`_.
+
+.. _contributors: https://github.com/pydanny/cookiecutter-django/blob/master/CONTRIBUTORS.rst
+
 Core Developers
 ---------------
 
@@ -10,7 +17,7 @@ and are able to accept and merge pull requests.
 =========================== ================ ===========
 Name                        Github           Twitter
 =========================== ================ ===========
-Mazdak Badakhshan          `@mazdakb`_      @mazdakb
+Mazdak Badakhshan           `@mazdakb`_      @mazdakb
 =========================== ================ ===========
 
 *Audrey is also the creator of Cookiecutter. Audrey and
@@ -33,3 +40,5 @@ Special Thanks
 ~~~~~~~~~~~~~~
 
 The following haven't provided code directly, but have provided guidance and advice.
+
+* Omid Zarinmahd
