@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AuthToken, User
+from {{cookiecutter.project_slug}}.accounts.models import AuthToken, Session, User
 
 
 class SessionInlineAdmin(admin.StackedInline):
@@ -14,10 +14,10 @@ class SessionInlineAdmin(admin.StackedInline):
     ]
     readonly_fields = fields
     max_num = 0
-    { % if cookiecutter.use_grappelli == "y" - %}
+    {% if cookiecutter.use_grappelli == "y" - %}
     classes = ['grp-collapse grp-open']
     inline_classes = ['grp-collapse grp-open']
-    { % - endif %}
+    {% - endif %}
 
 
 class AuthTokenInlineAdmin(admin.StackedInline):
@@ -25,10 +25,10 @@ class AuthTokenInlineAdmin(admin.StackedInline):
     fields = ['pk', 'digest', 'key', 'salt', 'user', 'expires']
     readonly_fields = fields
     max_num = 0
-    { % if cookiecutter.use_grappelli == "y" - %}
+    {% if cookiecutter.use_grappelli == "y" - %}
     classes = ['grp-collapse grp-open']
     inline_classes = ['grp-collapse grp-open']
-    { % - endif %}
+    {% - endif %}
 
 
 class CustomUserCreationForm(UserCreationForm):

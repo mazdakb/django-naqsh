@@ -93,11 +93,11 @@ AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = env("DJANGO_GCE_STORAGE_BUCKET_NAME")
 GS_DEFAULT_ACL = "publicRead"
-{% endif %}
+{% endif -%}
 
 # STATIC
-# ------------------------
-{% if cookiecutter.use_whitenoise == 'y' -%}
+# ------------------------------------------------------------------------------
+{% if cookiecutter.use_whitenoise == 'y' %}
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 {%- endif -%}
 {%- if cookiecutter.cloud_provider == 'AWS' %}
@@ -191,7 +191,7 @@ MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")  # noqa F405
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa F405
 AWS_PRELOAD_METADATA = True
-{% endif %}
+{% endif -%}
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -288,6 +288,4 @@ sentry_sdk.init(
 {% else %}
 sentry_sdk.init(dsn=SENTRY_DSN, integrations=[sentry_logging, DjangoIntegration()])
 {% endif -%}
-{% endif %}
-
-# TODO: custom production settings
+{% endif -%}
