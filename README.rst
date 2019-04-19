@@ -33,18 +33,17 @@ Unnecessary modules for a REST API and codes are removed and custom User model i
 Features
 ---------
 
-* For Django 2.0
-* Python 3.6 compatible
+* For Django 2.2
+* Works with Python 3.7
 * 12-Factor_ based settings via django-environ_
 * Secure by default. We believe in SSL.
 * Optimized development and production settings
-* Comes with custom accounts app ready to go
+* Comes with custom user model with secure token authentication and email validation for rest api
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Media storage using Amazon S3 / Minio
-* Custom user model with secure token authentication and email validation for rest api
-* Docker support using docker-compose_ for development and production (using Caddy_ with LetsEncrypt_ support)
+* Media storage using Amazon S3, Google Cloud Storage or Minio_
+* Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
 * Procfile_ for deploying to Heroku
-* Run tests with unittest or py.test
+* Run tests with unittest or pytest
 * Customizable PostgreSQL version
 
 
@@ -53,8 +52,8 @@ Optional Integrations
 
 *These features can be enabled during initial project setup.*
 
-* Serve static files from Amazon S3 or Whitenoise_
-* Configuration for Celery_
+* Serve static files from Amazon S3, Google Cloud Storage, Minio_ or Whitenoise_
+* Configuration for Celery_ and Flower_ (the latter in Docker setup only)
 * Integration with MailHog_ for local email testing
 * Integration with Sentry_ for error logging
 
@@ -62,21 +61,23 @@ Optional Integrations
 .. _12-Factor: http://12factor.net/
 .. _Procfile: https://devcenter.heroku.com/articles/procfile
 .. _Mailgun: http://www.mailgun.com/
+.. _Minio: https://min.io/
 .. _Whitenoise: https://whitenoise.readthedocs.io/
 .. _Celery: http://www.celeryproject.org/
+.. _Flower: https://github.com/mher/flower
 .. _Anymail: https://github.com/anymail/django-anymail
 .. _MailHog: https://github.com/mailhog/MailHog
 .. _Sentry: https://sentry.io/welcome/
 .. _docker-compose: https://github.com/docker/compose
 .. _PythonAnywhere: https://www.pythonanywhere.com/
-.. _Caddy: https://caddyserver.com/
+.. _Traefik: https://traefik.io/
 .. _LetsEncrypt: https://letsencrypt.org/
 
 Constraints
 -----------
 
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.2+)
+* Uses PostgreSQL everywhere (9.6+)
 * Environment variables for configuration (This won't work with Apache/mod_wsgi except on AWS ELB).
 
 Usage
@@ -108,10 +109,10 @@ Answer the prompts with your own desired options_. For example::
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
     author_name [Mazdak Badakhshan]: Mazdak Badakhshan
-    email [you@example.com]: mazdakb@gmail.com
+    email [you@example.com]: geraneum@gmail.com
     description [A short description of the project.]: A reddit clone.
-    domain_name [example.com]: myreddit.com
-    version [0.1.0]: 0.0.1
+    domain_name [example.com]: myreddit.example.com
+    version [0.1.0]: 0.1.0
     timezone [UTC]: Asia/Tehran
     use_whitenoise [y]: n
     use_celery [n]: y
@@ -122,15 +123,15 @@ Answer the prompts with your own desired options_. For example::
     use_docker [y]: n
     use_heroku [n]: y
     Select postgresql_version:
-    1 - 10.4
-    2 - 10.3
-    3 - 10.2
-    4 - 10.1
-    5 - 9.6
-    6 - 9.5
-    7 - 9.4
-    8 - 9.3
+    1 - 11.2
+    2 - 10.1
+    3 - 9.6
     Choose from 1, 2, 3, 4 [1]: 1
+    Select cloud_provider:
+    1 - AWS
+    2 - GCS
+    3 - Minio
+    Choose from 1, 2 [1]: 1
     Select open_source_license:
     1 - MIT
     2 - BSD
@@ -139,7 +140,7 @@ Answer the prompts with your own desired options_. For example::
     5 - Not open source
     Choose from 1, 2, 3, 4, 5 [1]: 1
     use_grappelli [y]: y
-    use_cors_headers [y]: y
+    use_cors_package [y]: y
     keep_local_envs_in_vcs [y]: y
     debug[n]: n
 
@@ -170,23 +171,22 @@ For local development, see the following:
 Community
 -----------
 
-* Have questions? **Before you ask questions anywhere else**, please post your question on `Stack Overflow`_ under the *django-naqsh* tag. We check there periodically for questions.
+* Have questions? **Before you ask questions anywhere else**, please post your question on `Stack Overflow`_ under *django-naqsh* or *cookiecutter-django* tags. We check there periodically for questions.
 * If you think you found a bug or want to request a feature, please open an issue_.
 
 .. _`Stack Overflow`: http://stackoverflow.com/questions/tagged/django-naqsh
 .. _`issue`: https://github.com/mazdakb/django-naqsh/issues
 
-Releases
---------
+Submit a Pull Request
+~~~~~~~~~~~~~~~~~~~~~
 
-Need a stable release? You can find them at https://github.com/mazdakb/django-naqsh/releases
-
+We accept pull requests if they're small, atomic, and make our own project development
+experience better.
 
 Code of Conduct
 ---------------
 
 Everyone interacting in the Cookiecutter project's codebases, issue trackers, chat
 rooms, and mailing lists is expected to follow the `PyPA Code of Conduct`_.
-
 
 .. _`PyPA Code of Conduct`: https://www.pypa.io/en/latest/code-of-conduct/

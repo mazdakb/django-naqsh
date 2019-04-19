@@ -18,24 +18,25 @@
   "use_pycharm": "n",
   "use_docker": "y",
   "postgresql_version": [
-    "10.4",
-    "10.3",
-    "10.2",
-    "10.1",
-    "9.6",
-    "9.5",
-    "9.4",
-    "9.3"
+    "11.2",
+    "10.7",
+    "9.6"
+  ],
+  "cloud_provider": [
+    "AWS",
+    "GCE",
+    "Minio"
   ],
   "use_celery": "y",
   "use_mailhog": "n",
   "use_sentry": "y",
-  "use_whitenoise": "y",
+  "use_whitenoise": "n",
   "use_heroku": "n",
   "use_travisci": "n",
   "use_gitlabci": "y",
   "use_grappelli": "y",
-  "user_cors_headers": "y",
+  "use_cors_package": "y",
   "keep_local_envs_in_vcs": "y",
+
   "debug": "n"
 }

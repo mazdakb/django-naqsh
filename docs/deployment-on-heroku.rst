@@ -3,6 +3,9 @@ Deployment on Heroku
 
 .. index:: Heroku
 
+Commands to run
+---------------
+
 Run these commands to deploy the project to Heroku:
 
 .. code-block:: bash
@@ -10,15 +13,14 @@ Run these commands to deploy the project to Heroku:
     heroku create --buildpack https://github.com/heroku/heroku-buildpack-python
 
     heroku addons:create heroku-postgresql:hobby-dev
+    # On Windows use double quotes for the time zone, e.g.
+    # heroku pg:backups schedule --at "02:00 America/Los_Angeles" DATABASE_URL
     heroku pg:backups schedule --at '02:00 America/Los_Angeles' DATABASE_URL
     heroku pg:promote DATABASE_URL
 
     heroku addons:create heroku-redis:hobby-dev
 
-    # If using mailgun:
     heroku addons:create mailgun:starter
-
-    heroku addons:create sentry:f1
 
     heroku config:set PYTHONHASHSEED=random
 
@@ -45,10 +47,57 @@ Run these commands to deploy the project to Heroku:
 
     git push heroku master
 
-    heroku run python manage.py migrate
     heroku run python manage.py createsuperuser
-    heroku run python manage.py collectstatic --no-input
 
     heroku run python manage.py check --deploy
 
     heroku open
+
+
+.. warning::
+
+    .. include:: mailgun.rst
+
+
+Optional actions
+----------------
+
+Celery
+++++++
+
+Celery requires a few extra environment variables to be ready operational. Also, the worker is created,
+it's in the ``Procfile``, but is turned off by default:
+
+.. code-block:: bash
+
+    # Set the broker URL to Redis
+    heroku config:set CELERY_BROKER_URL=`heroku config:get REDIS_URL`
+    # Scale dyno to 1 instance
+    heroku ps:scale worker=1
+
+Sentry
+++++++
+
+If you're opted for Sentry error tracking, you can either install it through the `Sentry add-on`_:
+
+.. code-block:: bash
+
+    heroku addons:create sentry:f1
+
+
+Or add the DSN for your account, if you already have one:
+
+.. code-block:: bash
+
+    heroku config:set SENTRY_DSN=https://xxxx@sentry.io/12345
+
+.. _Sentry add-on: https://elements.heroku.com/addons/sentry
+
+
+About Heroku & Docker
+---------------------
+
+Although Heroku has some sort of `Docker support`_, it's not supported by cookiecutter-django.
+We invite you to follow Heroku documentation about it.
+
+.. _Docker support: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml

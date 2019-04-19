@@ -22,6 +22,15 @@ Mazdak Badakhshan           `@mazdakb`_      @geraneum
 
 .. _@mazdakb: https://github.com/mazdakb
 
+Other Contributors
+------------------
+
+Listed in alphabetical order.
+
+========================== ============================ ==============
+  Name                     Github                        Twitter
+========================== ============================ ==============
+
 Special Thanks
 ~~~~~~~~~~~~~~
 

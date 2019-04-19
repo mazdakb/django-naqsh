@@ -49,13 +49,16 @@ use_docker:
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
-    1. 10.3
-    2. 10.2
-    3. 10.1
+    1. 11.2
+    2. 10.7
     4. 9.6
-    5. 9.5
-    6. 9.4
-    7. 9.3
+
+cloud_provider:
+    Select a cloud provider for static & media files. The choices are:
+
+    1. AWS_
+    2. GCS_
+    2. Minio_
 
 use_celery:
     Indicates whether the project should be configured to use Celery_.
@@ -89,6 +92,7 @@ keep_local_envs_in_vcs:
     Indicates whether the project's ``.envs/.local/`` should be kept in VCS
     (comes in handy when working in teams where local environment reproducibility
     is strongly encouraged).
+    Note: .env(s) are only utilized when Docker Compose and/or Heroku support is enabled.
 
 debug:
     Indicates whether the project should be configured for debugging.
@@ -106,6 +110,10 @@ debug:
 .. _Docker Compose: https://docs.docker.com/compose/
 
 .. _PostgreSQL: https://www.postgresql.org/docs/
+
+.. _AWS: https://aws.amazon.com/s3/
+.. _GCS: https://cloud.google.com/storage/
+.. _Minio: https://min.io/
 
 .. _Celery: https://github.com/celery/celery
 
