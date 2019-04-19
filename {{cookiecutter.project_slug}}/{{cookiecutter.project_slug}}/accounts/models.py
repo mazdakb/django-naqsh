@@ -56,7 +56,7 @@ class AuthTokenManager(models.Manager):
         return auth_token, full_token
 
 
-class AuthToken(UniversalModel, TimestampedModel):
+class AuthToken(UniversalModel, TimestampedModel):  # type: ignore
     user = models.ForeignKey('User', related_name='tokens', on_delete=models.CASCADE)
     digest = models.CharField(_('digest'), max_length=255)
     key = models.CharField(_('key'), max_length=255, unique=True)
@@ -75,7 +75,7 @@ class AuthToken(UniversalModel, TimestampedModel):
         return self.expires < timezone.now()
 
 
-class Session(UniversalModel, TimestampedModel, ActivatedModel):
+class Session(UniversalModel, TimestampedModel, ActivatedModel):  # type: ignore
     user = models.ForeignKey(
         to='accounts.User',
         verbose_name=_('user'),
@@ -147,7 +147,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class User(AbstractUser, UniversalModel):
+class User(AbstractUser, UniversalModel):  # type: ignore
     email = models.EmailField(
         _('email address'),
         unique=True,
