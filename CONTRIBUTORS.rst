@@ -25,17 +25,6 @@ Daniel are on the Cookiecutter core team.*
 
 .. _@mazdakb: https://github.com/mazdakb
 
-Other Contributors
-------------------
-
-Listed in alphabetical order.
-
-========================== ============================ ==============
-  Name                     Github                        Twitter
-========================== ============================ ==============
-
-========================== ============================ ==============
-
 Special Thanks
 ~~~~~~~~~~~~~~
 
