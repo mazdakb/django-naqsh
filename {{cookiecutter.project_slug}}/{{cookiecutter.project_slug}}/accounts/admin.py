@@ -10,7 +10,7 @@ class SessionInlineAdmin(admin.StackedInline):
     model = Session
     fields = [
         'id', 'auth_token', 'user_agent', 'ip_address',
-        'location', 'is_active', 'created', 'updated'
+        'is_active', 'created', 'updated'
     ]
     readonly_fields = fields
     max_num = 0
