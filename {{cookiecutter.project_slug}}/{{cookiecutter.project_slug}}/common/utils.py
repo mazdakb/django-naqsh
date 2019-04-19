@@ -1,6 +1,4 @@
 import re
-import random
-import string
 import secrets
 from typing import Union
 
@@ -68,9 +66,9 @@ def normalize_slug(slug: str) -> str:
     # process slug using inflection library
     slug = inflection.underscore(slug)
     # Remove all non-word characters (everything except numbers and letters)
-    slug = re.sub(r'[^\w\s]', '', slug)
+    slug = re.sub(r"[^\w\s]", "", slug)
     # Replace all runs of whitespace with a single underscore
-    slug = re.sub(r'\s+', '_', slug)
+    slug = re.sub(r"\s+", "_", slug)
     # convert slug to characters to lowercase
     slug = slug.lower()
     # return the result
@@ -92,6 +90,8 @@ def get_initial_words(text: str, word_count: int = 10, append_dots: bool = True)
     # split the text into words
     content_slices = text.split()
     # return the first few words if text is long enough
-    trimmed_text = str(content_slices[:word_count])
+    trimmed_text = content_slices[:word_count]
+    # prepare the initial string
+    initial = " ".join(trimmed_text)
     # append dots if set
-    return f'{" ".join(trimmed_text)}...' if append_dots else trimmed_text
+    return f"{initial}..." if append_dots else initial

@@ -50,7 +50,7 @@ class mute_signals(object):
 
     def __enter__(self):
         for signal in self.signals:
-            logger.debug('mute_signals: Disabling signal handlers %r',
+            logger.debug("mute_signals: Disabling signal handlers %r",
                          signal.receivers)
 
             # Note that we're using implementation details of
@@ -61,7 +61,7 @@ class mute_signals(object):
 
     def __exit__(self, exc_type, exc_value, traceback):
         for signal, receivers in self.paused.items():
-            logger.debug('mute_signals: Restoring signal handlers %r',
+            logger.debug("mute_signals: Restoring signal handlers %r",
                          receivers)
 
             signal.receivers = receivers

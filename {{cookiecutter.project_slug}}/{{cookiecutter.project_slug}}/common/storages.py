@@ -46,10 +46,10 @@ def replace_file_name(filename: str, replace_with: str) -> str:
     :param replace_with: str
     :return: str
     """
-    return f'{replace_with}.{filename.split(".")[-1]}'
+    return f"{replace_with}.{filename.split('.')[-1]}"
 
 
-def path_for_object(instance, get_object_name=lambda i: str(i.id), field_name: str = '') -> str:
+def path_for_object(instance, get_object_name=lambda i: str(i.id), field_name: str = "") -> str:
     """
     Generate storage path for object.
     Result would look like <MEDIA_ROOT>/<app_label>/<model>/<str(instance)>/<field>/<filename>

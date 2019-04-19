@@ -20,22 +20,22 @@ class BearerTokenAuthentication(TokenAuthentication):
 
         Authorization: Bearer 401f7ac837da42b97f613d789819ff93537bee6a
     """
-    keyword = 'Bearer'
+    keyword = "Bearer"
     model = AuthToken
 
     def authenticate_credentials(self, token):
         model: AuthToken = self.get_model()
-        msg = _('Invalid token.')
+        msg = _("Invalid token.")
 
         stored_tokens = model.objects.filter(
             Q(key=model.objects.get_key(token)) & (Q(expires__isnull=True) | Q(expires__gt=timezone.now()))
-        ).select_related('user')
+        ).select_related("user")
 
         if not stored_tokens.exists():
             raise exceptions.AuthenticationFailed(msg)
 
         if not stored_tokens.first().user.is_active:
-            raise exceptions.AuthenticationFailed(_('This user is deactivated!'))
+            raise exceptions.AuthenticationFailed(_("This user is deactivated!"))
 
         for stored_token in stored_tokens.all():
             try:

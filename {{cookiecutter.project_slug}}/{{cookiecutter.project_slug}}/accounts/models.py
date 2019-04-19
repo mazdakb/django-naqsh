@@ -21,8 +21,8 @@ class AuthTokenConfig(object):
     TOKEN_TTL = 0
 
     def __init__(self):
-        for prop, value in getattr(settings, 'AUTH_TOKEN', {}).items():
-            setattr(self, f'TOKEN_{prop}', value)
+        for prop, value in getattr(settings, "AUTH_TOKEN", {}).items():
+            setattr(self, f"TOKEN_{prop}", value)
 
 
 class AuthTokenManager(models.Manager):
@@ -57,18 +57,18 @@ class AuthTokenManager(models.Manager):
 
 
 class AuthToken(UniversalModel, TimestampedModel):
-    user = models.ForeignKey('User', related_name='tokens', on_delete=models.CASCADE)
-    digest = models.CharField(_('digest'), max_length=255)
-    key = models.CharField(_('key'), max_length=255, unique=True)
-    salt = models.CharField(_('salt'), max_length=255, unique=True)
+    user = models.ForeignKey("User", related_name="tokens", on_delete=models.CASCADE)
+    digest = models.CharField(_("digest"), max_length=255)
+    key = models.CharField(_("key"), max_length=255, unique=True)
+    salt = models.CharField(_("salt"), max_length=255, unique=True)
     expires = models.DateTimeField(null=True, blank=True, db_index=True)
 
     objects = AuthTokenManager()
 
     class Meta:
-        verbose_name = _('auth token')
-        verbose_name_plural = _('auth tokens')
-        ordering = ['-created']
+        verbose_name = _("auth token")
+        verbose_name_plural = _("auth tokens")
+        ordering = ["-created"]
 
     @property
     def is_expired(self):
@@ -77,40 +77,40 @@ class AuthToken(UniversalModel, TimestampedModel):
 
 class Session(UniversalModel, TimestampedModel, ActivatedModel):
     user = models.ForeignKey(
-        to='accounts.User',
-        verbose_name=_('user'),
-        related_name='sessions',
+        to="accounts.User",
+        verbose_name=_("user"),
+        related_name="sessions",
         on_delete=models.CASCADE
     )
     auth_token = models.OneToOneField(
         to=AuthToken,
-        verbose_name=_('auth token'),
-        related_name='session',
+        verbose_name=_("auth token"),
+        related_name="session",
         editable=False,
         on_delete=models.CASCADE
     )
     user_agent = models.TextField(
-        verbose_name=_('user agent'),
+        verbose_name=_("user agent"),
         editable=False,
-        help_text=_('User-Agent of session with which user has logged in.')
+        help_text=_("User-Agent of session with which user has logged in.")
     )
     ip_address = models.GenericIPAddressField(
-        verbose_name=_('ip address'),
+        verbose_name=_("ip address"),
         blank=True,
         null=True,
-        help_text=_('IP address of client. Web servers and proxies are ignored as best as possible.')
+        help_text=_("IP address of client. Web servers and proxies are ignored as best as possible.")
     )
     meta = JSONField(
-        verbose_name=_('meta'),
+        verbose_name=_("meta"),
         blank=True,
         null=True,
-        help_text=_('Miscellaneous information related to this session.')
+        help_text=_("Miscellaneous information related to this session.")
     )
 
     class Meta:
-        verbose_name = _('session')
-        verbose_name_plural = _('sessions')
-        ordering = ['-created']
+        verbose_name = _("session")
+        verbose_name_plural = _("sessions")
+        ordering = ["-created"]
 
     @property
     def is_expired(self):
@@ -131,35 +131,35 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', False)
-        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractUser, UniversalModel):
     email = models.EmailField(
-        _('email address'),
+        _("email address"),
         unique=True,
         error_messages={
-            'unique': _('A user with make email address already exists.'),
+            "unique": _("A user with make email address already exists."),
         },
     )
 
     username = None  # overwritten to remove the useless `username` field from database
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
     objects = UserManager()
 

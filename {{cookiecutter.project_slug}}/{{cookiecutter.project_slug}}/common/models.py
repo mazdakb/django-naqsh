@@ -15,7 +15,7 @@ class UniversalModel(models.Model):
     and could make migrating to micro-service, or exporting or importing data easier,
     by using a universally unique identifier for object that without fear of collision.
     """
-    id = models.UUIDField(_('universal unique id'), primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(_("universal unique id"), primary_key=True, default=uuid.uuid4, editable=False)
 
     class Meta:
         abstract = True
@@ -33,8 +33,8 @@ class TimestampedModel(models.Model):
 
     This mixin adds a timestamp to model for create and update events
     """
-    created = models.DateTimeField(_('created at'), auto_now_add=True)
-    updated = models.DateTimeField(_('updated at'), auto_now=True)
+    created = models.DateTimeField(_("created at"), auto_now_add=True)
+    updated = models.DateTimeField(_("updated at"), auto_now=True)
 
     class Meta:
         abstract = True
@@ -55,7 +55,7 @@ class ActivatedModel(models.Model):
     getting only active objects.
     """
     is_active = models.BooleanField(
-        _('active'),
+        _("active"),
         default=True,
         db_index=True  # It's a common situation where we want to find active objects
                        # so indexing would be beneficial.
@@ -73,11 +73,11 @@ class SluggedModel(models.Model):
     This mixin adds a unique alphanumeric slug field to model
     """
     slug = models.CharField(
-        verbose_name=_('slug'),
+        verbose_name=_("slug"),
         max_length=255,
         db_index=True,
         default=generate_random_slug,
-        help_text=_('A unique slug that identifies this object by a string.')
+        help_text=_("A unique slug that identifies this object by a string.")
     )
 
     class Meta:
