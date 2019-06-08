@@ -13,4 +13,4 @@ tox==3.12.1
 pytest==4.6.2
 pytest_cases==1.6.3
 pytest-cookies==0.3.0
-pyyaml==5.1
+pyyaml==5.1.1
