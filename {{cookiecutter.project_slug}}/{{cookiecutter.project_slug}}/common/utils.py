@@ -4,8 +4,6 @@ from typing import Union
 
 import inflection
 
-from django.utils.translation import ugettext_lazy as _
-
 
 def generate_random_slug(length: int = 10) -> str:
     """Generate random slug string

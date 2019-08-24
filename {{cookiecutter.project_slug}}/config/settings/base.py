@@ -63,7 +63,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
-PREREQUISITE_APPS = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli",{%- endif %}]
+PREREQUISITE_APPS = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
