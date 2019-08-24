@@ -19,7 +19,7 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": ""
+        "LOCATION": "",
     }
 }
 
@@ -79,5 +79,5 @@ CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
 
 {%- endif %}
-
-# TODO: custom local settings
+# Your stuff...
+# ------------------------------------------------------------------------------

@@ -3,9 +3,10 @@
 # allowed: all, insecure, False
 update: all
 
-# set the default branch
-# default: empty, the default branch on GitHub
-branch: master
+# configure dependency pinning globally
+# default: True
+# allowed: True, False
+pin: True
 
 # update schedule
 # default: empty
@@ -16,7 +17,7 @@ schedule: "every day"
 # default: pyup-
 branch_prefix: pyup/
 
-# Specify requirement files by hand, pyup seems to struggle to
+# Specify requirement files by hand, pyup seems to struggle to 
 # find the ones in the project_slug folder
 requirements:
   - "requirements.txt"

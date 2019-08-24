@@ -2,16 +2,17 @@ import os
 import re
 
 import pytest
+from cookiecutter.exceptions import FailedHookException
 from pytest_cases import pytest_fixture_plus
 import sh
 import yaml
 from binaryornot.check import is_binary
 
-PATTERN = "{{(\s?cookiecutter)[.](.*?)}}"
+PATTERN = r"{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
 
 YN_CHOICES = ["y", "n"]
-CLOUD_CHOICES = ["AWS", "GCE"]
+CLOUD_CHOICES = ["AWS", "GCE", "None"]
 
 
 @pytest.fixture
@@ -36,6 +37,8 @@ def context():
 @pytest.mark.parametrize("use_sentry", YN_CHOICES, ids=lambda yn: f"sentry:{yn}")
 @pytest.mark.parametrize("use_compressor", YN_CHOICES, ids=lambda yn: f"cmpr:{yn}")
 @pytest.mark.parametrize("use_whitenoise", YN_CHOICES, ids=lambda yn: f"wnoise:{yn}")
+@pytest.mark.parametrize("use_grappelli", YN_CHOICES, ids=lambda yn: f"grpplli:{yn}")
+@pytest.mark.parametrize("use_cors_package", YN_CHOICES, ids=lambda yn: f"corsp:{yn}")
 @pytest.mark.parametrize("cloud_provider", CLOUD_CHOICES, ids=lambda yn: f"cloud:{yn}")
 def context_combination(
     windows,
@@ -45,6 +48,8 @@ def context_combination(
     use_sentry,
     use_compressor,
     use_whitenoise,
+    use_grappelli,
+    use_cors_package,
     cloud_provider,
 ):
     """Fixture that parametrize the function where it's used."""
@@ -56,6 +61,8 @@ def context_combination(
         "use_mailhog": use_mailhog,
         "use_sentry": use_sentry,
         "use_whitenoise": use_whitenoise,
+        "use_grappelli": use_grappelli,
+        "use_cors_package": use_cors_package,
         "cloud_provider": cloud_provider,
     }
 
@@ -101,9 +108,10 @@ def test_project_generation(cookies, context, context_combination):
     check_paths(paths)
 
 
-def test_linting_passes(cookies, context_combination):
+@pytest.mark.flake8
+def test_flake8_passes(cookies, context_combination):
     """
-    Generated project should pass flake8 & black.
+    Generated project should pass flake8.
 
     This is parametrized for each combination from ``context_combination`` fixture
     """
@@ -113,6 +121,16 @@ def test_linting_passes(cookies, context_combination):
         sh.flake8(str(result.project))
     except sh.ErrorReturnCode as e:
         pytest.fail(e)
+
+
+@pytest.mark.black
+def test_black_passes(cookies, context_combination):
+    """
+    Generated project should pass black.
+
+    This is parametrized for each combination from ``context_combination`` fixture
+    """
+    result = cookies.bake(extra_context=context_combination)
 
     try:
         sh.black("--check", "--diff", "--exclude", "migrations", f"{result.project}/")
@@ -134,3 +152,14 @@ def test_travis_invokes_pytest(cookies, context):
             assert yaml.load(travis_yml)["script"] == ["pytest"]
         except yaml.YAMLError as e:
             pytest.fail(e)
+
+
+@pytest.mark.parametrize("slug", ["project slug", "Project_Slug"])
+def test_invalid_slug(cookies, context, slug):
+    """Invalid slug should failed pre-generation hook."""
+    context.update({"project_slug": slug})
+
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code != 0
+    assert isinstance(result.exception, FailedHookException)

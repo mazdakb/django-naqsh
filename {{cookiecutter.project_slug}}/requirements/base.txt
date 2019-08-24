@@ -1,32 +1,35 @@
-pytz==2018.9  # https://github.com/stub42/pytz
-python-slugify==3.0.2  # https://github.com/un33k/python-slugify
-Pillow==5.4.1  # https://github.com/python-pillow/Pillow
+pytz==2019.2  # https://github.com/stub42/pytz
+python-slugify==3.0.3  # https://github.com/un33k/python-slugify
+Pillow==6.1.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==19.1.0  # https://github.com/hynek/argon2_cffi
 {%- if cookiecutter.use_whitenoise == 'y' %}
-whitenoise==4.1.2  # https://github.com/evansd/whitenoise
+whitenoise==4.1.3  # https://github.com/evansd/whitenoise
 {%- endif %}
-redis>=3.2.0  # https://github.com/antirez/redis
+redis==3.3.7  # https://github.com/antirez/redis
 {%- if cookiecutter.use_celery == "y" %}
 celery==4.3.0  # pyup: < 5.0  # https://github.com/celery/celery
+django-celery-beat==1.5.0  # https://github.com/celery/django-celery-beat
+{%- if cookiecutter.use_docker == 'y' %}
+flower==0.9.3  # https://github.com/mher/flower
 {%- endif %}
-pycryptodome==3.8.1  # https://github.com/Legrandin/pycryptodome
-inflection==0.3.1  # https://github.com/jpvanhal/inflection
+{%- endif %}
 
 # Django
 # ------------------------------------------------------------------------------
-django==2.2.0  # https://www.djangoproject.com/
+django==2.2.4  # pyup: < 3.0  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
-django-model-utils==3.1.2  # https://github.com/jazzband/django-model-utils
-django-choices==1.6.2  # https://github.com/bigjason/django-choices
-django-redis==4.10.0  # https://github.com/niwinz/django-redis
-django-filter==2.1.0  # https://github.com/carltongibson/django-filter
+django-model-utils==3.2.0  # https://github.com/jazzband/django-model-utils
+{%- if cookiecutter.use_celery == "y" %}
+django-celery-beat==1.5.0  # https://github.com/celery/django-celery-beat
+{%- endif %}
 {%- if cookiecutter.use_cors_package == 'y' %}
 django-cors-headers==2.5.2  # https://github.com/ottoyiu/django-cors-headers
 {%- endif %}
 {%- if cookiecutter.use_grappelli == "y" %}
 django-grappelli==2.12.2  # https://github.com/sehmaschine/django-grappelli
 {%- endif %}
+django-redis==4.10.0  # https://github.com/niwinz/django-redis
 
 # Django REST Framework
-djangorestframework==3.9.2  # https://github.com/encode/django-rest-framework
+djangorestframework==3.10.2  # https://github.com/encode/django-rest-framework
 coreapi==2.3.3  # https://github.com/core-api/python-client

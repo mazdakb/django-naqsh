@@ -5,4 +5,4 @@ set -o pipefail
 set -o nounset
 
 
-celery -A {{cookiecutter.project_slug}}.celery worker -l INFO
+celery -A config.celery worker -l INFO

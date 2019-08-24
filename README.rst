@@ -1,22 +1,30 @@
 Django Naqsh
-=======================
+============
 
 .. image:: https://travis-ci.com/mazdakb/django-naqsh.svg?branch=master
     :target: https://travis-ci.com/mazdakb/django-naqsh
+    :alt: Build Status
 
 .. image:: https://readthedocs.org/projects/django-naqsh/badge/?version=latest
     :target: http://django-naqsh.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
 .. image:: https://pyup.io/repos/github/mazdakb/django-naqsh/shield.svg
-     :target: https://pyup.io/repos/github/mazdakb/django-naqsh/
-     :alt: Updates
+    :target: https://pyup.io/repos/github/mazdakb/django-naqsh/
+    :alt: Updates
 
+.. image:: https://www.codetriage.com/mazdakb/django-naqsh/badges/users.svg
+    :target: https://www.codetriage.com/mazdakb/django-naqsh
+    :alt: Code Helpers Badge
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/ambv/black
+    :alt: Code style: black
 
 Powered by Cookiecutter_, Django Naqsh is a bootstrapping tool for creating
 production-ready Django web services quickly.
 
-This project is a fork of `cookiecutter-django`_ that is intended to be used as a REST API backend.
+This project is a fork of `django-naqsh`_ that is intended to be used as a REST API backend.
 Unnecessary modules for a REST API and codes are removed and custom User model is more developed.
 
 * Documentation: https://django-naqsh.readthedocs.io/en/latest/
@@ -25,27 +33,26 @@ Unnecessary modules for a REST API and codes are removed and custom User model i
   emails to the maintainers.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _django-naqsh: https://github.com/mazdakb/django-naqsh
 .. _Troubleshooting: https://django-naqsh.readthedocs.io/en/latest/troubleshooting.html
 .. _issues: https://github.com/mazdakb/django-naqsh/issues/new
-
-.. _cookiecutter-django: https://github.com/pydanny/cookiecutter-django
 
 Features
 ---------
 
 * For Django 2.2
 * Works with Python 3.7
+* Renders Django projects with 100% starting test coverage
 * 12-Factor_ based settings via django-environ_
-* Secure by default. We believe in SSL.
+* Secure by default with SSL enabled.
 * Optimized development and production settings
-* Comes with custom user model with secure token authentication and email validation for rest api
+* Comes with custom user model with secure token authentication and email validation for RESTful API
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
 * Media storage using Amazon S3, Google Cloud Storage or Minio_
 * Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
 * Procfile_ for deploying to Heroku
 * Run tests with unittest or pytest
 * Customizable PostgreSQL version
-
 
 Optional Integrations
 ---------------------
@@ -69,7 +76,6 @@ Optional Integrations
 .. _MailHog: https://github.com/mailhog/MailHog
 .. _Sentry: https://sentry.io/welcome/
 .. _docker-compose: https://github.com/docker/compose
-.. _PythonAnywhere: https://www.pythonanywhere.com/
 .. _Traefik: https://traefik.io/
 .. _LetsEncrypt: https://letsencrypt.org/
 
@@ -77,8 +83,19 @@ Constraints
 -----------
 
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.6+)
-* Environment variables for configuration (This won't work with Apache/mod_wsgi except on AWS ELB).
+* Uses PostgreSQL everywhere (9.4 - 11.3)
+* Environment variables for configuration (This won't work with Apache/mod_wsgi).
+
+pyup
+~~~~~~~~~~~~~~~~~~
+
+.. image:: https://pyup.io/static/images/logo.png
+   :name: pyup
+   :align: center
+   :alt: pyup
+   :target: https://pyup.io/
+
+Pyup brings you automated security and dependency updates used by Google and other organizations. Free for open source projects!
 
 Usage
 ------
@@ -109,28 +126,32 @@ Answer the prompts with your own desired options_. For example::
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
     author_name [Mazdak Badakhshan]: Mazdak Badakhshan
-    email [you@example.com]: geraneum@gmail.com
-    description [A short description of the project.]: A reddit clone.
+    email [you@example.com]: geraneum@example.com
+    description [Behold My Awesome Project!]: A reddit clone.
     domain_name [example.com]: myreddit.example.com
-    version [0.1.0]: 0.1.0
-    timezone [UTC]: Asia/Tehran
-    use_whitenoise [y]: n
+    version [0.1.0]: 0.0.1
+    timezone [UTC]: Europe/Berlin
+    use_whitenoise [n]: n
     use_celery [n]: y
     use_mailhog [n]: n
-    use_sentry [y]: y
+    use_sentry [n]: y
     use_pycharm [n]: y
     windows [n]: n
-    use_docker [y]: n
+    use_docker [n]: n
     use_heroku [n]: y
+    use_compressor [n]: y
     Select postgresql_version:
-    1 - 11.2
-    2 - 10.1
+    1 - 11.5
+    2 - 10.10
     3 - 9.6
-    Choose from 1, 2, 3, 4 [1]: 1
+    4 - 9.5
+    5 - 9.4
+    Choose from 1, 2, 3, 4, 5 [1]: 1
     Select cloud_provider:
     1 - AWS
-    2 - GCS
-    Choose from 1, 2 [1]: 1
+    2 - GCP
+    3 - None
+    Choose from 1, 2, 3 [1]: 1
     Select open_source_license:
     1 - MIT
     2 - BSD
@@ -176,16 +197,62 @@ Community
 .. _`Stack Overflow`: http://stackoverflow.com/questions/tagged/django-naqsh
 .. _`issue`: https://github.com/mazdakb/django-naqsh/issues
 
+For pyup.io Users
+-----------------
+
+If you are using `pyup.io`_ to keep your dependencies updated and secure, use the code *cookiecutter* during checkout to get 15% off every month.
+
+.. _`pyup.io`: https://pyup.io
+
+"Your Stuff"
+-------------
+
+Scattered throughout the project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
+
+Releases
+--------
+
+Need a stable release? You can find them at https://github.com/mazdakb/django-naqsh/releases
+
+
+Not Exactly What You Want?
+---------------------------
+
+This is what I want. *It might not be what you want.* Don't worry, you have options:
+
+Fork This
+~~~~~~~~~~
+
+If you have differences in your preferred setup, I encourage you to fork this to create your own version.
+Once you have your fork working, let me know and I'll add it to a '*Similar Cookiecutter Templates*' list here.
+It's up to you whether or not to rename your fork.
+
+If you do rename your fork, I encourage you to submit it to the following places:
+
+* cookiecutter_ so it gets listed in the README as a template.
+* The cookiecutter grid_ on Django Packages.
+
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
+
 Submit a Pull Request
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 We accept pull requests if they're small, atomic, and make our own project development
 experience better.
+
+Articles
+---------
+
+You may find some materials refered in the `cookiecutter-django's articles`_.
+
+.. _`cookiecutter-django's articles`: https://github.com/pydanny/cookiecutter-django#articles
 
 Code of Conduct
 ---------------
 
 Everyone interacting in the Cookiecutter project's codebases, issue trackers, chat
 rooms, and mailing lists is expected to follow the `PyPA Code of Conduct`_.
+
 
 .. _`PyPA Code of Conduct`: https://www.pypa.io/en/latest/code-of-conduct/

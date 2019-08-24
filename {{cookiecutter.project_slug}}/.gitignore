@@ -51,7 +51,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-.assets/
+staticfiles/
 
 # Sphinx documentation
 docs/_build/
@@ -104,9 +104,6 @@ coverage
 
 # nyc test coverage
 .nyc_output
-
-# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
 
 # Bower dependency directory (https://bower.io/)
 bower_components
@@ -328,7 +325,6 @@ tags
 
 ### VirtualEnv template
 # Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
 [Bb]in
 [Ii]nclude
 [Ll]ib
@@ -343,13 +339,11 @@ pip-selfcheck.json
 {% if cookiecutter.use_mailhog == 'y' and cookiecutter.use_docker == 'n' %}
 MailHog
 {%- endif %}
-
 # Django media (upload) folder
 media/
 
 .pytest_cache/
 
 {% if cookiecutter.use_docker == 'y' %}
-# IPython history
 .ipython/
 {%- endif %}

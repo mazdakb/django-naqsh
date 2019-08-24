@@ -6,10 +6,13 @@
 .. image:: https://img.shields.io/badge/based%20on-Django%20Naqsh-0952D5.svg
      :target: https://github.com/mazdakb/django-naqsh/
      :alt: Built with Django Naqsh
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+     :target: https://github.com/ambv/black
+     :alt: Black code style
+{% if cookiecutter.open_source_license != "Not open source" %}
 
-{% if cookiecutter.open_source_license != "Not open source" -%}
 :License: {{cookiecutter.open_source_license}}
-{%- endif %}
+{% endif %}
 
 Settings
 --------
@@ -27,8 +30,6 @@ Setting Up Your Users
 * To create an **superuser account**, use this command::
 
     $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
 Type checks
 ^^^^^^^^^^^
@@ -67,12 +68,12 @@ To run a celery worker:
 .. code-block:: bash
 
     cd {{cookiecutter.project_slug}}
-    celery -A {{cookiecutter.project_slug}}.celery worker -l info
+    celery -A config.celery worker -l info
 
 Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
 
 {%- endif %}
-{% if cookiecutter.use_mailhog == "y" -%}
+{% if cookiecutter.use_mailhog == "y" %}
 
 Email Server
 ^^^^^^^^^^^^
@@ -86,37 +87,44 @@ With MailHog running, to view messages that are sent by your application, open y
 {% else %}
 In development, it is often nice to be able to see emails that are being sent from your application. If you choose to use `MailHog`_ when generating the project a local SMTP server with a web interface will be available.
 
-To start the service, make sure you have nodejs installed, and then type the following::
+#. `Download the latest MailHog release`_ for your OS.
 
-    $ npm install
-    $ grunt serve
+#. Rename the build to ``MailHog``.
 
-(After the first run you only need to type ``grunt serve``) This will start an email server that listens on ``127.0.0.1:1025`` in addition to starting your Django project and a watch task for live reload.
+#. Copy the file to the project root.
 
-To view messages that are sent by your application, open your browser and go to ``http://127.0.0.1:8025``
+#. Make it executable: ::
 
-The email server will exit when you exit the Grunt task on the CLI with Ctrl+C.
+    $ chmod +x MailHog
+
+#. Spin up another terminal window and start it there: ::
+
+    ./MailHog
+
+#. Check out `<http://127.0.0.1:8025/>`_ to see how it goes.
+
+Now you have your own mail server running locally, ready to receive whatever you send it.
+
+.. _`Download the latest MailHog release`: https://github.com/mailhog/MailHog/releases
 {% endif %}
 .. _mailhog: https://github.com/mailhog/MailHog
-
-{%- endif %}
-{% if cookiecutter.use_sentry == "y" -%}
+{% endif %}
+{% if cookiecutter.use_sentry == "y" %}
 
 Sentry
 ^^^^^^
 
-Sentry is an error logging aggregator service. You can sign up for a free account at  https://sentry.io/signup/?code=cookiecutter  or download and host it yourself.
+Sentry is an error logging aggregator service. You can sign up for a free account at https://sentry.io/signup/ or download and host it yourself.
 The system is setup with reasonable defaults, including 404 logging and integration with the WSGI application.
 
 You must set the DSN url in production.
-{%- endif %}
+{% endif %}
 
 Deployment
 ----------
 
 The following details how to deploy this application.
-
-{% if cookiecutter.use_heroku.lower() == "y" -%}
+{% if cookiecutter.use_heroku.lower() == "y" %}
 
 Heroku
 ^^^^^^
