@@ -49,7 +49,9 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 DATABASES = {"default": env.db("DJANGO_DATABASE_URL")}
 {%- else %}
 DATABASES = {
-    "default": env.db("DJANGO_DATABASE_URL", default="postgres://{% if cookiecutter.windows == 'y' %}localhost{% endif %}/{{cookiecutter.project_slug}}"),
+    "default": env.db(
+        var="DJANGO_DATABASE_URL", default="postgres://{% if cookiecutter.windows == 'y' %}localhost{% endif %}/{{cookiecutter.project_slug}}"
+    )
 }
 {%- endif %}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -294,7 +296,7 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 # Access Headers
 CORS_ORIGIN_ALLOW_ALL = True
-{%- endif %}
+{% endif %}
 {%- if cookiecutter.use_grappelli == "y" -%}
 # Django Grappelli
 # ------------------------------------------------------------------------------
