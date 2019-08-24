@@ -19,20 +19,22 @@ class SessionInlineAdmin(admin.StackedInline):
     ]
     readonly_fields = fields
     max_num = 0
-    {% if cookiecutter.use_grappelli == "y" -%}
+{%- if cookiecutter.use_grappelli == "y" %}
     classes = ["grp-collapse grp-open"]
     inline_classes = ["grp-collapse grp-open"]
-{% endif %}
+{%- endif %}
+
 
 class AuthTokenInlineAdmin(admin.StackedInline):
     model = AuthToken
     fields = ["pk", "digest", "key", "salt", "user", "expires"]
     readonly_fields = fields
     max_num = 0
-    {% if cookiecutter.use_grappelli == "y" -%}
+{%- if cookiecutter.use_grappelli == "y" %}
     classes = ["grp-collapse grp-open"]
     inline_classes = ["grp-collapse grp-open"]
-{% endif %}
+{%- endif %}
+
 
 class CustomUserCreationForm(UserCreationForm):
     """

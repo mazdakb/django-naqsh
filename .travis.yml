@@ -27,8 +27,6 @@ matrix:
       script: sh tests/test_docker.sh
     - name: Docker with Celery
       script: sh tests/test_docker.sh use_celery=y
-      env:
-        - CELERY_BROKER_URL=redis://localhost:6379/0
     - name: Bare metal
       script: sh tests/test_bare.sh use_celery=y
       services:

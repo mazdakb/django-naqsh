@@ -14,7 +14,7 @@ from rest_framework.routers import APIRootView
 logger = logging.getLogger(__name__)
 
 urlpatterns = [
-    {% if cookiecutter.use_grappelli == "y" -%}
+    {%- if cookiecutter.use_grappelli == "y" %}
     # Django Grappelli
     path("grappelli/", include("grappelli.urls")),
     {%- endif %}
