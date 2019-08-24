@@ -7,7 +7,7 @@ DJANGO_DATABASE_URL=postgres://!!!SET POSTGRES_USER!!!:!!!SET POSTGRES_PASSWORD!
 {%- if cookiecutter.use_celery == 'y' %}
 # Redis
 # ------------------------------------------------------------------------------
-REDIS_URL=redis://redis:6379/0
+CELERY_BROKER_URL=redis://redis:6379/0
 
 # Celery
 # ------------------------------------------------------------------------------

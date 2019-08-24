@@ -1,6 +1,5 @@
 import re
 import secrets
-from typing import Union
 
 import inflection
 
