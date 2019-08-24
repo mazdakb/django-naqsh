@@ -256,14 +256,12 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
     )
 
     set_django_database_url(
-        local_django_envs_path,
-        user=postgres_user,
-        password=local_postgres_password
+        local_django_envs_path, user=postgres_user, password=local_postgres_password
     )
     set_django_database_url(
         production_django_envs_path,
         user=postgres_user,
-        password=production_postgres_password
+        password=production_postgres_password,
     )
 
     set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
