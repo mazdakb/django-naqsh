@@ -12,7 +12,11 @@ from django.db import models
 
 from Crypto.Hash import SHA512
 
-from {{cookiecutter.project_slug}}.common.models import ActivatedModel, UniversalModel, TimestampedModel
+from {{cookiecutter.project_slug}}.common.models import (
+    ActivatedModel,
+    UniversalModel,
+    TimestampedModel,
+)
 
 
 class AuthTokenConfig(object):
@@ -29,7 +33,7 @@ class AuthTokenManager(models.Manager):
     config = AuthTokenConfig()
 
     def get_key(self, token):
-        return token[:int(self.config.TOKEN_CHARACTER_LENGTH / 2)]
+        return token[: int(self.config.TOKEN_CHARACTER_LENGTH / 2)]
 
     def hash_token(self, token, salt):
         hash_object = SHA512.new()
@@ -43,14 +47,18 @@ class AuthTokenManager(models.Manager):
         salt = secrets.token_hex(int(self.config.TOKEN_SALT_LENGTH / 2))
         digest = self.hash_token(full_token, salt)
         # set the expiry
-        expires = timezone.now() + timedelta(seconds=self.config.TOKEN_TTL) if self.config.TOKEN_TTL != 0 else None
+        expires = (
+            timezone.now() + timedelta(seconds=self.config.TOKEN_TTL)
+            if self.config.TOKEN_TTL != 0
+            else None
+        )
         # create the object
         auth_token = super(AuthTokenManager, self).create(
             digest=digest,
             key=self.get_key(full_token),
             salt=salt,
             user=user,
-            expires=expires
+            expires=expires,
         )
         # return token alongside AuthToken instance
         return auth_token, full_token
@@ -80,31 +88,33 @@ class Session(UniversalModel, TimestampedModel, ActivatedModel):
         to="accounts.User",
         verbose_name=_("user"),
         related_name="sessions",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     auth_token = models.OneToOneField(
         to=AuthToken,
         verbose_name=_("auth token"),
         related_name="session",
         editable=False,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     user_agent = models.TextField(
         verbose_name=_("user agent"),
         editable=False,
-        help_text=_("User-Agent of session with which user has logged in.")
+        help_text=_("User-Agent of session with which user has logged in."),
     )
     ip_address = models.GenericIPAddressField(
         verbose_name=_("ip address"),
         blank=True,
         null=True,
-        help_text=_("IP address of client. Web servers and proxies are ignored as best as possible.")
+        help_text=_(
+            "IP address of client. Web servers and proxies are ignored as best as possible."
+        ),
     )
     meta = JSONField(
         verbose_name=_("meta"),
         blank=True,
         null=True,
-        help_text=_("Miscellaneous information related to this session.")
+        help_text=_("Miscellaneous information related to this session."),
     )
 
     class Meta:
@@ -126,7 +136,9 @@ class UserManager(BaseUserManager):
         """
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.set_password(password) if password is not None else user.set_unusable_password()
+        user.set_password(
+            password
+        ) if password is not None else user.set_unusable_password()
         user.save(using=self._db)
         return user
 
@@ -151,9 +163,7 @@ class User(AbstractUser, UniversalModel):
     email = models.EmailField(
         _("email address"),
         unique=True,
-        error_messages={
-            "unique": _("A user with make email address already exists."),
-        },
+        error_messages={"unique": _("A user with make email address already exists.")},
     )
 
     username = None  # overwritten to remove the useless `username` field from database

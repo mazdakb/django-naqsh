@@ -20,6 +20,7 @@ class BearerTokenAuthentication(TokenAuthentication):
 
         Authorization: Bearer 401f7ac837da42b97f613d789819ff93537bee6a
     """
+
     keyword = "Bearer"
     model = AuthToken
 
@@ -28,7 +29,8 @@ class BearerTokenAuthentication(TokenAuthentication):
         msg = _("Invalid token.")
 
         stored_tokens = model.objects.filter(
-            Q(key=model.objects.get_key(token)) & (Q(expires__isnull=True) | Q(expires__gt=timezone.now()))
+            Q(key=model.objects.get_key(token))
+            & (Q(expires__isnull=True) | Q(expires__gt=timezone.now()))
         ).select_related("user")
 
         if not stored_tokens.exists():

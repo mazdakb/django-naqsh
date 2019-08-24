@@ -49,7 +49,9 @@ def replace_file_name(filename: str, replace_with: str) -> str:
     return f"{replace_with}.{filename.split('.')[-1]}"
 
 
-def path_for_object(instance, get_object_name=lambda i: str(i.id), field_name: str = "") -> str:
+def path_for_object(
+    instance, get_object_name=lambda i: str(i.id), field_name: str = ""
+) -> str:
     """
     Generate storage path for object.
     Result would look like <MEDIA_ROOT>/<app_label>/<model>/<str(instance)>/<field>/<filename>
@@ -66,6 +68,6 @@ def path_for_object(instance, get_object_name=lambda i: str(i.id), field_name: s
     # use provided function to get a string representation suitable for storage
     object_name = get_object_name(instance)
     # get get field name and pluralize it
-    field_name = ie.plural(field_name if field_name else '')
+    field_name = ie.plural(field_name if field_name else "")
     # combine values
     return os.path.join(app_label, class_name, object_name, field_name)
