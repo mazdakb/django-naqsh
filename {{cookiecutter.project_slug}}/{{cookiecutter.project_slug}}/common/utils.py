@@ -1,39 +1,7 @@
 import re
 import secrets
-from typing import Union
 
 import inflection
-
-from django.utils.translation import ugettext_lazy as _
-
-
-def round_to_half_k(value: Union[int, float]) -> int:
-    """Round to half a thousand
-
-    Round the given value to nearest half a thousand.
-
-    Notes:
-        - This function is commonly used in calculating monetary values.
-
-    :param value:
-    :return:
-    """
-    return round(value / 500) * 500
-
-
-def to_naive_phone(phone: str):
-    """Get naive phone number
-
-    Convert international phone number to naive form.
-    For example 989123214498 becomes 09123214498.
-
-    :param phone:
-    :return:
-    """
-    if phone.isdigit():
-        return f'0{phone[2:]}'
-    else:
-        raise ValueError(_(f'{phone} is not a valid national phone number'))
 
 
 def generate_random_slug(length: int = 10) -> str:

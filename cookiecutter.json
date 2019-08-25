@@ -16,25 +16,28 @@
   "timezone": "UTC",
   "windows": "n",
   "use_pycharm": "n",
-  "use_docker": "y",
+  "use_docker": "n",
   "postgresql_version": [
-    "11.2",
-    "10.7",
-    "9.6"
+    "11.5",
+    "10.10",
+    "9.6",
+    "9.5",
+    "9.4"
   ],
   "cloud_provider": [
     "AWS",
-    "GCE"
+    "GCP",
+    "None"
   ],
-  "use_celery": "y",
+  "use_celery": "n",
   "use_mailhog": "n",
-  "use_sentry": "y",
+  "use_sentry": "n",
   "use_whitenoise": "n",
   "use_heroku": "n",
   "use_travisci": "n",
-  "use_gitlabci": "y",
-  "use_grappelli": "y",
-  "use_cors_package": "y",
+  "use_gitlabci": "n",
+  "use_grappelli": "n",
+  "use_cors_package": "n",
   "keep_local_envs_in_vcs": "y",
 
   "debug": "n"

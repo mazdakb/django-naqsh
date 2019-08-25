@@ -49,15 +49,20 @@ use_docker:
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
-    1. 11.2
-    2. 10.7
-    4. 9.6
+    1. 11.5
+    2. 10.10
+    3. 9.6
+    4. 9.5
+    5. 9.4
 
 cloud_provider:
     Select a cloud provider for static & media files. The choices are:
 
     1. AWS_
-    2. GCS_
+    2. GCP_
+    3. None
+
+    Note that if you choose no cloud provider, media files won't work.
 
 use_celery:
     Indicates whether the project should be configured to use Celery_.
@@ -110,8 +115,10 @@ debug:
 
 .. _PostgreSQL: https://www.postgresql.org/docs/
 
+.. _Gulp: https://github.com/gulpjs/gulp
+
 .. _AWS: https://aws.amazon.com/s3/
-.. _GCS: https://cloud.google.com/storage/
+.. _GCP: https://cloud.google.com/storage/
 
 .. _Celery: https://github.com/celery/celery
 

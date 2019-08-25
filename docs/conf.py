@@ -9,6 +9,8 @@
 # serve to show the default.
 
 from datetime import datetime
+import os
+import sys
 
 now = datetime.now()
 
@@ -40,7 +42,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Django Naqsh"
-copyright = "2019, Mazdak Badakhshan".format(now.year)
+copyright = "2018-{}, Mazdak Badakhshan".format(now.year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -215,13 +217,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (
-        "index",
-        "Django Naqsh",
-        "Django Naqsh documentation",
-        ["Mazdak Badakhshan"],
-        1,
-    )
+    ("index", "Django Naqsh", "Django Naqsh documentation", ["Mazdak Badakhshan"], 1)
 ]
 
 # If true, show URL addresses after external links.

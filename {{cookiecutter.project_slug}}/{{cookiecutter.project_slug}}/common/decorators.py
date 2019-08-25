@@ -17,6 +17,7 @@ def after_transaction(func):
     :param func:
     :return:
     """
+
     @functools.wraps(func)
     def wrapped(*args, **kwargs):
         return transaction.on_commit(lambda: func(*args, **kwargs))
@@ -50,8 +51,7 @@ class mute_signals(object):
 
     def __enter__(self):
         for signal in self.signals:
-            logger.debug("mute_signals: Disabling signal handlers %r",
-                         signal.receivers)
+            logger.debug("mute_signals: Disabling signal handlers %r", signal.receivers)
 
             # Note that we're using implementation details of
             # django.signals, since arguments to signal.connect()
@@ -61,8 +61,7 @@ class mute_signals(object):
 
     def __exit__(self, exc_type, exc_value, traceback):
         for signal, receivers in self.paused.items():
-            logger.debug("mute_signals: Restoring signal handlers %r",
-                         receivers)
+            logger.debug("mute_signals: Restoring signal handlers %r", receivers)
 
             signal.receivers = receivers
             with signal.lock:

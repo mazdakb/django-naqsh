@@ -77,8 +77,16 @@ def remove_heroku_files():
         os.remove(file_name)
 
 
-def remove_celery_app():
-    shutil.rmtree(os.path.join("{{ cookiecutter.project_slug }}", "celery"))
+def remove_celery_files():
+    file_names = [
+        os.path.join("config", "celery.py"),
+        # os.path.join("{{ cookiecutter.project_slug }}", "accounts", "tasks.py"),
+        # os.path.join(
+        #     "{{ cookiecutter.project_slug }}", "accounts", "tests", "test_tasks.py"
+        # ),
+    ]
+    for file_name in file_names:
+        os.remove(file_name)
 
 
 def remove_dottravisyml_file():
@@ -191,6 +199,19 @@ def set_postgres_password(file_path, value=None):
     return postgres_password
 
 
+def set_django_database_url(file_path, user, password):
+    postgres_user = set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=user)
+    postgres_password = set_flag(
+        file_path,
+        "!!!SET POSTGRES_PASSWORD!!!",
+        value=password,
+        length=64,
+        using_digits=True,
+        using_ascii_letters=True,
+    )
+    return postgres_user, postgres_password
+
+
 def set_celery_flower_user(file_path, value):
     celery_flower_user = set_flag(
         file_path, "!!!SET CELERY_FLOWER_USER!!!", value=value
@@ -226,12 +247,21 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
     set_django_admin_url(production_django_envs_path)
 
     set_postgres_user(local_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
+    local_postgres_password = set_postgres_password(
         local_postgres_envs_path, value=DEBUG_VALUE if debug else None
     )
     set_postgres_user(production_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
+    production_postgres_password = set_postgres_password(
         production_postgres_envs_path, value=DEBUG_VALUE if debug else None
+    )
+
+    set_django_database_url(
+        local_django_envs_path, user=postgres_user, password=local_postgres_password
+    )
+    set_django_database_url(
+        production_django_envs_path,
+        user=postgres_user,
+        password=production_postgres_password,
     )
 
     set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
@@ -251,7 +281,6 @@ def set_flags_in_settings_files():
 
 def remove_envs_and_associated_files():
     shutil.rmtree(".envs")
-    os.remove("merge_production_dotenvs_in_dotenv.py")
 
 
 def remove_celery_compose_dirs():
@@ -302,13 +331,22 @@ def main():
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             append_to_gitignore_file("!.envs/.local/")
 
+    if "{{ cookiecutter.cloud_provider}}".lower() == "none":
+        print(
+            WARNING + "You chose not to use a cloud provider, "
+            "media files won't be served in production." + TERMINATOR
+        )
+
     if "{{ cookiecutter.use_celery }}".lower() == "n":
-        remove_celery_app()
+        remove_celery_files()
         if "{{ cookiecutter.use_docker }}".lower() == "y":
             remove_celery_compose_dirs()
 
     if "{{ cookiecutter.use_travisci }}".lower() == "n":
         remove_dottravisyml_file()
+
+    if "{{ cookiecutter.use_gitlabci }}".lower() == "n":
+        remove_dotgitlabyml_file()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 

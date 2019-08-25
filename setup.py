@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -11,10 +10,10 @@ except ImportError:
 
 # Our version ALWAYS matches the version of Django we support
 # If Django has a new release, we branch, tag, then update this setting after the tag.
-version = "2.2.0"
+version = "2.2.1"
 
 if sys.argv[-1] == "tag":
-    os.system('git tag -a %s -m "version %s"' % (version, version))
+    os.system(f'git tag -a {version} -m "version {version}"')
     os.system("git push --tags")
     sys.exit()
 
@@ -24,7 +23,7 @@ with open("README.rst") as readme_file:
 setup(
     name="django-naqsh",
     version=version,
-    description="Naqsh is a bootstrapping tool for quickly creating production-ready Django web services.",
+    description="Naqsh is a modern bootstrapping tool for quickly creating production-ready Django web services.",
     long_description=long_description,
     author="Mazdak Badakhshan",
     author_email="geraneum@gmail.com",
@@ -50,6 +49,6 @@ setup(
     ],
     keywords=(
         "cookiecutter, Python, projects, project templates, "
-        "django, skeleton, scaffolding, web service, REST,"
+        "django, skeleton, scaffolding, web service, API, REST,"
     ),
 )

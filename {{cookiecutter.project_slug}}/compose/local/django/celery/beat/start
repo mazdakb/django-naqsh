@@ -5,4 +5,4 @@ set -o nounset
 
 
 rm -f './celerybeat.pid'
-celery -A {{cookiecutter.project_slug}}.celery beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+celery -A config.celery beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler

@@ -21,7 +21,7 @@ If you set up your project to `develop locally with docker`_, run the following 
 
    $ docker-compose -f local.yml run django pytest
 
-Targetting particular apps for testing in ``docker`` follows a similar pattern as previously shown above.
+Targeting particular apps for testing in ``docker`` follows a similar pattern as previously shown above.
 
 Coverage
 --------

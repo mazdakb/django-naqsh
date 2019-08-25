@@ -10,7 +10,7 @@ Setting Up Development Environment
 Make sure to have the following on your host:
 
 * Python 3.7
-* PostgreSQL_ 11.2
+* PostgreSQL_.
 * Redis_, if using Celery
 
 First things first.
@@ -118,12 +118,14 @@ In production, we have Mailgun_ configured to have your back!
 
 Celery
 ------
+
 If the project is configured to use Celery as a task scheduler then by default tasks are set to run on the main thread
-when developing locally. If you have the appropriate setup on your local machine then set
+when developing locally. If you have the appropriate setup on your local machine then set the following
+in ``config/settings/local.py``::
 
-CELERY_TASK_ALWAYS_EAGER = False
+    CELERY_TASK_ALWAYS_EAGER = False
 
-in /config/settings/local.py
+
 
 
 Summary
