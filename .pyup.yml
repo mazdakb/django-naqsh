@@ -16,3 +16,12 @@ schedule: "every day"
 # configure the branch prefix the bot is using
 # default: pyup-
 branch_prefix: pyup/
+
+# Specify requirement files by hand, pyup seems to struggle to 
+# find the ones in the project_slug folder
+requirements:
+  - "requirements.txt"
+  - "{{cookiecutter.project_slug}}/requirements/base.txt"
+  - "{{cookiecutter.project_slug}}/requirements/local.txt"
+  - "{{cookiecutter.project_slug}}/requirements/production.txt"
+  
