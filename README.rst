@@ -13,8 +13,8 @@ Django Naqsh
     :target: https://pyup.io/repos/github/mazdakb/django-naqsh/
     :alt: Updates
 
-.. image:: https://requires.io/github/mazdakb/django-naqsh/requirements.svg?branch=pyup-config
-     :target: https://requires.io/github/mazdakb/django-naqsh/requirements/?branch=pyup-config
+.. image:: https://requires.io/github/mazdakb/django-naqsh/requirements.svg?branch=master
+     :target: https://requires.io/github/mazdakb/django-naqsh/requirements/?branch=master
      :alt: Requirements Status
 
 .. image:: https://www.codetriage.com/mazdakb/django-naqsh/badges/users.svg
