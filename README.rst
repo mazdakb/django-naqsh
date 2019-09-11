@@ -86,17 +86,6 @@ Constraints
 * Uses PostgreSQL everywhere (9.4 - 11.3)
 * Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
-pyup
-~~~~~~~~~~~~~~~~~~
-
-.. image:: https://pyup.io/static/images/logo.png
-   :name: pyup
-   :align: center
-   :alt: pyup
-   :target: https://pyup.io/
-
-Pyup brings you automated security and dependency updates used by Google and other organizations. Free for open source projects!
-
 Usage
 ------
 
