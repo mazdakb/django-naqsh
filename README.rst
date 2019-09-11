@@ -83,7 +83,7 @@ Constraints
 -----------
 
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.4 - 11.3)
+* Uses PostgreSQL everywhere
 * Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 Usage
