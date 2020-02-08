@@ -1,17 +1,7 @@
-{% if cookiecutter.js_task_runner == 'Gulp' -%}
-FROM node:10-stretch-slim as client-builder
-
-WORKDIR /app
-COPY ./package.json /app
-RUN npm install && npm cache clean --force
-COPY . /app
-RUN npm run build
-
-# Python build stage
-{%- endif %}
 FROM python:3.7-slim-buster
 
 ENV PYTHONUNBUFFERED 1
+ENV DOCKERIZE_VERSION v0.6.1
 
 RUN apt-get update \
   # dependencies for building Python packages
@@ -20,9 +10,15 @@ RUN apt-get update \
   && apt-get install -y libpq-dev \
   # Translations dependencies
   && apt-get install -y gettext \
+  # dockerize dependency
+  && apt-get install -y openssl \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 RUN addgroup --system django \
     && adduser --system --ingroup django django
@@ -58,11 +54,7 @@ RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
 {%- endif %}
 
-{%- if cookiecutter.js_task_runner == 'Gulp' %}
-COPY --from=client-builder --chown=django:django /app /app
-{% else %}
 COPY --chown=django:django . /app
-{%- endif %}
 
 USER django
 
