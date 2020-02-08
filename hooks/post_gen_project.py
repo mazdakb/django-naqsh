@@ -284,7 +284,6 @@ def remove_aws_dockerfile():
 
 
 def remove_drf_starter_files():
-    os.remove(os.path.join("config", "router.py"))
     shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "accounts", "api"))
 
 
