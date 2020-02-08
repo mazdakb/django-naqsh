@@ -21,13 +21,13 @@ with open("README.rst") as readme_file:
     long_description = readme_file.read()
 
 setup(
-    name="django-naqsh",
+    name="cookiecutter-django",
     version=version,
-    description="Naqsh is a modern bootstrapping tool for quickly creating production-ready Django web services.",
+    description="A Cookiecutter template for creating production-ready Django projects quickly.",
     long_description=long_description,
-    author="Mazdak Badakhshan",
-    author_email="geraneum@gmail.com",
-    url="https://github.com/mazdakb/django-naqsh",
+    author="Daniel Roy Greenfeld",
+    author_email="pydanny@gmail.com",
+    url="https://github.com/pydanny/cookiecutter-django",
     packages=[],
     license="BSD",
     zip_safe=False,
@@ -40,15 +40,12 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
         "Topic :: Software Development",
-        "Natural Language :: English",
-        "Intended Audience :: Developers",
     ],
     keywords=(
-        "cookiecutter, Python, projects, project templates, "
-        "django, skeleton, scaffolding, web service, API, REST,"
+        "cookiecutter, Python, projects, project templates, django, "
+        "skeleton, scaffolding, project directory, setup.py"
     ),
 )

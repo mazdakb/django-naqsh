@@ -1,50 +1,38 @@
-import logging
-
-from django.urls import path
-from django.urls import include
 from django.conf import settings
-from django.contrib import admin
+from django.urls import include, path
 from django.conf.urls.static import static
-from django.views.generic import RedirectView
+from django.contrib import admin
+from django.views.generic import TemplateView
 from django.views import defaults as default_views
-
-from rest_framework.reverse import reverse_lazy
-from rest_framework.routers import APIRootView
-
-logger = logging.getLogger(__name__)
+{% if cookiecutter.use_drf == 'y' -%}
+from rest_framework.authtoken.views import obtain_auth_token
+{%- endif %}
 
 urlpatterns = [
-    {%- if cookiecutter.use_grappelli == "y" %}
-    # Django Grappelli
-    path("grappelli/", include("grappelli.urls")),
-    {%- endif %}
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path(
+        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+    ),
     # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # API Root View Session Auth
-    path("root-view-auth", include("rest_framework.urls", namespace="rest_framework")),
-    # API V1
-    path(
-        "v1/",
-        include(
-            (
-                [
-                    # TODO: custom urls includes go here
-                    # === root view
-                    path("", APIRootView.as_view(), name="root")
-                ],
-                "{{cookiecutter.project_slug}}",
-            ),
-            namespace="v1",
-        ),
-    ),
-    # Service Root View
-    path("", RedirectView.as_view(url=reverse_lazy("v1:root"), permanent=False)),
+    # User management
+    path("users/", include("{{ cookiecutter.project_slug }}.users.urls", namespace="users")),
+    path("accounts/", include("allauth.urls")),
+    # Your stuff: custom urls includes go here
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{% if cookiecutter.use_drf == 'y' -%}
+# API URLS
+urlpatterns += [
+    # API base url
+    path("api/", include("config.api_router")),
+    # DRF auth token
+    path("auth-token/", obtain_auth_token),
 ]
-# include media urls from django settings for correct path calculation
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{%- endif %}
 
 if settings.DEBUG:
-    # This allows the error pages to be debugged during development.
+    # This allows the error pages to be debugged during development, just visit
+    # these url in browser to see how these error pages look like.
     urlpatterns += [
         path(
             "400/",

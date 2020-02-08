@@ -1,6 +1,6 @@
-.. django-naqsh documentation master file.
+.. cookiecutter-django documentation master file.
 
-Welcome to Django Naqsh's documentation!
+Welcome to Cookiecutter Django's documentation!
 ====================================================================
 
 A Cookiecutter_ template for Django.
@@ -18,6 +18,7 @@ Contents:
    settings
    linters
    testing
+   document
    deployment-on-pythonanywhere
    deployment-on-heroku
    deployment-with-docker

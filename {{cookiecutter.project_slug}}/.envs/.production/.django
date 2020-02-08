@@ -5,7 +5,6 @@ DJANGO_SETTINGS_MODULE=config.settings.production
 DJANGO_SECRET_KEY=!!!SET DJANGO_SECRET_KEY!!!
 DJANGO_ADMIN_URL=!!!SET DJANGO_ADMIN_URL!!!
 DJANGO_ALLOWED_HOSTS=.{{ cookiecutter.domain_name }}
-DJANGO_DATABASE_URL=postgres://!!!SET POSTGRES_USER!!!:!!!SET POSTGRES_PASSWORD!!!@postgres:5432/{{ cookiecutter.project_slug }}
 
 # Security
 # ------------------------------------------------------------------------------
@@ -29,7 +28,14 @@ DJANGO_AWS_STORAGE_BUCKET_NAME=
 GOOGLE_APPLICATION_CREDENTIALS=
 DJANGO_GCP_STORAGE_BUCKET_NAME=
 {% endif %}
-
+# django-allauth
+# ------------------------------------------------------------------------------
+DJANGO_ACCOUNT_ALLOW_REGISTRATION=True
+{% if cookiecutter.use_compressor == 'y' %}
+# django-compressor
+# ------------------------------------------------------------------------------
+COMPRESS_ENABLED=
+{% endif %}
 # Gunicorn
 # ------------------------------------------------------------------------------
 WEB_CONCURRENCY=4
@@ -45,7 +51,6 @@ REDIS_URL=redis://redis:6379/0
 {% if cookiecutter.use_celery == 'y' %}
 # Celery
 # ------------------------------------------------------------------------------
-CELERY_BROKER_URL=redis://redis:6379/1
 
 # Flower
 CELERY_FLOWER_USER=!!!SET CELERY_FLOWER_USER!!!

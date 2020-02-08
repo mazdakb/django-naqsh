@@ -3,16 +3,13 @@ import re
 
 import pytest
 from cookiecutter.exceptions import FailedHookException
-from pytest_cases import pytest_fixture_plus
+from pytest_cases import fixture_plus
 import sh
 import yaml
 from binaryornot.check import is_binary
 
 PATTERN = r"{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
-
-YN_CHOICES = ["y", "n"]
-CLOUD_CHOICES = ["AWS", "GCE", "None"]
 
 
 @pytest.fixture
@@ -29,17 +26,26 @@ def context():
     }
 
 
-@pytest_fixture_plus
-@pytest.mark.parametrize("windows", YN_CHOICES, ids=lambda yn: f"win:{yn}")
-@pytest.mark.parametrize("use_docker", YN_CHOICES, ids=lambda yn: f"docker:{yn}")
-@pytest.mark.parametrize("use_celery", YN_CHOICES, ids=lambda yn: f"celery:{yn}")
-@pytest.mark.parametrize("use_mailhog", YN_CHOICES, ids=lambda yn: f"mailhog:{yn}")
-@pytest.mark.parametrize("use_sentry", YN_CHOICES, ids=lambda yn: f"sentry:{yn}")
-@pytest.mark.parametrize("use_compressor", YN_CHOICES, ids=lambda yn: f"cmpr:{yn}")
-@pytest.mark.parametrize("use_whitenoise", YN_CHOICES, ids=lambda yn: f"wnoise:{yn}")
-@pytest.mark.parametrize("use_grappelli", YN_CHOICES, ids=lambda yn: f"grpplli:{yn}")
-@pytest.mark.parametrize("use_cors_package", YN_CHOICES, ids=lambda yn: f"corsp:{yn}")
-@pytest.mark.parametrize("cloud_provider", CLOUD_CHOICES, ids=lambda yn: f"cloud:{yn}")
+@fixture_plus
+@pytest.mark.parametrize("windows", ["y", "n"], ids=lambda yn: f"win:{yn}")
+@pytest.mark.parametrize("use_docker", ["y", "n"], ids=lambda yn: f"docker:{yn}")
+@pytest.mark.parametrize("use_celery", ["y", "n"], ids=lambda yn: f"celery:{yn}")
+@pytest.mark.parametrize("use_mailhog", ["y", "n"], ids=lambda yn: f"mailhog:{yn}")
+@pytest.mark.parametrize("use_sentry", ["y", "n"], ids=lambda yn: f"sentry:{yn}")
+@pytest.mark.parametrize("use_compressor", ["y", "n"], ids=lambda yn: f"cmpr:{yn}")
+@pytest.mark.parametrize("use_drf", ["y", "n"], ids=lambda yn: f"drf:{yn}")
+@pytest.mark.parametrize(
+    "use_whitenoise,cloud_provider",
+    [
+        ("y", "AWS"),
+        ("y", "GCP"),
+        ("y", "None"),
+        ("n", "AWS"),
+        ("n", "GCP"),
+        # no whitenoise + no cloud provider is not supported
+    ],
+    ids=lambda id: f"wnoise:{id[0]}-cloud:{id[1]}",
+)
 def context_combination(
     windows,
     use_docker,
@@ -48,8 +54,7 @@ def context_combination(
     use_sentry,
     use_compressor,
     use_whitenoise,
-    use_grappelli,
-    use_cors_package,
+    use_drf,
     cloud_provider,
 ):
     """Fixture that parametrize the function where it's used."""
@@ -61,8 +66,7 @@ def context_combination(
         "use_mailhog": use_mailhog,
         "use_sentry": use_sentry,
         "use_whitenoise": use_whitenoise,
-        "use_grappelli": use_grappelli,
-        "use_cors_package": use_cors_package,
+        "use_drf": use_drf,
         "cloud_provider": cloud_provider,
     }
 
@@ -139,7 +143,7 @@ def test_black_passes(cookies, context_combination):
 
 
 def test_travis_invokes_pytest(cookies, context):
-    context.update({"use_travisci": "y"})
+    context.update({"ci_tool": "Travis"})
     result = cookies.bake(extra_context=context)
 
     assert result.exit_code == 0
@@ -154,11 +158,38 @@ def test_travis_invokes_pytest(cookies, context):
             pytest.fail(e)
 
 
+def test_gitlab_invokes_flake8_and_pytest(cookies, context):
+    context.update({"ci_tool": "Gitlab"})
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    assert result.exception is None
+    assert result.project.basename == context["project_slug"]
+    assert result.project.isdir()
+
+    with open(f"{result.project}/.gitlab-ci.yml", "r") as gitlab_yml:
+        try:
+            gitlab_config = yaml.load(gitlab_yml)
+            assert gitlab_config["flake8"]["script"] == ["flake8"]
+            assert gitlab_config["pytest"]["script"] == ["pytest"]
+        except yaml.YAMLError as e:
+            pytest.fail(e)
+
+
 @pytest.mark.parametrize("slug", ["project slug", "Project_Slug"])
 def test_invalid_slug(cookies, context, slug):
     """Invalid slug should failed pre-generation hook."""
     context.update({"project_slug": slug})
 
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code != 0
+    assert isinstance(result.exception, FailedHookException)
+
+
+def test_no_whitenoise_and_no_cloud_provider(cookies, context):
+    """It should not generate project if neither whitenoise or cloud provider are set"""
+    context.update({"use_whitenoise": "n", "cloud_provider": "None"})
     result = cookies.bake(extra_context=context)
 
     assert result.exit_code != 0

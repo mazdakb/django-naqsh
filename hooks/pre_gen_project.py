@@ -1,10 +1,10 @@
 """
 NOTE:
     the below code is to be maintained Python 2.x-compatible
-    as the whole Django Naqsh project initialization
+    as the whole Cookiecutter Django project initialization
     can potentially be run in Python 2.x environment.
 
-TODO: ? restrict Django Naqsh project initialization to Python 3.x environments only
+TODO: ? restrict Cookiecutter Django project initialization to Python 3.x environments only
 """
 from __future__ import print_function
 
@@ -35,7 +35,7 @@ if "{{ cookiecutter.use_docker }}".lower() == "n":
     if python_major_version == 2:
         print(
             WARNING + "You're running cookiecutter under Python 2, but the generated "
-            "project requires Python 3.6+. Do you want to proceed (y/n)? " + TERMINATOR
+            "project requires Python 3.7+. Do you want to proceed (y/n)? " + TERMINATOR
         )
         yes_options, no_options = frozenset(["y"]), frozenset(["n"])
         while True:
@@ -59,3 +59,12 @@ if "{{ cookiecutter.use_docker }}".lower() == "n":
                     )
                     + TERMINATOR
                 )
+
+if (
+    "{{ cookiecutter.use_whitenoise }}".lower() == "n"
+    and "{{ cookiecutter.cloud_provider }}" == "None"
+):
+    print(
+        "You should either use Whitenoise or select a Cloud Provider to serve static files"
+    )
+    sys.exit(1)

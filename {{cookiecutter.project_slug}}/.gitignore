@@ -339,8 +339,7 @@ pip-selfcheck.json
 {% if cookiecutter.use_mailhog == 'y' and cookiecutter.use_docker == 'n' %}
 MailHog
 {%- endif %}
-# Django media (upload) folder
-media/
+{{ cookiecutter.project_slug }}/media/
 
 .pytest_cache/
 

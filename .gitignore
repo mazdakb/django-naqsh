@@ -226,10 +226,4 @@ pip-selfcheck.json
 # is declarative by nature.
 .idea/
 
-# Even though the project might be opened and edited
-# in Visual Studio Code, it makes no sence whatsoever
-# to 'run' anything within it since any particular cookiecutter
-# is declarative by nature.
-.vscode/
-
 .pytest_cache/

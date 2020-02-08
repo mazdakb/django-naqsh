@@ -26,6 +26,12 @@ First things first.
 #. Install development requirements: ::
 
     $ pip install -r requirements/local.txt
+    $ pre-commit install
+
+     .. note::
+
+        the `pre-commit` exists in the generated project as default.
+        for the details of `pre-commit`, follow the [site of pre-commit](https://pre-commit.com/).
 
 #. Create a new PostgreSQL database using createdb_: ::
 
@@ -41,7 +47,7 @@ First things first.
 
 #. Set the environment variables for your database(s): ::
 
-    $ export DJANGO_DATABASE_URL=postgres://postgres:<password>@127.0.0.1:5432/<DB name given to createdb>
+    $ export DATABASE_URL=postgres://postgres:<password>@127.0.0.1:5432/<DB name given to createdb>
     # Optional: set broker URL if using Celery
     $ export CELERY_BROKER_URL=redis://localhost:6379/0
 
@@ -83,6 +89,8 @@ MailHog
 .. note:: In order for the project to support MailHog_ it must have been bootstrapped with ``use_mailhog`` set to ``y``.
 
 MailHog is used to receive emails during development, it is written in Go and has no external dependencies.
+
+For instance, one of the packages we depend upon, ``django-allauth`` sends verification emails to new users signing up as well as to the existing ones who have not yet verified themselves.
 
 #. `Download the latest MailHog release`_ for your OS.
 
@@ -126,7 +134,11 @@ in ``config/settings/local.py``::
     CELERY_TASK_ALWAYS_EAGER = False
 
 
+Sass Compilation & Live Reloading
+---------------------------------
 
+If you’d like to take advantage of live reloading and Sass compilation you can do so with a little
+bit of preparation, see :ref:`sass-compilation-live-reload`.
 
 Summary
 -------
