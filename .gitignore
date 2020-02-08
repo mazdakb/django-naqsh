@@ -221,9 +221,10 @@ pip-selfcheck.json
 
 
 # Even though the project might be opened and edited
-# in any of the JetBrains IDEs, it makes no sence whatsoever
+# in any of the JetBrains IDEs or VSCode, it makes no sence whatsoever
 # to 'run' anything within it since any particular cookiecutter
 # is declarative by nature.
 .idea/
+.vscode/
 
 .pytest_cache/

@@ -1,7 +1,28 @@
 Contributors
 ============
 
-Core Developers
+Cookiecutter Django
+-------------------
+
+Original Cookiecutter Django project `contributors`_.
+
+.. _contributors: https://github.com/pydanny/cookiecutter-django/blob/master/CONTRIBUTORS.rst
+
+Django Naqsh Developers
+---------------
+
+These contributors have commit flags for the repository,
+and are able to accept and merge pull requests.
+
+=========================== ================ ===========
+Name                        Github           Twitter
+=========================== ================ ===========
+Mazdak Badakhshan           `@mazdakb`_      @geraneum
+=========================== ================ ===========
+
+.. _@mazdakb: https://github.com/mazdakb
+
+Cookiecutter Django Developers
 ---------------
 
 These contributors have commit flags for the repository,
@@ -33,7 +54,7 @@ Daniel are on the Cookiecutter core team.*
 .. _@browniebroke: https://github.com/browniebroke
 .. _@sfdye: https://github.com/sfdye
 
-Other Contributors
+Other Contributors (as listed in cookiecutter-django)
 ------------------
 
 Listed in alphabetical order.
@@ -378,3 +399,4 @@ The following haven't provided code directly, but have provided guidance and adv
 * Jannis Leidel
 * Nate Aune
 * Barry Morrison
+* Omid Zarinmahd

@@ -8,7 +8,7 @@ update: all
 # allowed: True, False
 pin: True
 
-# Specify requirement files by hand, pyup seems to struggle to 
+# Specify requirement files by hand, pyup seems to struggle to
 # find the ones in the project_slug folder
 requirements:
   - "requirements.txt"
