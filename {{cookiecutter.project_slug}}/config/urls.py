@@ -2,9 +2,10 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.views.generic import RedirectView
 from django.views import defaults as default_views
 {% if cookiecutter.use_drf == 'y' -%}
+from django.views.generic import RedirectView
+
 from rest_framework.reverse import reverse_lazy
 from rest_framework.routers import APIRootView
 {%- endif %}
