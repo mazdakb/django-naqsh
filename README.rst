@@ -120,7 +120,7 @@ Answer the prompts with your own desired options_. For example::
     Resolving deltas: 100% (283/283), done.
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
-    author_name [azdak Badakhshan]: Mazdak Badakhshan
+    author_name [Mazdak Badakhshan]: Mazdak Badakhshan
     email [you@example.com]: geraneum@example.com
     description [Behold My Awesome Project!]: A reddit clone.
     domain_name [example.com]: myreddit.example.com
@@ -190,11 +190,6 @@ Community
 
 .. _`Stack Overflow`: http://stackoverflow.com/questions/tagged/django-naqsh
 .. _`issue`: https://github.com/mazdakb/django-naqsh/issues
-
-For Readers of Two Scoops of Django
---------------------------------------------
-
-You may notice that some elements of this project do not exactly match what we describe in chapter 3. The reason for that is this project, amongst other things, serves as a test bed for trying out new ideas and concepts. Sometimes they work, sometimes they don't, but the end result is that it won't necessarily match precisely what is described in the book I co-authored.
 
 "Your Stuff"
 -------------

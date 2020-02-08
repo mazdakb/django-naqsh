@@ -44,7 +44,7 @@ REDIS_URL=redis://redis:6379/0
 {% if cookiecutter.use_celery == 'y' %}
 # Celery
 # ------------------------------------------------------------------------------
-CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_BROKER_URL=redis://redis:6379/1
 
 # Flower
 CELERY_FLOWER_USER=!!!SET CELERY_FLOWER_USER!!!
