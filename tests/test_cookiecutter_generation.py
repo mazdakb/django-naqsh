@@ -32,7 +32,6 @@ def context():
 @pytest.mark.parametrize("use_celery", ["y", "n"], ids=lambda yn: f"celery:{yn}")
 @pytest.mark.parametrize("use_mailhog", ["y", "n"], ids=lambda yn: f"mailhog:{yn}")
 @pytest.mark.parametrize("use_sentry", ["y", "n"], ids=lambda yn: f"sentry:{yn}")
-@pytest.mark.parametrize("use_compressor", ["y", "n"], ids=lambda yn: f"cmpr:{yn}")
 @pytest.mark.parametrize("use_drf", ["y", "n"], ids=lambda yn: f"drf:{yn}")
 @pytest.mark.parametrize(
     "use_whitenoise,cloud_provider",
@@ -52,7 +51,6 @@ def context_combination(
     use_celery,
     use_mailhog,
     use_sentry,
-    use_compressor,
     use_whitenoise,
     use_drf,
     cloud_provider,
@@ -61,7 +59,6 @@ def context_combination(
     return {
         "windows": windows,
         "use_docker": use_docker,
-        "use_compressor": use_compressor,
         "use_celery": use_celery,
         "use_mailhog": use_mailhog,
         "use_sentry": use_sentry,
