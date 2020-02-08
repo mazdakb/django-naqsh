@@ -11,7 +11,7 @@ RUN apt-get update \
   # Translations dependencies
   && apt-get install -y gettext \
   # Dockerize dependency
-  && apt-get install -y openssl \
+  && apt-get install -y openssl wget \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*

@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+from typing import List
 
 from django.utils.translation import gettext_lazy as _
 
@@ -65,7 +66,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
-PREREQUISITE_APPS = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
+PREREQUISITE_APPS: List[str] = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -279,7 +280,6 @@ CELERY_TASK_TIME_LIMIT = 5 * 60
 CELERY_TASK_SOFT_TIME_LIMIT = 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-
 {%- endif %}
 {% if cookiecutter.use_drf == "y" -%}
 # DJANGO REST FRAMEWORK
