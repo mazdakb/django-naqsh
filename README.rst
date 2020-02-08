@@ -71,7 +71,6 @@ Optional Integrations
 
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
-.. _django-allauth: https://github.com/pennersr/django-allauth
 .. _Procfile: https://devcenter.heroku.com/articles/procfile
 .. _Mailgun: http://www.mailgun.com/
 .. _Whitenoise: https://whitenoise.readthedocs.io/
@@ -90,7 +89,7 @@ Constraints
 -----------
 
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.4 - 11.3)
+* Uses PostgreSQL everywhere
 * Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 Usage
@@ -113,7 +112,7 @@ You'll be prompted for some values. Provide them, then a Django project will be 
 
 Answer the prompts with your own desired options_. For example::
 
-    Cloning into 'cookiecutter-django'...
+    Cloning into 'django-naqsh'...
     remote: Counting objects: 550, done.
     remote: Compressing objects: 100% (310/310), done.
     remote: Total 550 (delta 283), reused 479 (delta 222)
@@ -121,7 +120,7 @@ Answer the prompts with your own desired options_. For example::
     Resolving deltas: 100% (283/283), done.
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
-    author_name [Daniel Roy Greenfeld]: Mazdak Badakhshan
+    author_name [azdak Badakhshan]: Mazdak Badakhshan
     email [you@example.com]: geraneum@example.com
     description [Behold My Awesome Project!]: A reddit clone.
     domain_name [example.com]: myreddit.example.com
@@ -200,7 +199,7 @@ You may notice that some elements of this project do not exactly match what we d
 "Your Stuff"
 -------------
 
-Scattered throughout the Python and HTML of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
+Scattered throughout the Python files of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
 
 Releases
 --------

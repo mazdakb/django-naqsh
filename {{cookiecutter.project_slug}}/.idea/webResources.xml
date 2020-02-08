@@ -5,7 +5,7 @@
       <entry url="file://$PROJECT_DIR$">
         <entryData>
           <resourceRoots>
-            <path value="file://$PROJECT_DIR$/{{ cookiecutter.project_slug }}/static" />
+            <path value="file://$PROJECT_DIR$/static" />
           </resourceRoots>
         </entryData>
       </entry>

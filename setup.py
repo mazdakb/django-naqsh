@@ -23,7 +23,7 @@ with open("README.rst") as readme_file:
 setup(
     name="django-naqsh",
     version=version,
-    description="A Cookiecutter template for creating production-ready Django projects quickly.",
+    description="Naqsh is a modern bootstrapping tool for quickly creating production-ready Django web services.",
     long_description=long_description,
     author="Mazdak Badakhshan",
     author_email="geraneum@gmail.com",

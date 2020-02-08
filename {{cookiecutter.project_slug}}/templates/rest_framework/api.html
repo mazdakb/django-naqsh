@@ -1,0 +1,25 @@
+{% raw %}{% extends "rest_framework/base.html" %}
+{% load static %}
+
+{% block bootstrap_theme %}
+    <link rel="stylesheet" href="https://bootswatch.com/3/paper/bootstrap.min.css" type="text/css">
+{% endblock %}
+
+{% block title %}{% endraw %}{{cookiecutter.project_name}}{% raw %}{% endblock %}
+
+{% block branding %}
+    <a class='navbar-brand' rel="nofollow" href='/'>{% endraw %}{{cookiecutter.project_name}}{% raw %}</a>
+{% endblock %}
+
+{% block breadcrumbs %}
+  {# Overwrite breadcrumbs block to remove it #}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function () {
+            $('.request-info').append("<pre class=\"prettyprint\"><b><span class=\"typ\">Version:</span></b><span class=\"pln\"> </span><span class=\"lit\">{{ request.version }}</span></pre>");
+        });
+    </script>
+{% endblock %}{% endraw %}

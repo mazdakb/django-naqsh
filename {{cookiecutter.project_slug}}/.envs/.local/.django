@@ -2,11 +2,12 @@
 # ------------------------------------------------------------------------------
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
+DJANGO_DATABASE_URL=postgres://!!!SET POSTGRES_USER!!!:!!!SET POSTGRES_PASSWORD!!!@postgres:5432/{{ cookiecutter.project_slug }}
 
 {%- if cookiecutter.use_celery == 'y' %}
 # Redis
 # ------------------------------------------------------------------------------
-REDIS_URL=redis://redis:6379/0
+CELERY_BROKER_URL=redis://redis:6379/0
 
 # Celery
 # ------------------------------------------------------------------------------

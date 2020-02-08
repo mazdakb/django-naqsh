@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
 {% if cookiecutter.use_drf == 'y' -%}
 from rest_framework.reverse import reverse_lazy
@@ -23,7 +22,7 @@ urlpatterns = [
 urlpatterns += [
     # API Root View Session Auth
     path("root-view-auth", include("rest_framework.urls", namespace="rest_framework")),
-    # API V1 base url
+    # API V1
     path(
         "v1/",
         include(

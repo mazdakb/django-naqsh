@@ -13,13 +13,7 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    {% if cookiecutter.js_task_runner != 'None' %}
-    <content url="file://$MODULE_DIR$"> 
-      <excludeFolder url="file://$MODULE_DIR$/node_modules" />
-    </content>
-    {% else %} 
     <content url="file://$MODULE_DIR$" /> 
-    {% endif %}
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
@@ -36,7 +30,7 @@
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/{{ cookiecutter.project_slug }}/templates" />
+        <option value="$MODULE_DIR$/templates" />
       </list>
     </option>
   </component>
