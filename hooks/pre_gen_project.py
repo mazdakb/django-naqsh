@@ -4,7 +4,7 @@ NOTE:
     as the whole Django Naqsh project initialization
     can potentially be run in Python 2.x environment.
 
-TODO: ? restrict Cookiecutter Django project initialization to Python 3.x environments only
+TODO: ? restrict Django Naqsh project initialization to Python 3.x environments only
 """
 from __future__ import print_function
 

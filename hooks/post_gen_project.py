@@ -5,7 +5,7 @@ NOTE:
     can potentially be run in Python 2.x environment
     (at least so we presume in `pre_gen_project.py`).
 
-TODO: ? restrict Cookiecutter Django project initialization to Python 3.x environments only
+TODO: ? restrict Django Naqsh project initialization to Python 3.x environments only
 """
 from __future__ import print_function
 
@@ -273,10 +273,6 @@ def remove_envs_and_associated_files():
 def remove_celery_compose_dirs():
     shutil.rmtree(os.path.join("compose", "local", "django", "celery"))
     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
-
-
-def remove_node_dockerfile():
-    shutil.rmtree(os.path.join("compose", "local", "node"))
 
 
 def remove_aws_dockerfile():
