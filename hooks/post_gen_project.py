@@ -1,7 +1,7 @@
 """
 NOTE:
     the below code is to be maintained Python 2.x-compatible
-    as the whole Cookiecutter Django project initialization
+    as the whole Django Naqsh project initialization
     can potentially be run in Python 2.x environment
     (at least so we presume in `pre_gen_project.py`).
 
@@ -77,25 +77,9 @@ def remove_heroku_files():
         os.remove(file_name)
 
 
-def remove_gulp_files():
-    file_names = ["gulpfile.js"]
-    for file_name in file_names:
-        os.remove(file_name)
-
-
-def remove_packagejson_file():
-    file_names = ["package.json"]
-    for file_name in file_names:
-        os.remove(file_name)
-
-
 def remove_celery_files():
     file_names = [
-        os.path.join("config", "celery_app.py"),
-        os.path.join("{{ cookiecutter.project_slug }}", "users", "tasks.py"),
-        os.path.join(
-            "{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"
-        ),
+        os.path.join("config", "celery.py"),
     ]
     for file_name in file_names:
         os.remove(file_name)
@@ -211,6 +195,19 @@ def set_postgres_password(file_path, value=None):
     return postgres_password
 
 
+def set_django_database_url(file_path, user, password):
+    postgres_user = set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=user)
+    postgres_password = set_flag(
+        file_path,
+        "!!!SET POSTGRES_PASSWORD!!!",
+        value=password,
+        length=64,
+        using_digits=True,
+        using_ascii_letters=True,
+    )
+    return postgres_user, postgres_password
+
+
 def set_celery_flower_user(file_path, value):
     celery_flower_user = set_flag(
         file_path, "!!!SET CELERY_FLOWER_USER!!!", value=value
@@ -271,7 +268,6 @@ def set_flags_in_settings_files():
 
 def remove_envs_and_associated_files():
     shutil.rmtree(".envs")
-    os.remove("merge_production_dotenvs_in_dotenv.py")
 
 
 def remove_celery_compose_dirs():
@@ -288,8 +284,8 @@ def remove_aws_dockerfile():
 
 
 def remove_drf_starter_files():
-    os.remove(os.path.join("config", "api_router.py"))
-    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
+    os.remove(os.path.join("config", "router.py"))
+    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "accounts", "api"))
 
 
 def main():
@@ -340,12 +336,6 @@ def main():
         append_to_gitignore_file(".envs/*")
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             append_to_gitignore_file("!.envs/.local/")
-
-    if "{{ cookiecutter.js_task_runner}}".lower() == "none":
-        remove_gulp_files()
-        remove_packagejson_file()
-        if "{{ cookiecutter.use_docker }}".lower() == "y":
-            remove_node_dockerfile()
 
     if "{{ cookiecutter.cloud_provider}}".lower() == "none":
         print(

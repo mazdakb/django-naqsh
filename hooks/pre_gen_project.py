@@ -1,7 +1,7 @@
 """
 NOTE:
     the below code is to be maintained Python 2.x-compatible
-    as the whole Cookiecutter Django project initialization
+    as the whole Django Naqsh project initialization
     can potentially be run in Python 2.x environment.
 
 TODO: ? restrict Cookiecutter Django project initialization to Python 3.x environments only
