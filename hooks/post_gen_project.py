@@ -243,12 +243,21 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
     set_django_admin_url(production_django_envs_path)
 
     set_postgres_user(local_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
+    local_postgres_password = set_postgres_password(
         local_postgres_envs_path, value=DEBUG_VALUE if debug else None
     )
     set_postgres_user(production_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
+    production_postgres_password = set_postgres_password(
         production_postgres_envs_path, value=DEBUG_VALUE if debug else None
+    )
+
+    set_django_database_url(
+        local_django_envs_path, user=postgres_user, password=local_postgres_password
+    )
+    set_django_database_url(
+        production_django_envs_path,
+        user=postgres_user,
+        password=production_postgres_password,
     )
 
     set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
