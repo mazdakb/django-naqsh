@@ -90,8 +90,6 @@ MailHog
 
 MailHog is used to receive emails during development, it is written in Go and has no external dependencies.
 
-For instance, one of the packages we depend upon, ``django-allauth`` sends verification emails to new users signing up as well as to the existing ones who have not yet verified themselves.
-
 #. `Download the latest MailHog release`_ for your OS.
 
 #. Rename the build to ``MailHog``.
@@ -133,12 +131,6 @@ in ``config/settings/local.py``::
 
     CELERY_TASK_ALWAYS_EAGER = False
 
-
-Sass Compilation & Live Reloading
----------------------------------
-
-If you’d like to take advantage of live reloading and Sass compilation you can do so with a little
-bit of preparation, see :ref:`sass-compilation-live-reload`.
 
 Summary
 -------

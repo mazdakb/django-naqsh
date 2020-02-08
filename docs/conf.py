@@ -1,4 +1,4 @@
-# cookiecutter-django documentation build configuration file.
+# django-naqsh documentation build configuration file.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -41,8 +41,8 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "Cookiecutter Django"
-copyright = "2013-{}, Daniel Roy Greenfeld".format(now.year)
+project = "Django Naqsh"
+copyright = "2018-{}, Mazdak Badakhshan".format(now.year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -165,7 +165,7 @@ html_static_path = ["_static"]
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "cookiecutter-djangodoc"
+htmlhelp_basename = "django-naqshdoc"
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -184,9 +184,9 @@ latex_elements = {
 latex_documents = [
     (
         "index",
-        "cookiecutter-django.tex",
-        "cookiecutter-django Documentation",
-        "cookiecutter-django",
+        "django-naqsh.tex",
+        "django-naqsh Documentation",
+        "django-naqsh",
         "manual",
     )
 ]
@@ -219,9 +219,9 @@ latex_documents = [
 man_pages = [
     (
         "index",
-        "Cookiecutter Django",
-        "Cookiecutter Django documentation",
-        ["Daniel Roy Greenfeld"],
+        "Django Naqsh",
+        "Django Naqsh documentation",
+        ["Mazdak Badakhshan"],
         1,
     )
 ]
@@ -238,11 +238,11 @@ man_pages = [
 texinfo_documents = [
     (
         "index",
-        "Cookiecutter Django",
-        "Cookiecutter Django documentation",
-        "Daniel Roy Greenfeld",
-        "Cookiecutter Django",
-        "A Cookiecutter template for creating production-ready Django projects quickly.",
+        "Django Naqsh",
+        "Django Naqsh documentation",
+        "Mazdak Badakhshan",
+        "Django Naqsh",
+        "A bootstrapping tool for quickly creating production-ready Django web services.",
         "Miscellaneous",
     )
 ]

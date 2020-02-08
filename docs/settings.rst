@@ -18,7 +18,7 @@ DJANGO_READ_DOT_ENV_FILE                READ_DOT_ENV_FILE           False       
 ======================================= =========================== ============================================== ======================================================================
 Environment Variable                    Django Setting              Development Default                            Production Default
 ======================================= =========================== ============================================== ======================================================================
-DATABASE_URL                            DATABASES                   auto w/ Docker; postgres://project_slug w/o    raises error
+DJANGO_DATABASE_URL                     DATABASES                   auto w/ Docker; postgres://project_slug w/o    raises error
 DJANGO_ADMIN_URL                        n/a                         'admin/'                                       raises error
 DJANGO_DEBUG                            DEBUG                       True                                           False
 DJANGO_SECRET_KEY                       SECRET_KEY                  auto-generated                                 raises error
@@ -54,9 +54,3 @@ MAILGUN_DOMAIN                          MAILGUN_SENDER_DOMAIN       n/a         
 MAILGUN_API_URL                         n/a                         n/a                                            "https://api.mailgun.net/v3"
 ======================================= =========================== ============================================== ======================================================================
 
---------------------------
-Other Environment Settings
---------------------------
-
-DJANGO_ACCOUNT_ALLOW_REGISTRATION (=True)
-    Allow enable or disable user registration through `django-allauth` without disabling other characteristics like authentication and account management. (Django Setting: ACCOUNT_ALLOW_REGISTRATION)

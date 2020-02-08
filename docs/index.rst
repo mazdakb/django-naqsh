@@ -1,6 +1,6 @@
-.. cookiecutter-django documentation master file.
+.. django-naqsh documentation master file.
 
-Welcome to Cookiecutter Django's documentation!
+Welcome to Django Naqsh's documentation!
 ====================================================================
 
 A Cookiecutter_ template for Django.
