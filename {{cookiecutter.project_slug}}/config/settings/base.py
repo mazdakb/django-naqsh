@@ -200,7 +200,7 @@ TEMPLATES = [
 # FIXTURES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
-FIXTURE_DIRS = (str(ROOTS_DIR.path("fixtures")),)
+FIXTURE_DIRS = (str(ROOT_DIR.path("fixtures")),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
