@@ -298,12 +298,12 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 25,
 }
 {%- endif %}
-{% if cookiecutter.use_cors_package == 'y' -%}
+{%- if cookiecutter.use_cors_package == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------
 # Access Headers
 CORS_ORIGIN_ALLOW_ALL = True
-{% endif %}
+{%- endif %}
 {%- if cookiecutter.use_grappelli == "y" -%}
 # Django Grappelli
 # ------------------------------------------------------------------------------
