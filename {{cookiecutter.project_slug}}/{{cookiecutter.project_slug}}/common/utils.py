@@ -1,7 +1,6 @@
-import re
 import secrets
 
-import inflection
+__all__ = ["generate_random_slug", "get_initial_words"]
 
 
 def generate_random_slug(length: int = 10) -> str:
@@ -17,30 +16,6 @@ def generate_random_slug(length: int = 10) -> str:
     :return:
     """
     return secrets.token_hex(max(length, 10) // 2)
-
-
-def normalize_slug(slug: str) -> str:
-    """Normalize slug string
-
-    Get the slug to a normal form
-    by removing non-word characters and
-    replacing space(s) with an underscore.
-
-    :param slug:
-    :return:
-    """
-    # strip the slug of extra white spaces
-    slug = slug.strip()
-    # process slug using inflection library
-    slug = inflection.underscore(slug)
-    # Remove all non-word characters (everything except numbers and letters)
-    slug = re.sub(r"[^\w\s]", "", slug)
-    # Replace all runs of whitespace with a single underscore
-    slug = re.sub(r"\s+", "_", slug)
-    # convert slug to characters to lowercase
-    slug = slug.lower()
-    # return the result
-    return slug
 
 
 def get_initial_words(text: str, word_count: int = 10, append_dots: bool = True) -> str:
