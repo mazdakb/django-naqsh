@@ -28,7 +28,7 @@ class Command(BaseCommand):
         last_name: str = "Doe",
     ):
         # import user here for isolation
-        from marketplace.accounts.models import User
+        from {{ cookiecutter.project_slug }}.accounts.models import User
 
         # create the initial superuser for test purposes
         User.objects.create_superuser(

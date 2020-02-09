@@ -1,10 +1,10 @@
 NON_FIELD_ERRORS = "__generic__"
 
 
-class MarketplaceError(Exception):
-    """Base Marketplace Error
+class BaseServiceError(Exception):
+    """Base Error
 
-    An base error class to be used throughout the marketplace.
+    An base error class to be used throughout the {{ cookiecutter.project_slug }}.
 
     Notes:
         - inspired by `django.core.exceptions.ValidationError`
@@ -15,13 +15,13 @@ class MarketplaceError(Exception):
         The `message` argument can be a single error, a list of errors, or a
         dictionary that maps field names to lists of errors. What we define as
         an "error" can be either a simple string or an instance of
-        MarketplaceError with its message attribute set, and what we define as
+        BaseServiceError with its message attribute set, and what we define as
         list or dictionary can be an actual `list` or `dict` or an instance
-        of MarketplaceError with its `error_list` or `error_dict` attribute set.
+        of BaseServiceError with its `error_list` or `error_dict` attribute set.
         """
         super().__init__(message, code, params)
 
-        if isinstance(message, MarketplaceError):
+        if isinstance(message, BaseServiceError):
             if hasattr(message, "error_dict"):
                 message = message.error_dict
             elif not hasattr(message, "message"):
@@ -32,16 +32,16 @@ class MarketplaceError(Exception):
         if isinstance(message, dict):
             self.error_dict = {}
             for field, messages in message.items():
-                if not isinstance(messages, MarketplaceError):
-                    messages = MarketplaceError(messages)
+                if not isinstance(messages, BaseServiceError):
+                    messages = BaseServiceError(messages)
                 self.error_dict[field] = messages.error_list
 
         elif isinstance(message, list):
             self.error_list = []
             for msg in message:
-                # Normalize plain strings to instances of MarketplaceError.
-                if not isinstance(msg, MarketplaceError):
-                    msg = MarketplaceError(msg)
+                # Normalize plain strings to instances of BaseServiceError.
+                if not isinstance(msg, BaseServiceError):
+                    msg = BaseServiceError(msg)
                 if hasattr(msg, "error_dict"):
                     self.error_list.extend(sum(msg.error_dict.values(), []))
                 else:
@@ -55,7 +55,7 @@ class MarketplaceError(Exception):
 
     @property
     def message_dict(self):
-        # Trigger an AttributeError if this MarketplaceError
+        # Trigger an AttributeError if this BaseServiceError
         # doesn't have an error_dict.
         getattr(self, "error_dict")
 
@@ -78,7 +78,7 @@ class MarketplaceError(Exception):
     def __iter__(self):
         if hasattr(self, "error_dict"):
             for field, errors in self.error_dict.items():
-                yield field, list(MarketplaceError(errors))
+                yield field, list(BaseServiceError(errors))
         else:
             for error in self.error_list:
                 message = error.message
@@ -92,4 +92,4 @@ class MarketplaceError(Exception):
         return repr(list(self))
 
     def __repr__(self):
-        return "MarketplaceError(%s)" % self
+        return "BaseServiceError(%s)" % self

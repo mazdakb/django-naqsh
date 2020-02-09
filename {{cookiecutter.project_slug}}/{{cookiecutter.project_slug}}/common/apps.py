@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class CommonAppConfig(AppConfig):
-    name = "marketplace.common"
+    name = "{{ cookiecutter.project_slug }}.common"
     verbose_name = "Common"
 
     def ready(self):
@@ -11,6 +11,6 @@ class CommonAppConfig(AppConfig):
             Common signal registration
         """
         try:
-            import marketplace.common.receivers  # noqa F401
+            import {{ cookiecutter.project_slug }}.common.receivers  # noqa F401
         except ImportError:
             pass

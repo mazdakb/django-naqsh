@@ -4,10 +4,10 @@ from django.db.models import Manager
 
 import attr
 
-from marketplace.common.exceptions import MarketplaceError
+from {{ cookiecutter.project_slug }}.common.exceptions import BaseServiceError
 
 
-class ServiceError(MarketplaceError):
+class ServiceError(BaseServiceError):
     pass
 
 

@@ -6,8 +6,8 @@ from django.core.mail import EmailMessage
 
 import attr
 
-from marketplace.common.enums import EmailTemplate
-from marketplace.common.tasks import send_transactional_email
+from {{ cookiecutter.project_slug }}.common.enums import EmailTemplate
+from {{ cookiecutter.project_slug }}.common.tasks import send_transactional_email
 
 from .abstract import Service
 

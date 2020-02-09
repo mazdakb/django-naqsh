@@ -4,7 +4,7 @@ from django.core.mail import EmailMessage
 
 from celery import shared_task
 
-from marketplace.common.enums import EmailTemplate
+from {{ cookiecutter.project_slug }}.common.enums import EmailTemplate
 
 
 @shared_task(name="common.email.send_transactional_email")
