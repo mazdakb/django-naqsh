@@ -83,8 +83,6 @@ def remove_celery_files():
     ]
     for file_name in file_names:
         os.remove(file_name)
-    # remove common app's tasks
-    shutil.rmtree(os.path.join("{{ cookiecutter.project_slug }}", "common", "tasks"))
 
 
 def remove_dottravisyml_file():

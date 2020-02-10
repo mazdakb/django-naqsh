@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class AccountsAppConfig(AppConfig):
-    name = "{{cookiecutter.project_slug}}.accounts"
+    name = "{{ cookiecutter.project_slug }}.accounts"
     verbose_name = "Accounts"
 
     def ready(self):
@@ -11,6 +11,6 @@ class AccountsAppConfig(AppConfig):
             Accounts signal registration
         """
         try:
-            import accounts.signals  # noqa F401
+            import {{ cookiecutter.project_slug }}.accounts.receivers  # noqa F401
         except ImportError:
             pass
