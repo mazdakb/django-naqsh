@@ -1,8 +1,6 @@
 """
 Base settings to build other settings files upon.
 """
-from typing import List
-
 from django.utils.translation import gettext_lazy as _
 
 import environ
@@ -66,7 +64,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
-PREREQUISITE_APPS: List[str] = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
+PREREQUISITE_APPS = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
