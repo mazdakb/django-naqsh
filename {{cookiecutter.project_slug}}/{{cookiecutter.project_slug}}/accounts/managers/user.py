@@ -7,10 +7,10 @@ from django.contrib.auth.base_user import BaseUserManager
 from {{ cookiecutter.project_slug }}.common.models import ActivatedModelManager
 
 if TYPE_CHECKING:
-    from marketplace.accounts.models import User
+    from {{ cookiecutter.project_slug }}.accounts.models import User
 
 
-class UserManager(BaseUserManager["User"], ActivatedModelManager):
+class UserManager(BaseUserManager, ActivatedModelManager):
     use_in_migrations = True
 
     def _create_user(
