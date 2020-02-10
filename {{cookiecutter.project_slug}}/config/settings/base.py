@@ -310,5 +310,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 GRAPPELLI_ADMIN_TITLE = "{{cookiecutter.project_name}}"
 GRAPPELLI_CLEAN_INPUT_TYPES = False
 {% endif -%}
+
 # Your stuff...
 # ------------------------------------------------------------------------------
