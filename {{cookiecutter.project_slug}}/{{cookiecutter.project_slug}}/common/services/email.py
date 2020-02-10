@@ -50,7 +50,7 @@ class EmailService(Service):
         :param body:
         :return:
         """
-        {% if cookiecutter.use_drf == 'y' -%}
+        {%- if cookiecutter.use_drf == 'y' %}
         send_transactional_email.delay(
             template=template,
             recipients=recipients,
@@ -59,7 +59,7 @@ class EmailService(Service):
             subject=subject,
             body=body,
         )
-        {% else %}
+        {%- else %}
         message = EmailMessage(to=list(recipients), subject=subject or "", body=body or "")
         message.template_id = template
         message.merge_data = context
