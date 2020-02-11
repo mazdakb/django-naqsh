@@ -64,7 +64,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
-PREREQUISITE_APPS = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -82,14 +81,13 @@ THIRD_PARTY_APPS = [
 {%- endif %}
     # Your stuff: thirdparty libraries go here
 ]
-
 LOCAL_APPS = [
     "{{ cookiecutter.project_slug }}.common.apps.CommonAppConfig",
     "{{ cookiecutter.project_slug }}.accounts.apps.AccountsAppConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = PREREQUISITE_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -307,6 +305,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 {%- if cookiecutter.use_grappelli == "y" %}
 # Django Grappelli
 # ------------------------------------------------------------------------------
+INSTALLED_APPS.insert(0, "grappelli")
 GRAPPELLI_ADMIN_TITLE = "{{cookiecutter.project_name}}"
 GRAPPELLI_CLEAN_INPUT_TYPES = False
 {% endif %}
