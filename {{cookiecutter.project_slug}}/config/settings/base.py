@@ -297,7 +297,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 25,
 }
 {%- endif %}
-
 {% if cookiecutter.use_cors_package == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------
