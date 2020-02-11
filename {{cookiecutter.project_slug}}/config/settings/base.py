@@ -254,7 +254,7 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-{% if cookiecutter.use_celery == 'y' -%}
+{%- if cookiecutter.use_celery == 'y' %}
 # Celery
 # ------------------------------------------------------------------------------
 if USE_TZ:
