@@ -4,9 +4,8 @@ import secrets
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
-import inflect
+import inflection
 
-ie = inflect.engine()
 secret_random = secrets.SystemRandom()
 
 
@@ -64,10 +63,10 @@ def path_for_object(
     # extract app label using instance's meta
     app_label = instance._meta.app_label
     # get instance class name
-    class_name = ie.plural(instance.__class__.__name__.lower())
+    class_name = inflection.pluralize(instance.__class__.__name__.lower())
     # use provided function to get a string representation suitable for storage
     object_name = get_object_name(instance)
     # get get field name and pluralize it
-    field_name = ie.plural(field_name if field_name else "")
+    field_name = inflection.pluralize(field_name if field_name else "")
     # combine values
     return os.path.join(app_label, class_name, object_name, field_name)

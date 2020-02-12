@@ -1,16 +1,20 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
-from {{cookiecutter.project_slug}}.accounts.models import AuthToken, Session, User
+from {{ cookiecutter.project_slug }}.accounts.models import User, Session
 
 
 class SessionInlineAdmin(admin.StackedInline):
     model = Session
     fields = [
         "id",
-        "auth_token",
+        "digest",
+        "key",
+        "salt",
+        "user",
+        "expires",
         "user_agent",
         "ip_address",
         "is_active",
@@ -19,21 +23,8 @@ class SessionInlineAdmin(admin.StackedInline):
     ]
     readonly_fields = fields
     max_num = 0
-{%- if cookiecutter.use_grappelli == "y" %}
     classes = ["grp-collapse grp-open"]
     inline_classes = ["grp-collapse grp-open"]
-{%- endif %}
-
-
-class AuthTokenInlineAdmin(admin.StackedInline):
-    model = AuthToken
-    fields = ["pk", "digest", "key", "salt", "user", "expires"]
-    readonly_fields = fields
-    max_num = 0
-{%- if cookiecutter.use_grappelli == "y" %}
-    classes = ["grp-collapse grp-open"]
-    inline_classes = ["grp-collapse grp-open"]
-{%- endif %}
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -57,6 +48,7 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": [
                     "is_active",
+                    "is_verified",
                     "is_staff",
                     "is_superuser",
                     "groups",
@@ -87,7 +79,7 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ["id", "first_name", "last_name", "email"]
     ordering = ["-date_joined"]
     filter_horizontal = ["groups", "user_permissions"]
-    inlines = [SessionInlineAdmin, AuthTokenInlineAdmin]
+    inlines = [SessionInlineAdmin]
 
     def full_name(self, obj: User):
         return obj.get_full_name()

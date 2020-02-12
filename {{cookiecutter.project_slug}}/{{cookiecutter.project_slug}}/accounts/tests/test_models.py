@@ -8,7 +8,6 @@ from .factories import UserFactory
 
 class TestUser(TestCase):
     @factory.django.mute_signals(post_save)
-    def test__str__(self):
-        self.assertEqual(
-            UserFactory(email="user1@exaple.com").__str__(), "user1@exaple.com"
-        )
+    def test__user_str_representation_to_be_email(self):
+        user = UserFactory(email="user@example.com")
+        self.assertEqual(str(user), user.email)

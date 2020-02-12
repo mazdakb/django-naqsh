@@ -56,7 +56,7 @@ Running tests with py.test
 
   $ pytest
 
-{% if cookiecutter.use_celery == "y" -%}
+{% if cookiecutter.use_celery == "y" %}
 
 Celery
 ^^^^^^
@@ -72,7 +72,7 @@ To run a celery worker:
 
 Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
 
-{%- endif %}
+{% endif %}
 {% if cookiecutter.use_mailhog == "y" %}
 
 Email Server
@@ -132,9 +132,8 @@ Heroku
 See detailed `django-naqsh Heroku documentation`_.
 
 .. _`django-naqsh Heroku documentation`: http://django-naqsh.readthedocs.io/en/latest/deployment-on-heroku.html
-
-{%- endif %}
-{% if cookiecutter.use_docker.lower() == "y" -%}
+{% endif %}
+{% if cookiecutter.use_docker.lower() == "y" %}
 
 Docker
 ^^^^^^
@@ -142,4 +141,4 @@ Docker
 See detailed `django-naqsh Docker documentation`_.
 
 .. _`django-naqsh Docker documentation`: http://django-naqsh.readthedocs.io/en/latest/deployment-with-docker.html
-{%- endif %}
+{% endif %}

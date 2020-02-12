@@ -1,13 +1,13 @@
 import uuid
 
 from django.db import models
-from django.db.models import QuerySet
-from django.utils.translation import ugettext_lazy as _
+from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
-from {{cookiecutter.project_slug}}.common.utils import normalize_slug, generate_random_slug
+from {{ cookiecutter.project_slug }}.common.utils import generate_random_slug
 
 
-class UniversalModel(models.Model):
+class UniversalModelMixin(models.Model):
     """Universal primary key mixin
 
     This mixin changes the primary key of a model to UUID field.
@@ -21,6 +21,7 @@ class UniversalModel(models.Model):
         primary_key=True,
         default=uuid.uuid4,
         editable=False,
+        help_text=_("Universally unique object identifier"),
     )
 
     class Meta:
@@ -34,26 +35,34 @@ class UniversalModel(models.Model):
         return self.serial
 
 
-class TimestampedModel(models.Model):
+class TimestampedModelMixin(models.Model):
     """Timestamp mixin
 
     This mixin adds a timestamp to model for create and update events
     """
 
-    created = models.DateTimeField(_("created at"), auto_now_add=True)
-    updated = models.DateTimeField(_("updated at"), auto_now=True)
+    created = models.DateTimeField(
+        _("created at"),
+        auto_now_add=True,
+        help_text=_("This is the timestamp of the object creation."),
+    )
+    updated = models.DateTimeField(
+        _("updated at"),
+        auto_now=True,
+        help_text=_("This is the timestamp of the object update"),
+    )
 
     class Meta:
+        ordering = ["-created"]
         abstract = True
 
 
 class ActivatedModelManager(models.Manager):
-    @property
-    def actives(self) -> QuerySet:
+    def actives(self):
         return self.get_queryset().filter(is_active=True)
 
 
-class ActivatedModel(models.Model):
+class ActivatedModelMixin(models.Model):
     """Active objects mixin
 
     This mixin add a is_active field to the model
@@ -63,7 +72,13 @@ class ActivatedModel(models.Model):
     """
 
     is_active = models.BooleanField(
-        verbose_name=_("active"), default=True, db_index=True
+        verbose_name=_("active"),
+        default=True,
+        db_index=True,
+        help_text=_(
+            "Designates if this object should be considered active or not "
+            "or to simulate soft delete behaviour."
+        ),
     )
 
     objects = ActivatedModelManager()
@@ -72,13 +87,13 @@ class ActivatedModel(models.Model):
         abstract = True
 
 
-class SluggedModel(models.Model):
+class SluggedModelMixin(models.Model):
     """Slugged mixin
 
     This mixin adds a unique alphanumeric slug field to model
     """
 
-    slug = models.CharField(
+    slug = models.SlugField(
         verbose_name=_("slug"),
         max_length=255,
         db_index=True,
@@ -91,6 +106,6 @@ class SluggedModel(models.Model):
 
     def save(self, *args, **kwargs):
         # normalize the slug
-        self.slug = normalize_slug(self.slug)
+        self.slug = slugify(self.slug)
         # call super's save method
-        super(SluggedModel, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)

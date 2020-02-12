@@ -26,6 +26,12 @@ First things first.
 #. Install development requirements: ::
 
     $ pip install -r requirements/local.txt
+    $ pre-commit install
+
+     .. note::
+
+        the `pre-commit` exists in the generated project as default.
+        for the details of `pre-commit`, follow the [site of pre-commit](https://pre-commit.com/).
 
 #. Create a new PostgreSQL database using createdb_: ::
 
@@ -41,7 +47,7 @@ First things first.
 
 #. Set the environment variables for your database(s): ::
 
-    $ export DJANGO_DATABASE_URL=postgres://postgres:<password>@127.0.0.1:5432/<DB name given to createdb>
+    $ export DATABASE_URL=postgres://postgres:<password>@127.0.0.1:5432/<DB name given to createdb>
     # Optional: set broker URL if using Celery
     $ export CELERY_BROKER_URL=redis://localhost:6379/0
 
@@ -124,8 +130,6 @@ when developing locally. If you have the appropriate setup on your local machine
 in ``config/settings/local.py``::
 
     CELERY_TASK_ALWAYS_EAGER = False
-
-
 
 
 Summary

@@ -1,16 +1,33 @@
-# This file is a simple Gitlab-CI config file to run pytest
+stages:
+  - lint
+  - test
 
-image: docker:latest
+variables:
+  POSTGRES_USER: '{{ cookiecutter.project_slug }}'
+  POSTGRES_PASSWORD: ''
+  POSTGRES_DB: 'test_{{ cookiecutter.project_slug }}'
 
-services:
-  - docker:dind
-
-before_script:
-  - apk add --no-cache py2-pip && pip install docker-compose
-
-test:
+flake8:
+  stage: lint
+  image: python:3.7-alpine
+  before_script:
+    - pip install -q flake8
   script:
-  - export DJANGO_SETTINGS_MODULE=config.settings.test
-  - export CELERY_BROKER_URL=redis://
-  - export DATABASE_URL=postgres://postgres:@postgres:5432/{{cookiecutter.project_slug}}
-  - docker-compose -f local.yml run django pytest
+    - flake8
+
+pytest:
+  stage: test
+  image: python:3.7
+  tags:
+    - docker
+  services:
+    - postgres:11
+  variables:
+    DATABASE_URL: pgsql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres/$POSTGRES_DB
+
+  before_script:
+    - pip install -r requirements/local.txt
+
+  script:
+    - pytest
+

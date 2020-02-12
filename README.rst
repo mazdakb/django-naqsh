@@ -44,26 +44,27 @@ Unnecessary modules for a REST API and codes are removed and custom User model i
 Features
 ---------
 
-* For Django 2.2
+* For Django 3.0
 * Works with Python 3.7
-* Renders Django projects with 100% starting test coverage
 * 12-Factor_ based settings via django-environ_
-* Secure by default with SSL enabled.
+* Secure by default. We believe in SSL.
 * Optimized development and production settings
-* Comes with custom user model with secure token authentication and email validation for RESTful API
+* Comes with custom user model and secure token authentication and email validation for RESTful API
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Media storage using Amazon S3, Google Cloud Storage or Minio_
+* Media storage using Amazon S3 or Google Cloud Storage
 * Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
 * Procfile_ for deploying to Heroku
+* Instructions for deploying to PythonAnywhere_
 * Run tests with unittest or pytest
 * Customizable PostgreSQL version
+* Default integration with pre-commit_ for identifying simple issues before submission to code review
 
 Optional Integrations
 ---------------------
 
 *These features can be enabled during initial project setup.*
 
-* Serve static files from Amazon S3, Google Cloud Storage, Minio_ or Whitenoise_
+* Serve static files from Amazon S3, Google Cloud Storage or Whitenoise_
 * Configuration for Celery_ and Flower_ (the latter in Docker setup only)
 * Integration with MailHog_ for local email testing
 * Integration with Sentry_ for error logging
@@ -72,7 +73,6 @@ Optional Integrations
 .. _12-Factor: http://12factor.net/
 .. _Procfile: https://devcenter.heroku.com/articles/procfile
 .. _Mailgun: http://www.mailgun.com/
-.. _Minio: https://min.io/
 .. _Whitenoise: https://whitenoise.readthedocs.io/
 .. _Celery: http://www.celeryproject.org/
 .. _Flower: https://github.com/mher/flower
@@ -80,8 +80,10 @@ Optional Integrations
 .. _MailHog: https://github.com/mailhog/MailHog
 .. _Sentry: https://sentry.io/welcome/
 .. _docker-compose: https://github.com/docker/compose
+.. _PythonAnywhere: https://www.pythonanywhere.com/
 .. _Traefik: https://traefik.io/
 .. _LetsEncrypt: https://letsencrypt.org/
+.. _pre-commit: https://github.com/pre-commit/pre-commit
 
 Constraints
 -----------
@@ -125,6 +127,7 @@ Answer the prompts with your own desired options_. For example::
     version [0.1.0]: 0.0.1
     timezone [UTC]: Europe/Berlin
     use_whitenoise [n]: n
+    use_drf [y]: y
     use_celery [n]: y
     use_mailhog [n]: n
     use_sentry [n]: y
@@ -132,14 +135,12 @@ Answer the prompts with your own desired options_. For example::
     windows [n]: n
     use_docker [n]: n
     use_heroku [n]: y
-    use_compressor [n]: y
     Select postgresql_version:
-    1 - 11.5
-    2 - 10.10
-    3 - 9.6
-    4 - 9.5
-    5 - 9.4
-    Choose from 1, 2, 3, 4, 5 [1]: 1
+    1 - 12.1
+    2 - 11.6
+    3 - 10.10
+    4 - 9.6
+    Choose from 1, 2, 3, 4 [1]: 1
     Select cloud_provider:
     1 - AWS
     2 - GCP
@@ -190,17 +191,10 @@ Community
 .. _`Stack Overflow`: http://stackoverflow.com/questions/tagged/django-naqsh
 .. _`issue`: https://github.com/mazdakb/django-naqsh/issues
 
-For pyup.io Users
------------------
-
-If you are using `pyup.io`_ to keep your dependencies updated and secure, use the code *cookiecutter* during checkout to get 15% off every month.
-
-.. _`pyup.io`: https://pyup.io
-
 "Your Stuff"
 -------------
 
-Scattered throughout the project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
+Scattered throughout the Python files of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
 
 Releases
 --------
@@ -237,9 +231,30 @@ experience better.
 Articles
 ---------
 
-You may find some materials refered in the `cookiecutter-django's articles`_.
+* `Using cookiecutter-django with Google Cloud Storage`_ - Mar. 12, 2019
+* `cookiecutter-django with Nginx, Route 53 and ELB`_ - Feb. 12, 2018
+* `cookiecutter-django and Amazon RDS`_ - Feb. 7, 2018
+* `Using Cookiecutter to Jumpstart a Django Project on Windows with PyCharm`_ - May 19, 2017
+* `Exploring with Cookiecutter`_ - Dec. 3, 2016
+* `Introduction to Cookiecutter-Django`_ - Feb. 19, 2016
+* `Django and GitLab - Running Continuous Integration and tests with your FREE account`_ - May. 11, 2016
+* `Development and Deployment of Cookiecutter-Django on Fedora`_ - Jan. 18, 2016
+* `Development and Deployment of Cookiecutter-Django via Docker`_ - Dec. 29, 2015
+* `How to create a Django Application using Cookiecutter and Django 1.8`_ - Sept. 12, 2015
 
-.. _`cookiecutter-django's articles`: https://github.com/pydanny/cookiecutter-django#articles
+Have a blog or online publication? Write about your cookiecutter-django tips and tricks, then send us a pull request with the link.
+
+.. _`Using cookiecutter-django with Google Cloud Storage`: https://ahhda.github.io/cloud/gce/django/2019/03/12/using-django-cookiecutter-cloud-storage.html
+.. _`cookiecutter-django with Nginx, Route 53 and ELB`: https://msaizar.com/blog/cookiecutter-django-nginx-route-53-and-elb/
+.. _`cookiecutter-django and Amazon RDS`: https://msaizar.com/blog/cookiecutter-django-and-amazon-rds/
+.. _`Exploring with Cookiecutter`: http://www.snowboardingcoder.com/django/2016/12/03/exploring-with-cookiecutter/
+.. _`Using Cookiecutter to Jumpstart a Django Project on Windows with PyCharm`: https://joshuahunter.com/posts/using-cookiecutter-to-jumpstart-a-django-project-on-windows-with-pycharm/
+
+.. _`Development and Deployment of Cookiecutter-Django via Docker`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-via-docker/
+.. _`Development and Deployment of Cookiecutter-Django on Fedora`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-on-fedora/
+.. _`How to create a Django Application using Cookiecutter and Django 1.8`: https://www.swapps.io/blog/how-to-create-a-django-application-using-cookiecutter-and-django-1-8/
+.. _`Introduction to Cookiecutter-Django`: http://krzysztofzuraw.com/blog/2016/django-cookiecutter.html
+.. _`Django and GitLab - Running Continuous Integration and tests with your FREE account`: http://dezoito.github.io/2016/05/11/django-gitlab-continuous-integration-phantomjs.html
 
 Code of Conduct
 ---------------

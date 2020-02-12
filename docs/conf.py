@@ -217,7 +217,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ("index", "Django Naqsh", "Django Naqsh documentation", ["Mazdak Badakhshan"], 1)
+    ("index", "Django Naqsh", "Django Naqsh documentation", ["Mazdak Badakhshan"], 1,)
 ]
 
 # If true, show URL addresses after external links.
@@ -236,7 +236,7 @@ texinfo_documents = [
         "Django Naqsh documentation",
         "Mazdak Badakhshan",
         "Django Naqsh",
-        "A Cookiecutter template for creating production-ready Django projects quickly.",
+        "A bootstrapping tool for quickly creating production-ready Django web services.",
         "Miscellaneous",
     )
 ]

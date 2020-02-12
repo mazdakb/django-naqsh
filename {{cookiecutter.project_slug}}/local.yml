@@ -79,4 +79,3 @@ services:
     command: /start-flower
 
   {%- endif %}
-  

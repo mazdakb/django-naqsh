@@ -29,7 +29,6 @@ DJANGO_AWS_STORAGE_BUCKET_NAME=
 GOOGLE_APPLICATION_CREDENTIALS=
 DJANGO_GCP_STORAGE_BUCKET_NAME=
 {% endif %}
-
 # Gunicorn
 # ------------------------------------------------------------------------------
 WEB_CONCURRENCY=4

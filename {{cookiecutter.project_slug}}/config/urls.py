@@ -1,17 +1,14 @@
-import logging
-
-from django.urls import path
-from django.urls import include
 from django.conf import settings
 from django.contrib import admin
+from django.urls import include, path
 from django.conf.urls.static import static
-from django.views.generic import RedirectView
 from django.views import defaults as default_views
+{% if cookiecutter.use_drf == 'y' -%}
+from django.views.generic import RedirectView
 
 from rest_framework.reverse import reverse_lazy
 from rest_framework.routers import APIRootView
-
-logger = logging.getLogger(__name__)
+{%- endif %}
 
 urlpatterns = [
     {%- if cookiecutter.use_grappelli == "y" %}
@@ -20,6 +17,11 @@ urlpatterns = [
     {%- endif %}
     # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
     path(settings.ADMIN_URL, admin.site.urls),
+    # Your stuff: custom urls includes go here
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{% if cookiecutter.use_drf == 'y' -%}
+# API URLS
+urlpatterns += [
     # API Root View Session Auth
     path("root-view-auth", include("rest_framework.urls", namespace="rest_framework")),
     # API V1
@@ -40,11 +42,11 @@ urlpatterns = [
     # Service Root View
     path("", RedirectView.as_view(url=reverse_lazy("v1:root"), permanent=False)),
 ]
-# include media urls from django settings for correct path calculation
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{%- endif %}
 
 if settings.DEBUG:
-    # This allows the error pages to be debugged during development.
+    # This allows the error pages to be debugged during development, just visit
+    # these url in browser to see how these error pages look like.
     urlpatterns += [
         path(
             "400/",

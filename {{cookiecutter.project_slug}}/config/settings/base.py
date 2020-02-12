@@ -1,8 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
-
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 import environ
 
@@ -65,7 +64,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
-PREREQUISITE_APPS = [{% if cookiecutter.use_grappelli == "y" -%}"grappelli"{%- endif %}]
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -83,14 +81,13 @@ THIRD_PARTY_APPS = [
 {%- endif %}
     # Your stuff: thirdparty libraries go here
 ]
-
 LOCAL_APPS = [
     "{{ cookiecutter.project_slug }}.common.apps.CommonAppConfig",
     "{{ cookiecutter.project_slug }}.accounts.apps.AccountsAppConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = PREREQUISITE_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -129,15 +126,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    {%- if cookiecutter.use_cors_package == 'y' %}
+{%- if cookiecutter.use_whitenoise == 'y' %}
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+{%- endif %}
+{%- if cookiecutter.use_cors_package == 'y' %}
     "corsheaders.middleware.CorsMiddleware",
-    {%- endif %}
+{%- endif %}
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -196,7 +197,7 @@ TEMPLATES = [
 # FIXTURES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
-FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
+FIXTURE_DIRS = (str(ROOT_DIR.path("fixtures")),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -251,7 +252,7 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-{% if cookiecutter.use_celery == 'y' -%}
+{%- if cookiecutter.use_celery == 'y' %}
 # Celery
 # ------------------------------------------------------------------------------
 if USE_TZ:
@@ -276,9 +277,11 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 {%- endif %}
+
+{%- if cookiecutter.use_drf == "y" %}
 # DJANGO REST FRAMEWORK
-# ------------------------------------------------------------------------------
-# Framework settings
+# -------------------------------------------------------------------------------
+# https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -289,19 +292,20 @@ REST_FRAMEWORK = {
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_VERSION": "v1",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
+    "PAGE_SIZE": 25,
 }
+{%- endif %}
 {% if cookiecutter.use_cors_package == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------
 # Access Headers
 CORS_ORIGIN_ALLOW_ALL = True
-{% endif %}
-{%- if cookiecutter.use_grappelli == "y" -%}
+{%- endif %}
+
+{%- if cookiecutter.use_grappelli == "y" %}
 # Django Grappelli
 # ------------------------------------------------------------------------------
+INSTALLED_APPS.insert(0, "grappelli")
 GRAPPELLI_ADMIN_TITLE = "{{cookiecutter.project_name}}"
 GRAPPELLI_CLEAN_INPUT_TYPES = False
-{%- endif %}
-# Your stuff...
-# ------------------------------------------------------------------------------
+{% endif %}
