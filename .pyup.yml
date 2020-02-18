@@ -9,7 +9,7 @@ update: all
 pin: True
 
 # Specify requirement files by hand, pyup seems to struggle to
-# find the ones in the project_slug folder
+# find the ones in the "{{ cookiecutter.project_slug }}" folder
 requirements:
   - "requirements.txt"
   - "{{cookiecutter.project_slug}}/requirements/base.txt"
