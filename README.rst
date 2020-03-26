@@ -92,6 +92,17 @@ Constraints
 * Uses PostgreSQL everywhere
 * Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
+Support this Project!
+----------------------
+
+This project is run by volunteers. Please support them in their efforts to maintain and improve Cookiecutter Django:
+
+* Daniel Roy Greenfeld, Project Lead (`GitHub <https://github.com/pydanny>`_, `Patreon <https://www.patreon.com/danielroygreenfeld>`_): expertise in Django and AWS ELB.
+
+* Nikita Shupeyko, Core Developer (`GitHub <https://github.com/webyneter>`_): expertise in Python/Django, hands-on DevOps and frontend experience.
+
+Projects that provide financial support to the maintainers:
+
 Usage
 ------
 
@@ -100,7 +111,7 @@ and then editing the results to include your name, email, and various configurat
 
 First, get Cookiecutter. Trust me, it's awesome::
 
-    $ pip install "cookiecutter>=1.4.0"
+    $ pip install "cookiecutter>=1.7.0"
 
 Now run it against this repo::
 
@@ -219,7 +230,7 @@ If you do rename your fork, I encourage you to submit it to the following places
 * cookiecutter_ so it gets listed in the README as a template.
 * The cookiecutter grid_ on Django Packages.
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
 
 Submit a Pull Request
