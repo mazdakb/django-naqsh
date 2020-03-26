@@ -70,6 +70,7 @@ Listed in alphabetical order.
   Adam Dobrawy             `@ad-m`_
   Adam Steele              `@adammsteele`_
   Agam Dua
+  Agustín Scaramuzza       `@scaramagus`_               @scaramagus
   Alberto Sanchez          `@alb3rto`_
   Alex Tsai                `@caffodian`_
   Alvaro [Andor]           `@andor-pierdelacabeza`_
@@ -77,6 +78,7 @@ Listed in alphabetical order.
   Andreas Meistad          `@ameistad`_
   Andres Gonzalez          `@andresgz`_
   Andrew Mikhnevich        `@zcho`_
+  Andrew Chen Wang         `@Andrew-Chen-Wang`_
   Andy Rose
   Anna Callahan            `@jazztpt`_
   Anna Sidwell             `@takkaria`_
@@ -108,6 +110,7 @@ Listed in alphabetical order.
   Chris Pappalardo         `@ChrisPappalardo`_
   Christopher Clarke       `@chrisdev`_
   Cole Mackenzie           `@cmackenzie1`_
+  Cole Maclean             `@cole`_                      @cole
   Collederas               `@Collederas`_
   Craig Margieson          `@cmargieson`_
   Cristian Vargas          `@cdvv7788`_
@@ -117,6 +120,7 @@ Listed in alphabetical order.
   Dani Hodovic             `@danihodovic`_
   Daniel Hepper            `@dhepper`_                   @danielhepper
   Daniel Hillier           `@danifus`_
+  Daniel Sears             `@highpost`_                  @highpost
   Daniele Tricoli          `@eriol`_
   David Díaz               `@ddiazpinto`_                @DavidDiazPinto
   Davit Tovmasyan          `@davitovmasyan`_
@@ -135,9 +139,11 @@ Listed in alphabetical order.
   Eyad Al Sibai            `@eyadsibai`_
   Felipe Arruda            `@arruda`_
   Florian Idelberger       `@step21`_                    @windrush
+  Gabriel Mejia            `@elgartoinf`_                @elgartoinf
   Garry Cairns             `@garry-cairns`_
   Garry Polley             `@garrypolley`_
   Gilbishkosma             `@Gilbishkosma`_
+  Guilherme Guy            `@guilherme1guy`_
   Hamish Durkin            `@durkode`_
   Hana Quadara             `@hanaquadara`_
   Harry Moreno             `@morenoh149`_                @morenoh149
@@ -149,6 +155,7 @@ Listed in alphabetical order.
   Irfan Ahmad              `@erfaan`_                    @erfaan
   Isaac12x                 `@Isaac12x`_
   Ivan Khomutov            `@ikhomutov`_
+  James Williams           `@jameswilliams1`_
   Jan Van Bruggen          `@jvanbrug`_
   Jelmer Draaijer          `@foarsitter`_
   Jerome Caisip            `@jeromecaisip`_
@@ -156,6 +163,7 @@ Listed in alphabetical order.
   Jerome Leclanche         `@jleclanche`_                @Adys
   Jimmy Gitonga            `@afrowave`_                  @afrowave
   John Cass                `@jcass77`_                   @cass_john
+  Jules Cheron             `@jules-ch`_
   Julien Almarcha          `@sladinji`_
   Julio Castillo           `@juliocc`_
   Kaido Kert               `@kaidokert`_
@@ -196,6 +204,7 @@ Listed in alphabetical order.
   Oleg Russkin             `@rolep`_
   Pablo                    `@oubiga`_
   Parbhat Puri             `@parbhat`_
+  Pawan Chaurasia          `@rjsnh1522`_
   Peter Bittner            `@bittner`_
   Peter Coles              `@mrcoles`_
   Philipp Matthies         `@canonnervio`_
@@ -226,6 +235,7 @@ Listed in alphabetical order.
   Tubo Shi                 `@Tubo`_
   Umair Ashraf             `@umrashrf`_                 @fabumair
   Vadim Iskuchekov         `@Egregors`_                 @egregors
+  Vicente G. Reyes         `@reyesvicente`_             @highcenburg
   Vitaly Babiy
   Vivian Guillen           `@viviangb`_
   Vlad Doster              `@vladdoster`_
@@ -249,6 +259,7 @@ Listed in alphabetical order.
 .. _@andor-pierdelacabeza: https://github.com/andor-pierdelacabeza
 .. _@andresgz: https://github.com/andresgz
 .. _@antoniablair: https://github.com/antoniablair
+.. _@Andrew-Chen-Wang: https://github.com/Andrew-Chen-Wang
 .. _@apirobot: https://github.com/apirobot
 .. _@archinal: https://github.com/archinal
 .. _@areski: https://github.com/areski
@@ -279,6 +290,7 @@ Listed in alphabetical order.
 .. _@chuckus: https://github.com/chuckus
 .. _@cmackenzie1: https://github.com/cmackenzie1
 .. _@cmargieson: https://github.com/cmargieson
+.. _@cole: https://github.com/cole
 .. _@Collederas: https://github.com/Collederas
 .. _@curtisstpierre: https://github.com/curtisstpierre
 .. _@dadokkio: https://github.com/dadokkio
@@ -292,8 +304,10 @@ Listed in alphabetical order.
 .. _@dhepper: https://github.com/dhepper
 .. _@dot2dotseurat: https://github.com/dot2dotseurat
 .. _@dsclementsen: https://github.com/dsclementsen
+.. _@guilherme1guy: https://github.com/guilherme1guy
 .. _@durkode: https://github.com/durkode
 .. _@Egregors: https://github.com/Egregors
+.. _@elgartoinf: https://gihub.com/elgartoinf
 .. _@epileptic-fish: https://gihub.com/epileptic-fish
 .. _@eraldo: https://github.com/eraldo
 .. _@erfaan: https://github.com/erfaan
@@ -311,10 +325,12 @@ Listed in alphabetical order.
 .. _@hairychris: https://github.com/hairychris
 .. _@hanaquadara: https://github.com/hanaquadara
 .. _@hendrikschneider: https://github.com/hendrikschneider
+.. _@highpost: https://github.com/highpost
 .. _@hjwp: https://github.com/hjwp
 .. _@howiezhao: https://github.com/howiezhao
 .. _@IanLee1521: https://github.com/IanLee1521
 .. _@ikhomutov: https://github.com/ikhomutov
+.. _@jameswilliams1: https://github.com/jameswilliams1
 .. _@ikkebr: https://github.com/ikkebr
 .. _@Isaac12x: https://github.com/Isaac12x
 .. _@iynaix: https://github.com/iynaix
@@ -323,6 +339,7 @@ Listed in alphabetical order.
 .. _@jcass77: https://github.com/jcass77
 .. _@jeromecaisip: https://github.com/jeromecaisip
 .. _@jleclanche: https://github.com/jleclanche
+.. _@jules-ch: https://github.com/jules-ch
 .. _@juliocc: https://github.com/juliocc
 .. _@jvanbrug: https://github.com/jvanbrug
 .. _@ka7eh: https://github.com/ka7eh
@@ -356,15 +373,18 @@ Listed in alphabetical order.
 .. _@originell: https://github.com/originell
 .. _@oubiga: https://github.com/oubiga
 .. _@parbhat: https://github.com/parbhat
+.. _@rjsnh1522: https://github.com/rjsnh1522
 .. _@pchiquet: https://github.com/pchiquet
 .. _@phiberjenz: https://github.com/phiberjenz
 .. _@purplediane: https://github.com/purplediane
 .. _@raonyguimaraes: https://github.com/raonyguimaraes
 .. _@reggieriser: https://github.com/reggieriser
+.. _@reyesvicente: https://github.com/reyesvicente
 .. _@rm--: https://github.com/rm--
 .. _@rolep: https://github.com/rolep
 .. _@romanosipenko: https://github.com/romanosipenko
 .. _@saschalalala: https://github.com/saschalalala
+.. _@scaramagus: https://github.com/scaramagus
 .. _@shireenrao: https://github.com/shireenrao
 .. _@show0k: https://github.com/show0k
 .. _@shultz: https://github.com/shultz
