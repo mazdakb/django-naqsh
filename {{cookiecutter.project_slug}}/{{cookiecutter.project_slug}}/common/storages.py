@@ -3,11 +3,32 @@ import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
-{%- if cookiecutter.cloud_provider == 'AWS' -%}
+
+{% if cookiecutter.cloud_provider == 'AWS' -%}
 from storages.backends.s3boto3 import S3Boto3Storage
+
+
+class StaticRootS3Boto3Storage(S3Boto3Storage):
+    location = "static"
+    default_acl = "public-read"
+
+
+class MediaRootS3Boto3Storage(S3Boto3Storage):
+    location = "media"
+    file_overwrite = False
 {%- elif cookiecutter.cloud_provider == 'GCP' -%}
 from storages.backends.gcloud import GoogleCloudStorage
-{%- endif -%}
+
+
+class StaticRootGoogleCloudStorage(GoogleCloudStorage):
+    location = "static"
+    default_acl = "publicRead"
+
+
+class MediaRootGoogleCloudStorage(GoogleCloudStorage):
+    location = "media"
+    file_overwrite = False
+{%- endif %}
 
 
 class OverwriteStorage(FileSystemStorage):
@@ -24,24 +45,3 @@ class OverwriteStorage(FileSystemStorage):
         if self.exists(name):
             os.remove(os.path.join(settings.MEDIA_ROOT, name))
         return name
-
-
-{% if cookiecutter.cloud_provider == 'AWS' -%}
-class StaticRootS3Boto3Storage(S3Boto3Storage):
-    location = "static"
-    default_acl = "public-read"
-
-
-class MediaRootS3Boto3Storage(S3Boto3Storage):
-    location = "media"
-    file_overwrite = False
-{% elif cookiecutter.cloud_provider == 'GCP' -%}
-class StaticRootGoogleCloudStorage(GoogleCloudStorage):
-    location = "static"
-    default_acl = "publicRead"
-
-
-class MediaRootGoogleCloudStorage(GoogleCloudStorage):
-    location = "media"
-    file_overwrite = False
-{%- endif %}
