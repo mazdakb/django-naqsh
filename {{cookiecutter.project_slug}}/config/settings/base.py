@@ -68,12 +68,10 @@ DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
-    "django.forms",
 ]
 THIRD_PARTY_APPS = [
     "rest_framework",
@@ -280,7 +278,6 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 {%- endif %}
-
 # DJANGO REST FRAMEWORK
 # -------------------------------------------------------------------------------
 # https://www.django-rest-framework.org/api-guide/settings/
@@ -296,7 +293,6 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 25,
 }
-
 {% if cookiecutter.use_cors_package == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------
