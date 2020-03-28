@@ -362,9 +362,6 @@ def main():
     if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
         remove_dotgitlabciyml_file()
 
-    if "{{ cookiecutter.use_drf }}".lower() == "n":
-        remove_drf_starter_files()
-
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 
 

@@ -28,7 +28,6 @@
     "GCP",
     "None"
   ],
-  "use_drf": "y",
   "mail_service": [
     "Mailgun",
     "Amazon SES",

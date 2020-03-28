@@ -281,7 +281,6 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 {%- endif %}
 
-{%- if cookiecutter.use_drf == "y" %}
 # DJANGO REST FRAMEWORK
 # -------------------------------------------------------------------------------
 # https://www.django-rest-framework.org/api-guide/settings/
@@ -297,7 +296,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 25,
 }
-{%- endif %}
+
 {% if cookiecutter.use_cors_package == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------

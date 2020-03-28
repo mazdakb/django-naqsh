@@ -138,7 +138,6 @@ Answer the prompts with your own desired options_. For example::
     version [0.1.0]: 0.0.1
     timezone [UTC]: Europe/Berlin
     use_whitenoise [n]: n
-    use_drf [y]: y
     use_celery [n]: y
     use_mailhog [n]: n
     use_sentry [n]: y

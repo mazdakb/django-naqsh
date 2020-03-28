@@ -3,12 +3,10 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.views import defaults as default_views
-{% if cookiecutter.use_drf == 'y' -%}
 from django.views.generic import RedirectView
 
 from rest_framework.reverse import reverse_lazy
 from rest_framework.routers import APIRootView
-{%- endif %}
 
 urlpatterns = [
     {%- if cookiecutter.use_grappelli == "y" %}
@@ -19,7 +17,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-{% if cookiecutter.use_drf == 'y' -%}
+
 # API URLS
 urlpatterns += [
     # API Root View Session Auth
