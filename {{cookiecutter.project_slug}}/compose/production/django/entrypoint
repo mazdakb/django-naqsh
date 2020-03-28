@@ -4,14 +4,4 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-
-check_service_status () {
-    >&2 echo "waiting for \"$2\" to become available with $4 timeout"
-    dockerize -wait ${1}://${2}:${3} -timeout ${4}
-    >&2 echo "$2 is up. continuing..."
-}
-
-# Check for postgres
-check_service_status tcp postgres 5432 60s
-
 exec "$@"
