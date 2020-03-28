@@ -288,10 +288,6 @@ def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
 
 
-def remove_storages_module():
-    os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
-
-
 def main():
     debug = "{{ cookiecutter.debug }}".lower() == "y"
 
@@ -346,7 +342,6 @@ def main():
             WARNING + "You chose not to use a cloud provider, "
             "media files won't be served in production." + TERMINATOR
         )
-        remove_storages_module()
 
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_files()
