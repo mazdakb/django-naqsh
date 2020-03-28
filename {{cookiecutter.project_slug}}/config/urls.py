@@ -40,7 +40,6 @@ urlpatterns += [
     # Service Root View
     path("", RedirectView.as_view(url=reverse_lazy("v1:root"), permanent=False)),
 ]
-{%- endif %}
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
