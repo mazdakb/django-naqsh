@@ -5,8 +5,35 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 import inflection
+{% if cookiecutter.cloud_provider == 'AWS' -%}
+from storages.backends.s3boto3 import S3Boto3Storage
+{%- endif %}
 
 secret_random = secrets.SystemRandom()
+
+
+{% if cookiecutter.cloud_provider == 'AWS' -%}
+class StaticRootS3Boto3Storage(S3Boto3Storage):
+    location = "static"
+    default_acl = "public-read"
+
+
+class MediaRootS3Boto3Storage(S3Boto3Storage):
+    location = "media"
+    file_overwrite = False
+{%- elif cookiecutter.cloud_provider == 'GCP' -%}
+from storages.backends.gcloud import GoogleCloudStorage
+
+
+class StaticRootGoogleCloudStorage(GoogleCloudStorage):
+    location = "static"
+    default_acl = "publicRead"
+
+
+class MediaRootGoogleCloudStorage(GoogleCloudStorage):
+    location = "media"
+    file_overwrite = False
+{%- endif %}
 
 
 class OverwriteStorage(FileSystemStorage):
