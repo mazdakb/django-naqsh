@@ -13,7 +13,6 @@ flower==0.9.3  # https://github.com/mher/flower
 {%- endif %}
 {%- endif %}
 pycryptodome==3.9.6  # https://github.com/Legrandin/pycryptodome
-inflection==0.3.1  # https://github.com/jpvanhal/inflection
 
 # Django
 # ------------------------------------------------------------------------------
