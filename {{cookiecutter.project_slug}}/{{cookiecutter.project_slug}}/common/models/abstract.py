@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-from django.utils.text import slugify
+from django.utils import text
 from django.utils.translation import gettext_lazy as _
 
 from {{ cookiecutter.project_slug }}.common.utils import generate_random_slug
@@ -29,7 +29,7 @@ class UniversalModelMixin(models.Model):
 
     @property
     def serial(self) -> str:
-        return f'{self.id.__str__().upper().split("-")[0]}'
+        return str(self.id).upper().split("-")[0]
 
     def __str__(self):
         return self.serial
@@ -106,6 +106,6 @@ class SluggedModelMixin(models.Model):
 
     def save(self, *args, **kwargs):
         # normalize the slug
-        self.slug = slugify(self.slug)
+        self.slug = text.slugify(self.slug)
         # call super's save method
         super().save(*args, **kwargs)
