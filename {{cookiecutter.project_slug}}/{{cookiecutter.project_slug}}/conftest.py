@@ -1,5 +1,3 @@
-from django.test import RequestFactory
-
 import pytest
 
 from {{ cookiecutter.project_slug }}.accounts.models import User
@@ -14,8 +12,3 @@ def media_storage(settings, tmpdir):
 @pytest.fixture
 def user() -> User:
     return UserFactory()
-
-
-@pytest.fixture
-def request_factory() -> RequestFactory:
-    return RequestFactory()
