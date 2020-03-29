@@ -3,28 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from {{ cookiecutter.project_slug }}.accounts.models import User, Session
-
-
-class SessionInlineAdmin(admin.StackedInline):
-    model = Session
-    fields = [
-        "id",
-        "digest",
-        "key",
-        "salt",
-        "user",
-        "expires",
-        "user_agent",
-        "ip_address",
-        "is_active",
-        "created",
-        "updated",
-    ]
-    readonly_fields = fields
-    max_num = 0
-    classes = ["grp-collapse grp-open"]
-    inline_classes = ["grp-collapse grp-open"]
+from {{ cookiecutter.project_slug }}.accounts.models import User
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -79,7 +58,6 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ["id", "first_name", "last_name", "email"]
     ordering = ["-date_joined"]
     filter_horizontal = ["groups", "user_permissions"]
-    inlines = [SessionInlineAdmin]
 
     def full_name(self, obj: User):
         return obj.get_full_name()

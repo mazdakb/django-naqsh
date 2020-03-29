@@ -43,25 +43,4 @@ class Migration(migrations.Migration):
                 ('objects', {{ cookiecutter.project_slug }}.accounts.models.user.UserManager()),
             ],
         ),
-        migrations.CreateModel(
-            name='Session',
-            fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, help_text='Universally unique object identifier', primary_key=True, serialize=False, verbose_name='universal unique id')),
-                ('created', models.DateTimeField(auto_now_add=True, help_text='This is the timestamp of the object creation.', verbose_name='created at')),
-                ('updated', models.DateTimeField(auto_now=True, help_text='This is the timestamp of the object update', verbose_name='updated at')),
-                ('is_active', models.BooleanField(db_index=True, default=True, help_text='Designates if this object should be considered active or not or to simulate soft delete behaviour.', verbose_name='active')),
-                ('digest', models.CharField(max_length=255, verbose_name='digest')),
-                ('key', models.CharField(max_length=255, unique=True, verbose_name='key')),
-                ('salt', models.CharField(max_length=255, unique=True, verbose_name='salt')),
-                ('expires', models.DateTimeField(blank=True, db_index=True, null=True, verbose_name='expires at')),
-                ('user_agent', models.TextField(editable=False, help_text='User-Agent of session with which user has logged in.', verbose_name='user agent')),
-                ('ip_address', models.GenericIPAddressField(blank=True, help_text='IP address of client. Web servers and proxies are ignored as best as possible.', null=True, verbose_name='ip address')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sessions', to=settings.AUTH_USER_MODEL, verbose_name='user')),
-            ],
-            options={
-                'verbose_name': 'session',
-                'verbose_name_plural': 'sessions',
-                'ordering': ['-created'],
-            },
-        ),
     ]
