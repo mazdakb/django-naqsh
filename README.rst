@@ -95,7 +95,7 @@ Constraints
 Support this Project!
 ----------------------
 
-This project is run by volunteers.  If you are considering a donation, I encourage you to support the creators of *cookiecutter-django* in their efforts to maintain and improve Cookiecutter Django:
+This project is run by volunteers.  If you are considering a donation, I encourage you to support the creators of *cookiecutter-django* in their efforts to maintain it:
 
 * Daniel Roy Greenfeld (`GitHub <https://github.com/pydanny>`_, `Patreon <https://www.patreon.com/danielroygreenfeld>`_)
 
