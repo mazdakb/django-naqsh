@@ -29,14 +29,14 @@ Powered by Cookiecutter_, Django Naqsh is a bootstrapping tool for creating
 production-ready Django web services quickly.
 
 This project is a fork of `cookiecutter-django`_ that is intended to be used as a REST API backend.
-Unnecessary modules for a REST API and codes are removed and custom User model is more developed.
+Unnecessary modules for a REST API and codes are removed or otherwise enhanced.
 
 * Documentation: https://django-naqsh.readthedocs.io/en/latest/
 * See Troubleshooting_ for common errors and obstacles
 * If you have problems with Django Naqsh, please open issues_ don't send
   emails to the maintainers.
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _cookiecutter-django: https://github.com/pydanny/cookiecutter-django
 .. _Troubleshooting: https://django-naqsh.readthedocs.io/en/latest/troubleshooting.html
 .. _issues: https://github.com/mazdakb/django-naqsh/issues/new
@@ -268,7 +268,7 @@ Code of Conduct
 ---------------
 
 Everyone interacting in the Cookiecutter project's codebases, issue trackers, chat
-rooms, and mailing lists is expected to follow the `PyPA Code of Conduct`_.
+rooms and mailing lists are expected to follow the `PyPA Code of Conduct`_.
 
 
 .. _`PyPA Code of Conduct`: https://www.pypa.io/en/latest/code-of-conduct/
