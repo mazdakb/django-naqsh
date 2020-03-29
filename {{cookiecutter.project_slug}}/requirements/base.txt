@@ -9,10 +9,10 @@ redis==3.4.1 # https://github.com/andymccurdy/redis-py
 {%- if cookiecutter.use_celery == "y" %}
 celery==4.4.2  # pyup: < 5.0  # https://github.com/celery/celery
 {%- if cookiecutter.use_docker == 'y' %}
-flower==0.9.3  # https://github.com/mher/flower
+flower==0.9.4  # https://github.com/mher/flower
 {%- endif %}
 {%- endif %}
-pycryptodome==3.9.6  # https://github.com/Legrandin/pycryptodome
+pycryptodome==3.9.7  # https://github.com/Legrandin/pycryptodome
 
 # Django
 # ------------------------------------------------------------------------------
