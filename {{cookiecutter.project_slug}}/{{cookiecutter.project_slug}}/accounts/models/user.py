@@ -22,7 +22,7 @@ class UserManager(BaseUserManager, ActivatedModelManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password) if password else user.set_unusable_password()
-        user.save(using=self._db)  # type: ignore
+        user.save(using=self._db)
         return user
 
     def create_user(self, email: str, password: str = None, **extra_fields) -> "User":
