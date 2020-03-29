@@ -36,7 +36,7 @@ Unnecessary modules for a REST API and codes are removed and custom User model i
 * If you have problems with Django Naqsh, please open issues_ don't send
   emails to the maintainers.
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _django-naqsh: https://github.com/mazdakb/django-naqsh
 .. _Troubleshooting: https://django-naqsh.readthedocs.io/en/latest/troubleshooting.html
 .. _issues: https://github.com/mazdakb/django-naqsh/issues/new
