@@ -7,21 +7,20 @@ whitenoise==5.0.1  # https://github.com/evansd/whitenoise
 {%- endif %}
 redis==3.4.1 # https://github.com/andymccurdy/redis-py
 {%- if cookiecutter.use_celery == "y" %}
-celery==4.4.0  # pyup: < 5.0  # https://github.com/celery/celery
+celery==4.4.2  # pyup: < 5.0  # https://github.com/celery/celery
 {%- if cookiecutter.use_docker == 'y' %}
 flower==0.9.3  # https://github.com/mher/flower
 {%- endif %}
 {%- endif %}
 pycryptodome==3.9.6  # https://github.com/Legrandin/pycryptodome
-inflection==0.3.1  # https://github.com/jpvanhal/inflection
 
 # Django
 # ------------------------------------------------------------------------------
-django==3.0.3  # https://www.djangoproject.com/
+django==3.0.4  # pyup: < 3.1  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
 {%- if cookiecutter.use_celery == "y" %}
-django-celery-beat==1.6.0  # https://github.com/celery/django-celery-beat
+django-celery-beat==2.0.0  # https://github.com/celery/django-celery-beat
 {%- endif %}
 {%- if cookiecutter.use_cors_package == 'y' %}
 django-cors-headers==3.2.1  # https://github.com/ottoyiu/django-cors-headers
@@ -33,4 +32,3 @@ django-redis==4.11.0  # https://github.com/niwinz/django-redis
 
 # Django REST Framework
 djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
-coreapi==2.3.3  # https://github.com/core-api/python-client

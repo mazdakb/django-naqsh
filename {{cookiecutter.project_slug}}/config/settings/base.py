@@ -1,21 +1,21 @@
 """
 Base settings to build other settings files upon.
 """
+from pathlib import Path
+
 from django.utils.translation import gettext_lazy as _
 
 import environ
 
-ROOT_DIR = (
-    environ.Path(__file__) - 3
-)  # ({{ cookiecutter.project_slug }}/config/settings/base.py - 3 = {{ cookiecutter.project_slug }}/)
-APPS_DIR = ROOT_DIR.path("{{ cookiecutter.project_slug }}")
-
+ROOT_DIR = Path(__file__).parents[2]
+# {{ cookiecutter.project_slug }}/)
+APPS_DIR = ROOT_DIR / "{{ cookiecutter.project_slug }}"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
-    env.read_env(str(ROOT_DIR.path(".env")))
+    env.read_env(str(ROOT_DIR / ".env"))
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
 LANGUAGES = [("en-us", _("English")), ("de-de", _("German"))]
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
-LOCALE_PATHS = [ROOT_DIR.path("locale")]
+LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -68,7 +68,6 @@ DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
@@ -81,6 +80,7 @@ THIRD_PARTY_APPS = [
 {%- endif %}
     # Your stuff: thirdparty libraries go here
 ]
+
 LOCAL_APPS = [
     "{{ cookiecutter.project_slug }}.common.apps.CommonAppConfig",
     "{{ cookiecutter.project_slug }}.accounts.apps.AccountsAppConfig",
@@ -145,11 +145,11 @@ MIDDLEWARE = [
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(ROOT_DIR(".assets"))
+STATIC_ROOT = str(ROOT_DIR / ".assets")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(ROOT_DIR.path("static"))]
+STATICFILES_DIRS = [str(ROOT_DIR / "static")]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -159,7 +159,7 @@ STATICFILES_FINDERS = [
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(ROOT_DIR("media"))
+MEDIA_ROOT = str(ROOT_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
 
@@ -171,7 +171,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR.path("templates"))],
+        "DIRS": [str(ROOT_DIR / "templates")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
@@ -189,6 +189,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
+                "{{ cookiecutter.project_slug }}.common.contexts.settings_context",
             ],
         },
     }
@@ -197,7 +198,7 @@ TEMPLATES = [
 # FIXTURES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
-FIXTURE_DIRS = (str(ROOT_DIR.path("fixtures")),)
+FIXTURE_DIRS = (str(ROOT_DIR / "fixtures"),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -216,7 +217,7 @@ X_FRAME_OPTIONS = "DENY"
 EMAIL_BACKEND = env(
     "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
 )
-# https://docs.djangoproject.com/en/2.2/ref/settings/#email-timeout
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
 
 # ADMIN
@@ -252,7 +253,7 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-{%- if cookiecutter.use_celery == 'y' %}
+{% if cookiecutter.use_celery == 'y' -%}
 # Celery
 # ------------------------------------------------------------------------------
 if USE_TZ:
@@ -277,8 +278,6 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 {%- endif %}
-
-{%- if cookiecutter.use_drf == "y" %}
 # DJANGO REST FRAMEWORK
 # -------------------------------------------------------------------------------
 # https://www.django-rest-framework.org/api-guide/settings/
@@ -294,7 +293,6 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 25,
 }
-{%- endif %}
 {% if cookiecutter.use_cors_package == 'y' -%}
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------

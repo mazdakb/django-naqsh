@@ -28,7 +28,17 @@
     "GCP",
     "None"
   ],
-  "use_drf": "y",
+  "mail_service": [
+    "Mailgun",
+    "Amazon SES",
+    "Mailjet",
+    "Mandrill",
+    "Postmark",
+    "Sendgrid",
+    "SendinBlue",
+    "SparkPost",
+    "Other SMTP"
+  ],
   "use_celery": "n",
   "use_mailhog": "n",
   "use_sentry": "n",

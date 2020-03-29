@@ -92,6 +92,15 @@ Constraints
 * Uses PostgreSQL everywhere
 * Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
+Support this Project!
+----------------------
+
+This project is run by volunteers.  If you want to consider a donation, please support the original creators in their efforts to maintain and improve Cookiecutter Django:
+
+* Daniel Roy Greenfeld (`GitHub <https://github.com/pydanny>`_, `Patreon <https://www.patreon.com/danielroygreenfeld>`_)
+
+* Nikita Shupeyko (`GitHub <https://github.com/webyneter>`_)
+
 Usage
 ------
 
@@ -100,7 +109,7 @@ and then editing the results to include your name, email, and various configurat
 
 First, get Cookiecutter. Trust me, it's awesome::
 
-    $ pip install "cookiecutter>=1.4.0"
+    $ pip install "cookiecutter>=1.7.0"
 
 Now run it against this repo::
 
@@ -127,7 +136,6 @@ Answer the prompts with your own desired options_. For example::
     version [0.1.0]: 0.0.1
     timezone [UTC]: Europe/Berlin
     use_whitenoise [n]: n
-    use_drf [y]: y
     use_celery [n]: y
     use_mailhog [n]: n
     use_sentry [n]: y
@@ -219,7 +227,7 @@ If you do rename your fork, I encourage you to submit it to the following places
 * cookiecutter_ so it gets listed in the README as a template.
 * The cookiecutter grid_ on Django Packages.
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
 
 Submit a Pull Request
