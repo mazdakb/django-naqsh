@@ -101,6 +101,17 @@ This project is run by volunteers.  If you are considering a donation, I encoura
 
 * Nikita Shupeyko (`GitHub <https://github.com/webyneter>`_)
 
+pyup
+~~~~~~~~~~~~~~~~~~
+
+.. image:: https://pyup.io/static/images/logo.png
+   :name: pyup
+   :align: center
+   :alt: pyup
+   :target: https://pyup.io/
+
+Pyup brings you automated security and dependency updates used by Google and other organizations. Free for open source projects!
+
 Usage
 ------
 
