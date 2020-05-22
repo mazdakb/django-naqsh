@@ -80,6 +80,12 @@ def remove_heroku_files():
 def remove_celery_files():
     file_names = [
         os.path.join("config", "celery.py"),
+
+
+def remove_async_files():
+    file_names = [
+        os.path.join("config", "asgi.py"),
+        os.path.join("config", "websocket.py"),
     ]
     for file_name in file_names:
         os.remove(file_name)
@@ -353,6 +359,9 @@ def main():
 
     if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
         remove_dotgitlabciyml_file()
+
+    if "{{ cookiecutter.use_async }}".lower() == "n":
+        remove_async_files()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 
