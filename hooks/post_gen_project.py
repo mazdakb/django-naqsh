@@ -80,6 +80,9 @@ def remove_heroku_files():
 def remove_celery_files():
     file_names = [
         os.path.join("config", "celery.py"),
+    ]
+    for file_name in file_names:
+        os.remove(file_name)
 
 
 def remove_async_files():
