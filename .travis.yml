@@ -1,11 +1,9 @@
-dist: xenial
-
 services:
   - docker
 
 language: python
 
-python: 3.7
+python: 3.8
 
 before_install:
   - docker-compose -v
@@ -14,12 +12,12 @@ before_install:
 matrix:
   include:
     - name: Test results
-      script: tox -e py37
+      script: tox -e py38
     - name: Black template
       script: tox -e black-template
     - name: Basic Docker
       script: sh tests/test_docker.sh
-    - name: Docker with Celery
+    - name: Extended Docker
       script: sh tests/test_docker.sh use_celery=y
     - name: Bare metal
       script: sh tests/test_bare.sh use_celery=y use_compressor=y

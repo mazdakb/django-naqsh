@@ -3,6 +3,9 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.views import defaults as default_views
+{%- if cookiecutter.use_async == 'y' %}
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+{%- endif %}
 from django.views.generic import RedirectView
 
 from rest_framework.reverse import reverse_lazy
@@ -42,6 +45,10 @@ urlpatterns += [
 ]
 
 if settings.DEBUG:
+{%- if cookiecutter.use_async == 'y' %}
+    # Static file serving when using Gunicorn + Uvicorn for local web socket development
+    urlpatterns += staticfiles_urlpatterns()
+{%- endif %}
     # This allows the error pages to be debugged during development, just visit
     # these url in browser to see how these error pages look like.
     urlpatterns += [

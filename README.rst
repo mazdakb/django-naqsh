@@ -36,7 +36,6 @@ Unnecessary modules for a REST API and codes are removed or otherwise enhanced.
 * If you have problems with Django Naqsh, please open issues_ don't send
   emails to the maintainers.
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _cookiecutter-django: https://github.com/pydanny/cookiecutter-django
 .. _Troubleshooting: https://django-naqsh.readthedocs.io/en/latest/troubleshooting.html
 .. _issues: https://github.com/mazdakb/django-naqsh/issues/new
@@ -45,11 +44,12 @@ Features
 ---------
 
 * For Django 3.0
-* Works with Python 3.7
+* Works with Python 3.8
 * 12-Factor_ based settings via django-environ_
 * Secure by default. We believe in SSL.
 * Optimized development and production settings
-* Comes with custom user model and secure token authentication and email validation for RESTful API
+* Comes with custom user model
+* Optional basic ASGI setup for Websockets
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
 * Media storage using Amazon S3 or Google Cloud Storage
 * Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
@@ -154,6 +154,7 @@ Answer the prompts with your own desired options_. For example::
     windows [n]: n
     use_docker [n]: n
     use_heroku [n]: y
+    use_compressor [n]: y
     Select postgresql_version:
     1 - 12.1
     2 - 11.6
