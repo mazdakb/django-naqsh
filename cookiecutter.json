@@ -39,6 +39,8 @@
     "SparkPost",
     "Other SMTP"
   ],
+  "use_async": "n",
+  "use_compressor": "n",
   "use_celery": "n",
   "use_mailhog": "n",
   "use_sentry": "n",
