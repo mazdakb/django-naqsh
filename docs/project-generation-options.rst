@@ -49,10 +49,11 @@ use_docker:
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
-    1. 12.1
-    2. 11.6
-    3. 10.10
-    4. 9.6
+    1. 11.3
+    2. 10.8
+    3. 9.6
+    4. 9.5
+    5. 9.4
 
 cloud_provider:
     Select a cloud provider for static & media files. The choices are:
@@ -75,6 +76,12 @@ mail_service:
     7. SendinBlue_
     8. SparkPost_
     9. `Other SMTP`_
+
+use_async:
+    Indicates whether the project should use web sockets with Uvicorn + Gunicorn.
+
+use_compressor:
+    Indicates whether the project should be configured to use `Django Compressor`_.
 
 use_celery:
     Indicates whether the project should be configured to use Celery_.
@@ -144,6 +151,8 @@ debug:
 .. _Other SMTP: https://anymail.readthedocs.io/en/stable/
 
 .. _Django Rest Framework: https://github.com/encode/django-rest-framework/
+
+.. _Django Compressor: https://github.com/django-compressor/django-compressor
 
 .. _Celery: https://github.com/celery/celery
 
