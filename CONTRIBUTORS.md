@@ -1,6 +1,6 @@
 # Contributors
 
-## Cookiecutter Django Developers
+## Django Naqsh Developers
 
 These contributors have commit flags for this repository, and are able to
 accept and merge pull requests here.
