@@ -18,9 +18,10 @@
   "use_pycharm": "n",
   "use_docker": "n",
   "postgresql_version": [
-    "12.1",
-    "11.6",
-    "10.10",
+    "13.1",
+    "12.5",
+    "11.10",
+    "10.15",
     "9.6"
   ],
   "cloud_provider": [
@@ -51,9 +52,9 @@
   "ci_tool": [
     "None",
     "Travis",
-    "Gitlab"
+    "Gitlab",
+    "Github"
   ],
   "keep_local_envs_in_vcs": "y",
-
   "debug": "n"
 }
