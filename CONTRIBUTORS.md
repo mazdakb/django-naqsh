@@ -16,7 +16,7 @@ accept and merge pull requests here.
     <td>
       <a href="https://github.com/mazdakb">mazdakb</a>
     </td>
-    <td>mazdakb</td>
+    <td>geraneum</td>
   </tr>
 </table>
 
