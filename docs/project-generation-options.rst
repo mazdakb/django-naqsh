@@ -49,11 +49,11 @@ use_docker:
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
-    1. 11.3
-    2. 10.8
-    3. 9.6
-    4. 9.5
-    5. 9.4
+    1. 13.1
+    2. 12.5
+    3. 11.10
+    4. 10.15
+    5. 9.6
 
 cloud_provider:
     Select a cloud provider for static & media files. The choices are:
@@ -99,18 +99,13 @@ use_heroku:
     Indicates whether the project should be configured so as to be deployable
     to Heroku_.
 
-use_grappelli:
-    Indicates whether the project should be configured to use `Django Grappelli`_.
-
-use_cors_headers:
-    Indicates whether the project should be configured to use `Django CORS Headers`_.
-
 ci_tool:
     Select a CI tool for running tests. The choices are:
 
     1. None
     2. `Travis CI`_
     3. `Gitlab CI`_
+    4. `Github Actions`_
 
 keep_local_envs_in_vcs:
     Indicates whether the project's ``.envs/.local/`` should be kept in VCS
@@ -164,11 +159,8 @@ debug:
 
 .. _Heroku: https://github.com/heroku/heroku-buildpack-python
 
-.. _Django Grappelli: http://grappelliproject.com/
-
-.. _Django CORS Headers: https://github.com/ottoyiu/django-cors-headers
-
 .. _Travis CI: https://travis-ci.org/
 
 .. _GitLab CI: https://docs.gitlab.com/ee/ci/
 
+.. _Github Actions: https://docs.github.com/en/actions
