@@ -5,7 +5,7 @@ NOTE:
     can potentially be run in Python 2.x environment
     (at least so we presume in `pre_gen_project.py`).
 
-TODO: ? restrict Django Naqsh project initialization to Python 3.x environments only
+TODO: ? restrict Cookiecutter Django project initialization to Python 3.x environments only
 """
 from __future__ import print_function
 
@@ -75,6 +75,11 @@ def remove_heroku_files():
             # don't remove the file if we are using travisci but not using heroku
             continue
         os.remove(file_name)
+    remove_heroku_build_hooks()
+
+
+def remove_heroku_build_hooks():
+    shutil.rmtree("bin")
 
 
 def remove_celery_files():
@@ -297,6 +302,10 @@ def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
 
 
+def remove_storages_module():
+    os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
+
+
 def main():
     debug = "{{ cookiecutter.debug }}".lower() == "y"
 
@@ -328,6 +337,8 @@ def main():
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
+    elif "{{ cookiecutter.use_compressor }}".lower() == "n":
+        remove_heroku_build_hooks()
 
     if (
         "{{ cookiecutter.use_docker }}".lower() == "n"
@@ -351,6 +362,7 @@ def main():
             WARNING + "You chose not to use a cloud provider, "
             "media files won't be served in production." + TERMINATOR
         )
+        remove_storages_module()
 
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_files()
@@ -362,6 +374,9 @@ def main():
 
     if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
         remove_dotgitlabciyml_file()
+
+    if "{{ cookiecutter.ci_tool }}".lower() != "github":
+        remove_dotgithub_folder()
 
     if "{{ cookiecutter.use_async }}".lower() == "n":
         remove_async_files()
