@@ -24,9 +24,9 @@ First things first.
 
     $ source <virtual env path>/bin/activate
 
-#. Install django-naqsh
+#. Install django-naqsh: ::
 
-    $ cookiecutter gh:mazdakb/django-naqsh ::
+    $ cookiecutter gh:mazdakb/django-naqsh
 
 #. Install development requirements: ::
 
@@ -34,10 +34,10 @@ First things first.
     $ git init # A git repo is required for pre-commit to install
     $ pre-commit install
 
-     .. note::
+   .. note::
 
-        the `pre-commit` exists in the generated project as default.
-        for the details of `pre-commit`, follow the [site of pre-commit](https://pre-commit.com/).
+       the `pre-commit` exists in the generated project as default.
+       for the details of `pre-commit`, follow the [site of pre-commit](https://pre-commit.com/).
 
 #. Create a new PostgreSQL database using createdb_: ::
 
@@ -80,7 +80,7 @@ First things first.
 
 or if you're running asynchronously: ::
 
-    $ gunicorn config.asgi --bind 0.0.0.0:8000 -k uvicorn.workers.UvicornWorker --reload
+    $ uvicorn config.asgi:application --host 0.0.0.0 --reload
 
 .. _PostgreSQL: https://www.postgresql.org/download/
 .. _Redis: https://redis.io/download
