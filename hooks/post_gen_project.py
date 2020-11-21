@@ -107,6 +107,10 @@ def remove_dotgitlabciyml_file():
     os.remove(".gitlab-ci.yml")
 
 
+def remove_dotgithub_folder():
+    shutil.rmtree(".github")
+
+
 def append_to_project_gitignore(path):
     gitignore_file_path = ".gitignore"
     with open(gitignore_file_path, "a") as gitignore_file:
