@@ -2,7 +2,7 @@ import factory
 from factory import fuzzy
 
 
-class UserFactory(factory.DjangoModelFactory):
+class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: "user{0}@example.com".format(n))
     password = factory.PostGenerationMethodCall("set_password", "password")
     is_verified = fuzzy.FuzzyChoice([True, False])
