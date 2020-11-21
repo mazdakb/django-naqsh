@@ -6,9 +6,9 @@ class AccountsAppConfig(AppConfig):
     verbose_name = "Accounts"
 
     def ready(self):
-        """Override this to put in:
-            Accounts system checks
-            Accounts signal registration
+        """
+        Accounts system checks
+        Accounts signal registration
         """
         try:
             import {{ cookiecutter.project_slug }}.accounts.receivers  # noqa F401

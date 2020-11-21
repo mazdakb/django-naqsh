@@ -6,9 +6,9 @@ class CommonAppConfig(AppConfig):
     verbose_name = "Common"
 
     def ready(self):
-        """Override this to put in:
-            Common system checks
-            Common signal registration
+        """
+        Common system checks
+        Common signal registration
         """
         try:
             import {{ cookiecutter.project_slug }}.common.receivers  # noqa F401

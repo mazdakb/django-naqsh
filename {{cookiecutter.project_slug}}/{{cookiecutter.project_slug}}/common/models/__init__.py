@@ -1,15 +1,9 @@
+# flake8: noqa
+
 from .abstract import (
-    UniversalModelMixin,
-    TimestampedModelMixin,
     ActivatedModelManager,
     ActivatedModelMixin,
     SluggedModelMixin,
+    TimestampedModelMixin,
+    UniversalModelMixin,
 )
-
-__all__ = [
-    "UniversalModelMixin",
-    "TimestampedModelMixin",
-    "ActivatedModelManager",
-    "ActivatedModelMixin",
-    "SluggedModelMixin",
-]

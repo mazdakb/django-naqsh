@@ -1,7 +1,6 @@
-from django.test import TestCase
-from django.db.models.signals import post_save
-
 import factory
+from django.db.models.signals import post_save
+from django.test import TestCase
 
 from .factories import UserFactory
 

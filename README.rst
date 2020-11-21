@@ -156,11 +156,12 @@ Answer the prompts with your own desired options_. For example::
     use_heroku [n]: y
     use_compressor [n]: y
     Select postgresql_version:
-    1 - 12.1
-    2 - 11.6
-    3 - 10.10
-    4 - 9.6
-    Choose from 1, 2, 3, 4 [1]: 1
+    1 - 13.1
+    2 - 12.5
+    3 - 11.10
+    4 - 10.15
+    5 - 9.6
+    Choose from 1, 2, 3, 4, 5 [1]: 1
     Select cloud_provider:
     1 - AWS
     2 - GCP

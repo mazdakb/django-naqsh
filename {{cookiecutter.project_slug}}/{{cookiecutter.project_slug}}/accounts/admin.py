@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from {{ cookiecutter.project_slug }}.accounts.models import User
+from {{cookiecutter.project_slug}}.accounts.models import User
 
 
 class CustomUserCreationForm(UserCreationForm):
