@@ -1,21 +1,9 @@
 Django Naqsh
 ============
 
-.. image:: https://travis-ci.com/mazdakb/django-naqsh.svg?branch=master
-    :target: https://travis-ci.com/mazdakb/django-naqsh
-    :alt: Build Status
-
 .. image:: https://readthedocs.org/projects/django-naqsh/badge/?version=latest
     :target: http://django-naqsh.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
-
-.. image:: https://pyup.io/repos/github/mazdakb/django-naqsh/shield.svg
-    :target: https://pyup.io/repos/github/mazdakb/django-naqsh/
-    :alt: Updates
-
-.. image:: https://requires.io/github/mazdakb/django-naqsh/requirements.svg?branch=master
-     :target: https://requires.io/github/mazdakb/django-naqsh/requirements/?branch=master
-     :alt: Requirements Status
 
 .. image:: https://www.codetriage.com/mazdakb/django-naqsh/badges/users.svg
     :target: https://www.codetriage.com/mazdakb/django-naqsh
@@ -43,7 +31,7 @@ Unnecessary modules for a REST API and codes are removed or otherwise enhanced.
 Features
 ---------
 
-* For Django 3.0
+* For Django 3.1
 * Works with Python 3.8
 * 12-Factor_ based settings via django-environ_
 * Secure by default. We believe in SSL.
@@ -100,17 +88,6 @@ This project is run by volunteers.  If you are considering a donation, I encoura
 * Daniel Roy Greenfeld (`GitHub <https://github.com/pydanny>`_, `Patreon <https://www.patreon.com/danielroygreenfeld>`_)
 
 * Nikita Shupeyko (`GitHub <https://github.com/webyneter>`_)
-
-pyup
-~~~~~~~~~~~~~~~~~~
-
-.. image:: https://pyup.io/static/images/logo.png
-   :name: pyup
-   :align: center
-   :alt: pyup
-   :target: https://pyup.io/
-
-Pyup brings you automated security and dependency updates used by Google and other organizations. Free for open source projects!
 
 Usage
 ------
