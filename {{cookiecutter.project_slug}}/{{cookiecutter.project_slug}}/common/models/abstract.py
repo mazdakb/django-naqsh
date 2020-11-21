@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import text
 from django.utils.translation import gettext_lazy as _
 
-from {{ cookiecutter.project_slug }}.common.utils import generate_random_slug
+from {{cookiecutter.project_slug}}.common.utils import generate_random_slug
 
 
 class UniversalModelMixin(models.Model):

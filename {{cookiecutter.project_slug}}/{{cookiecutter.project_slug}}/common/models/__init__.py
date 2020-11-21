@@ -1,9 +1,9 @@
 from .abstract import (
-    UniversalModelMixin,
-    TimestampedModelMixin,
     ActivatedModelManager,
     ActivatedModelMixin,
     SluggedModelMixin,
+    TimestampedModelMixin,
+    UniversalModelMixin,
 )
 
 __all__ = [

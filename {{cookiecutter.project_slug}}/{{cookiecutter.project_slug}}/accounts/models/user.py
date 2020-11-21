@@ -1,12 +1,14 @@
 from typing import Optional
 
-from django.db import models
-from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from {{ cookiecutter.project_slug }}.common.models import ActivatedModelManager
-from {{ cookiecutter.project_slug }}.common.models import UniversalModelMixin
+from {{cookiecutter.project_slug}}.common.models import (
+    ActivatedModelManager,
+    UniversalModelMixin,
+)
 
 
 class UserManager(BaseUserManager, ActivatedModelManager):
