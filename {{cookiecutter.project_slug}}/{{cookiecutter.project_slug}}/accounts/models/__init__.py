@@ -1,3 +1,3 @@
-from .user import User
+# flake8: noqa
 
-__all__ = ["User"]
+from .user import User

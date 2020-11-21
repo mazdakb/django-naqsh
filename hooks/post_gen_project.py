@@ -307,7 +307,7 @@ def remove_aws_dockerfile():
 
 
 def remove_storages_module():
-    os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
+    os.remove(os.path.join("{{cookiecutter.project_slug}}", "common", "storages.py"))
 
 
 def main():
