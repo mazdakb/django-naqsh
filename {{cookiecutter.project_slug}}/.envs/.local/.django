@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
-DJANGO_DATABASE_URL=postgres://!!!SET POSTGRES_USER!!!:!!!SET POSTGRES_PASSWORD!!!@postgres:5432/{{ cookiecutter.project_slug }}
+DJANGO_DATABASE_URL=postgres://{{ cookiecutter.project_slug }}:{{ cookiecutter.project_slug }}@postgres:5432/{{ cookiecutter.project_slug }}
 
 {%- if cookiecutter.use_celery == 'y' %}
 # Redis
@@ -13,6 +13,6 @@ CELERY_BROKER_URL=redis://redis:6379/0
 # ------------------------------------------------------------------------------
 
 # Flower
-CELERY_FLOWER_USER=!!!SET CELERY_FLOWER_USER!!!
-CELERY_FLOWER_PASSWORD=!!!SET CELERY_FLOWER_PASSWORD!!!
+CELERY_FLOWER_USER={{ cookiecutter.project_slug }}
+CELERY_FLOWER_PASSWORD={{ cookiecutter.project_slug }}
 {% endif %}
