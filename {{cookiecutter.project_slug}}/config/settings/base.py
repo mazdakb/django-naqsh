@@ -125,11 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 {%- if cookiecutter.use_whitenoise == 'y' %}
     "whitenoise.middleware.WhiteNoiseMiddleware",
-{%- endif %}
-{%- if cookiecutter.use_cors_package == 'y' %}
-    "corsheaders.middleware.CorsMiddleware",
 {%- endif %}
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -251,6 +249,7 @@ LOGGING = {
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
+
 {% if cookiecutter.use_celery == 'y' -%}
 # Celery
 # ------------------------------------------------------------------------------
